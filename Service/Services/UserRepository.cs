@@ -5,12 +5,12 @@ using Service.Properties;
 
 namespace Service.Services
 {
-    public class UserService
+    public class UserRepository
     {
         private readonly TokenDao _tokenDao;
         private readonly UserDao _userDao;
 
-        public UserService()
+        public UserRepository()
         {
             _userDao = new UserDao(Settings.Default.ConnectionString);
             _tokenDao = new TokenDao(Settings.Default.ConnectionString);
