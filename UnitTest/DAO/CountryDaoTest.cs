@@ -1,0 +1,117 @@
+﻿using System.Collections.Generic;
+using System.Data.SqlClient;
+using CoreServiceLib.DAO;
+using CoreServiceLib.Models;
+using NUnit.Framework;
+using NUnit.Framework.Constraints;
+using UnitTest.Properties;
+
+namespace UnitTest.DAO
+{
+    [TestFixture]
+    public class CountryDaoTest
+    {
+        [SetUp]
+        public void SetUp()
+        {
+            dao = new CountryDao(Settings.Default.ConnectionString);
+        }
+
+        private CountryDao dao;
+
+        [Test]
+        public void TestDelete()
+        {
+            var country = new Country {Id = 11, Name = "Venezuela"};
+            Assert.AreEqual(true, dao.Delete(country));
+        }
+
+        [Test]
+        public void TestDeleteNotId()
+        {
+            var country = new Country {Id = 101212, Name = "Venezuela"};
+            Assert.AreEqual(true, dao.Delete(country));
+        }
+
+        [Test]
+        public void TestGetAll()
+        {
+            var countries = dao.GetAll();
+            var expectedCountries = new List<Country>
+            {
+                new Country {Id = 1, Name = "Việt Nam"},
+                new Country {Id = 2, Name = "Lào"},
+                new Country {Id = 3, Name = "Campuchia"}
+            };
+
+            var result = true;
+
+            for (var i = 0; i < expectedCountries.Count; i++)
+                result = expectedCountries[i].MyEquals(countries[i]) && result;
+
+            Assert.AreEqual(true, result);
+        }
+
+        [Test]
+        public void TestGetById()
+        {
+            var expectedCountry = new Country {Id = 1, Name = "Việt Nam"};
+            var country = dao.GetById(1);
+
+            Assert.AreEqual(true, country.MyEquals(expectedCountry));
+        }
+
+        [Test]
+        public void TestGetByNotId()
+        {
+            var country = dao.GetById(11455);
+
+            Assert.AreEqual(null, country);
+        }
+
+        [Test]
+        public void TestInsert()
+        {
+            var country = new Country {Name = "Miến Điện"};
+            Assert.AreEqual(true, dao.Insert(country));
+        }
+
+        [Test]
+        public void TestInsertDuplicateName()
+        {
+            var country = new Country {Name = "Việt Nam"};
+            ActualValueDelegate<object> e = () => dao.Insert(country);
+            Assert.That(e, Throws.TypeOf<SqlException>());
+        }
+
+        [Test]
+        public void TestInsertNullName()
+        {
+            var country = new Country {Name = null};
+            ActualValueDelegate<object> e = () => dao.Insert(country);
+            Assert.That(e, Throws.TypeOf<SqlException>());
+        }
+
+        [Test]
+        public void TestUpdate()
+        {
+            var country = new Country {Id = 11, Name = "Venezuela"};
+            Assert.AreEqual(true, dao.Update(country));
+        }
+
+        [Test]
+        public void TestUpdateNotId()
+        {
+            var country = new Country {Id = 1324, Name = "Venezuela"};
+            Assert.AreEqual(true, dao.Update(country));
+        }
+
+        [Test]
+        public void TestUpdateNullName()
+        {
+            var country = new Country {Id = 11, Name = null};
+            ActualValueDelegate<object> e = () => dao.Update(country);
+            Assert.That(e, Throws.TypeOf<SqlException>());
+        }
+    }
+}
