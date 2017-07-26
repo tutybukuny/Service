@@ -20,20 +20,23 @@ namespace UnitTest.DAO
 
         private UserDao dao;
 
+        #region delete testing
         [Test]
         public void TestDelete()
         {
-            var user = new User {id = 3};
+            var user = new User { id = 3 };
             Assert.AreEqual(true, dao.Delete(user));
         }
 
         [Test]
         public void TestDeleteNotId()
         {
-            var user = new User {id = 101212};
+            var user = new User { id = 101212 };
             Assert.AreEqual(true, dao.Delete(user));
         }
+        #endregion
 
+        #region get item testing
         [Test]
         public void TestGetAll()
         {
@@ -105,7 +108,9 @@ namespace UnitTest.DAO
 
             Assert.AreEqual(null, user);
         }
+        #endregion
 
+        #region insert testing
         [Test]
         public void TestInsert()
         {
@@ -183,7 +188,9 @@ namespace UnitTest.DAO
             ActualValueDelegate<object> e = () => dao.Insert(user);
             Assert.That(e, Throws.TypeOf<NullReferenceException>());
         }
+        #endregion
 
+        #region update testing
         [Test]
         public void TestUpdate()
         {
@@ -264,5 +271,6 @@ namespace UnitTest.DAO
             ActualValueDelegate<object> e = () => dao.Insert(user);
             Assert.That(e, Throws.TypeOf<NullReferenceException>());
         }
+        #endregion
     }
 }

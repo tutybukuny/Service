@@ -20,20 +20,23 @@ namespace UnitTest.DAO
 
         private DistrictDao dao;
 
+        #region delete testing
         [Test]
         public void TestDelete()
         {
-            var district = new District {id = 5};
+            var district = new District { id = 5 };
             Assert.AreEqual(true, dao.Delete(district));
         }
 
         [Test]
         public void TestDeleteNotId()
         {
-            var district = new District {id = 101212};
+            var district = new District { id = 101212 };
             Assert.AreEqual(true, dao.Delete(district));
         }
+        #endregion
 
+        #region get item testing
         [Test]
         public void TestGetAll()
         {
@@ -57,7 +60,7 @@ namespace UnitTest.DAO
         public void TestGetById()
         {
             var stateDao = new StateDao(Settings.Default.ConnectionString);
-            var expectedDistrict = new District {id = 1, name = "Hà Đông", state_id = 1};
+            var expectedDistrict = new District { id = 1, name = "Hà Đông", state_id = 1 };
             var district = dao.GetById(1);
 
             Assert.AreEqual(true, district.MyEquals(expectedDistrict));
@@ -70,18 +73,20 @@ namespace UnitTest.DAO
 
             Assert.AreEqual(null, district);
         }
+        #endregion
 
+        #region insert testing
         [Test]
         public void TestInsert()
         {
-            var district = new District {name = "Hoàng Cầu", state_id = 1};
+            var district = new District { name = "Hoàng Cầu", state_id = 1 };
             Assert.AreEqual(true, dao.Insert(district));
         }
 
         [Test]
         public void TestInsertDuplicateName()
         {
-            var district = new District {name = "Hoàng Cầu", state_id = 1};
+            var district = new District { name = "Hoàng Cầu", state_id = 1 };
             ActualValueDelegate<object> e = () => dao.Insert(district);
             Assert.That(e, Throws.TypeOf<SqlException>());
         }
@@ -89,7 +94,7 @@ namespace UnitTest.DAO
         [Test]
         public void TestInsertNullName()
         {
-            var district = new District {name = null, state_id = 1};
+            var district = new District { name = null, state_id = 1 };
             ActualValueDelegate<object> e = () => dao.Insert(district);
             Assert.That(e, Throws.TypeOf<SqlException>());
         }
@@ -97,29 +102,31 @@ namespace UnitTest.DAO
         [Test]
         public void TestInsertNullState()
         {
-            var district = new District {id = 6, name = "Một cái tên xa lạ"};
+            var district = new District { id = 6, name = "Một cái tên xa lạ" };
             ActualValueDelegate<object> e = () => dao.Insert(district);
             Assert.That(e, Throws.TypeOf<NullReferenceException>());
         }
+        #endregion
 
+        #region update testing
         [Test]
         public void TestUpdate()
         {
-            var district = new District {id = 6, name = "Hai Bà Trưng", state_id = 1};
+            var district = new District { id = 6, name = "Hai Bà Trưng", state_id = 1 };
             Assert.AreEqual(true, dao.Update(district));
         }
 
         [Test]
         public void TestUpdateNotId()
         {
-            var district = new District {id = 1324, name = "Hai Bà Trưng", state_id = 1};
+            var district = new District { id = 1324, name = "Hai Bà Trưng", state_id = 1 };
             Assert.AreEqual(true, dao.Update(district));
         }
 
         [Test]
         public void TestUpdateNullName()
         {
-            var district = new District {id = 11, name = null, state_id = 1};
+            var district = new District { id = 11, name = null, state_id = 1 };
             ActualValueDelegate<object> e = () => dao.Update(district);
             Assert.That(e, Throws.TypeOf<SqlException>());
         }
@@ -127,9 +134,10 @@ namespace UnitTest.DAO
         [Test]
         public void TestUpdateNullState()
         {
-            var district = new District {id = 6, name = "Hai Bà Trưng"};
+            var district = new District { id = 6, name = "Hai Bà Trưng" };
             ActualValueDelegate<object> e = () => dao.Insert(district);
             Assert.That(e, Throws.TypeOf<NullReferenceException>());
         }
+        #endregion
     }
 }

@@ -20,6 +20,7 @@ namespace UnitTest.DAO
 
         private StateDao dao;
 
+        #region delete testing
         [Test]
         public void TestDelete()
         {
@@ -33,7 +34,9 @@ namespace UnitTest.DAO
             var state = new State { id = 101212 };
             Assert.AreEqual(true, dao.Delete(state));
         }
+        #endregion
 
+        #region get item testing
         [Test]
         public void TestGetAll()
         {
@@ -69,7 +72,9 @@ namespace UnitTest.DAO
 
             Assert.AreEqual(null, state);
         }
+        #endregion
 
+        #region insert testing
         [Test]
         public void TestInsert()
         {
@@ -100,7 +105,9 @@ namespace UnitTest.DAO
             ActualValueDelegate<object> e = () => dao.Insert(state);
             Assert.That(e, Throws.TypeOf<SqlException>());
         }
+        #endregion
 
+        #region update testing
         [Test]
         public void TestUpdate()
         {
@@ -130,5 +137,6 @@ namespace UnitTest.DAO
             ActualValueDelegate<object> e = () => dao.Update(state);
             Assert.That(e, Throws.TypeOf<SqlException>());
         }
+        #endregion
     }
 }
