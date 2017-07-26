@@ -12,7 +12,12 @@ namespace CoreServiceLib.DAO
         {
         }
 
-        public bool CheckToken(string token)
+        /// <summary>
+        ///     check whether the token is in use
+        /// </summary>
+        /// <param name="token">token</param>
+        /// <returns></returns>
+        public int CheckToken(string token)
         {
             OpenConnection();
 
@@ -24,20 +29,49 @@ namespace CoreServiceLib.DAO
             var cmd = CreateCommand(sql, paramNames, dbTypes, values);
 
             var reader = cmd.ExecuteReader();
-            var result = false;
+            var result = -1;
 
             if (reader.Read())
             {
                 var dateTime = (DateTime) reader["created_date"];
                 var span = DateTime.Now.Subtract(dateTime);
 
-                if (span.Minutes <= 30) result = true;
+                if (span.Minutes <= 30) result = (int) reader["user_id"];
             }
 
             CloseConnection();
 
             return result;
         }
+
+        /// <summary>
+        ///     auto generate token
+        /// </summary>
+        /// <returns></returns>
+        public string AutoGenerate()
+        {
+            var time = BitConverter.GetBytes(DateTime.UtcNow.ToBinary());
+            var key = Guid.NewGuid().ToByteArray();
+            var token = Convert.ToBase64String(time.Concat(key).ToArray());
+
+            return token;
+        }
+
+        #region get item
+
+        public override List<Token> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Token GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #region insert update delete
 
         public override bool Insert(Token obj)
         {
@@ -47,7 +81,7 @@ namespace CoreServiceLib.DAO
                 "INSERT INTO tbl_token (token, user_id, created_date) VALUES(@token, @user_id, @created_date)";
             var paramNames = new List<string> {"@token", "@user_id", "@created_date"};
             var dbTypes = new List<DbType> {DbType.String, DbType.Int32, DbType.DateTime};
-            var values = new List<object> {obj.TokenString, obj.User.Id, DateTime.Now};
+            var values = new List<object> {obj.TokenString, obj.User.id, DateTime.Now};
 
             var cmd = CreateCommand(sql, paramNames, dbTypes, values);
 
@@ -56,15 +90,6 @@ namespace CoreServiceLib.DAO
             CloseConnection();
 
             return true;
-        }
-
-        public string AutoGenerate()
-        {
-            var time = BitConverter.GetBytes(DateTime.UtcNow.ToBinary());
-            var key = Guid.NewGuid().ToByteArray();
-            var token = Convert.ToBase64String(time.Concat(key).ToArray());
-
-            return token;
         }
 
         public override bool Delete(Token obj)
@@ -77,14 +102,6 @@ namespace CoreServiceLib.DAO
             throw new NotImplementedException();
         }
 
-        public override List<Token> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override Token GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        #endregion
     }
 }

@@ -20,7 +20,7 @@ namespace UnitTest.DAO
         public void TestInsert()
         {
             var tokenString = dao.AutoGenerate();
-            var token = new Token {TokenString = tokenString, User = new User {Id = 1}};
+            var token = new Token {TokenString = tokenString, User = new User {id = 1}};
             Assert.AreEqual(true, dao.Insert(token));
         }
 

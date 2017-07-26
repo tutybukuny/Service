@@ -23,14 +23,14 @@ namespace UnitTest.DAO
         [Test]
         public void TestDelete()
         {
-            var user = new User {Id = 3};
+            var user = new User {id = 3};
             Assert.AreEqual(true, dao.Delete(user));
         }
 
         [Test]
         public void TestDeleteNotId()
         {
-            var user = new User {Id = 101212};
+            var user = new User {id = 101212};
             Assert.AreEqual(true, dao.Delete(user));
         }
 
@@ -38,37 +38,33 @@ namespace UnitTest.DAO
         public void TestGetAll()
         {
             var users = dao.GetAll();
-            var districtDao = new DistrictDao(Settings.Default.ConnectionString);
-            var district = districtDao.GetById(1);
-            var state = district.State;
-            var country = state.Country;
             var expecteUsers = new List<User>
             {
                 new User
                 {
-                    Id = 1,
-                    Email = "admin1@gmail.com",
-                    Password = "12345",
-                    Firstname = "admin",
-                    Lastname = "1",
-                    PostalCode = 0,
-                    Country = country,
-                    State = state,
-                    District = district,
-                    Avatar = "default"
+                    id = 1,
+                    email = "admin1@gmail.com",
+                    password = "12345",
+                    firstname = "admin",
+                    lastname = "1",
+                    postal_code = 0,
+                    country_id = 1,
+                    state_id = 1,
+                    district_id = 1,
+                    avatar = "default"
                 },
                 new User
                 {
-                    Id = 2,
-                    Email = "admin2@gmail.com",
-                    Password = "12345",
-                    Firstname = "admin",
-                    Lastname = "2",
-                    PostalCode = 0,
-                    Country = country,
-                    State = state,
-                    District = district,
-                    Avatar = "default"
+                    id = 2,
+                    email = "admin2@gmail.com",
+                    password = "12345",
+                    firstname = "admin",
+                    lastname = "2",
+                    postal_code = 0,
+                    country_id = 1,
+                    state_id = 1,
+                    district_id = 1,
+                    avatar = "default"
                 }
             };
 
@@ -83,22 +79,18 @@ namespace UnitTest.DAO
         [Test]
         public void TestGetById()
         {
-            var districtDao = new DistrictDao(Settings.Default.ConnectionString);
-            var district = districtDao.GetById(1);
-            var state = district.State;
-            var country = state.Country;
             var expectedUser = new User
             {
-                Id = 1,
-                Email = "admin1@gmail.com",
-                Password = "12345",
-                Firstname = "admin",
-                Lastname = "1",
-                PostalCode = 0,
-                Country = country,
-                State = state,
-                District = district,
-                Avatar = "default"
+                id = 1,
+                email = "admin1@gmail.com",
+                password = "12345",
+                firstname = "admin",
+                lastname = "1",
+                postal_code = 0,
+                country_id = 1,
+                state_id = 1,
+                district_id = 1,
+                avatar = "default"
             };
 
             var user = dao.GetById(1);
@@ -119,15 +111,15 @@ namespace UnitTest.DAO
         {
             var user = new User
             {
-                Email = "admin5@gmail.com",
-                Password = "12345",
-                Firstname = "admin",
-                Lastname = "5",
-                PostalCode = 0,
-                Country = new Country {Id = 1},
-                State = new State {Id = 1},
-                District = new District {Id = 1},
-                Avatar = "default"
+                email = "admin5@gmail.com",
+                password = "12345",
+                firstname = "admin",
+                lastname = "5",
+                postal_code = 0,
+                country_id = 1,
+                state_id = 1,
+                district_id = 1,
+                avatar = "default"
             };
             Assert.AreEqual(true, dao.Insert(user));
         }
@@ -137,15 +129,15 @@ namespace UnitTest.DAO
         {
             var user = new User
             {
-                Email = "admin4@gmail.com",
-                Password = "12345",
-                Firstname = "admin",
-                Lastname = "4",
-                PostalCode = 0,
-                Country = new Country {Id = 1},
-                State = new State {Id = 1},
-                District = new District {Id = 1},
-                Avatar = "default"
+                email = "admin4@gmail.com",
+                password = "12345",
+                firstname = "admin",
+                lastname = "4",
+                postal_code = 0,
+                country_id = 1,
+                state_id = 1,
+                district_id = 1,
+                avatar = "default"
             };
             ;
             ActualValueDelegate<object> e = () => dao.Insert(user);
@@ -157,15 +149,15 @@ namespace UnitTest.DAO
         {
             var user = new User
             {
-                Email = null,
-                Password = "12345",
-                Firstname = "admin",
-                Lastname = "4",
-                PostalCode = 0,
-                Country = new Country {Id = 1},
-                State = new State {Id = 1},
-                District = new District {Id = 1},
-                Avatar = "default"
+                email = null,
+                password = "12345",
+                firstname = "admin",
+                lastname = "4",
+                postal_code = 0,
+                country_id = 1,
+                state_id = 1,
+                district_id = 1,
+                avatar = "default"
             };
             ;
             ActualValueDelegate<object> e = () => dao.Insert(user);
@@ -177,15 +169,15 @@ namespace UnitTest.DAO
         {
             var user = new User
             {
-                Email = "admin4@gmail.com",
-                Password = "12345",
-                Firstname = "admin",
-                Lastname = "4",
-                PostalCode = 0,
-                Country = new Country {Id = 1},
-                State = null,
-                District = new District {Id = 1},
-                Avatar = "default"
+                email = "admin4@gmail.com",
+                password = "12345",
+                firstname = "admin",
+                lastname = "4",
+                postal_code = 0,
+                country_id = 1,
+                state_id = 1,
+                district_id = 1,
+                avatar = "default"
             };
             ;
             ActualValueDelegate<object> e = () => dao.Insert(user);
@@ -197,16 +189,16 @@ namespace UnitTest.DAO
         {
             var user = new User
             {
-                Id = 4,
-                Email = "admin4@gmail.com",
-                Password = "12345",
-                Firstname = "adminupdate",
-                Lastname = "4",
-                PostalCode = 0,
-                Country = new Country {Id = 1},
-                State = new State {Id = 1},
-                District = new District {Id = 1},
-                Avatar = "default"
+                id = 4,
+                email = "admin4@gmail.com",
+                password = "12345",
+                firstname = "adminupdate",
+                lastname = "4",
+                postal_code = 0,
+                country_id = 1,
+                state_id = 1,
+                district_id = 1,
+                avatar = "default"
             };
             ;
             Assert.AreEqual(true, dao.Update(user));
@@ -217,16 +209,16 @@ namespace UnitTest.DAO
         {
             var user = new User
             {
-                Id = 1234,
-                Email = "admin4@gmail.com",
-                Password = "12345",
-                Firstname = "admin",
-                Lastname = "4",
-                PostalCode = 0,
-                Country = new Country {Id = 1},
-                State = new State {Id = 1},
-                District = new District {Id = 1},
-                Avatar = "default"
+                id = 1234,
+                email = "admin4@gmail.com",
+                password = "12345",
+                firstname = "admin",
+                lastname = "4",
+                postal_code = 0,
+                country_id = 1,
+                state_id = 1,
+                district_id = 1,
+                avatar = "default"
             };
             ;
             Assert.AreEqual(true, dao.Update(user));
@@ -237,16 +229,16 @@ namespace UnitTest.DAO
         {
             var user = new User
             {
-                Id = 4,
-                Email = "admin4@gmail.com",
-                Password = null,
-                Firstname = "admin",
-                Lastname = "4",
-                PostalCode = 0,
-                Country = new Country {Id = 1},
-                State = new State {Id = 1},
-                District = new District {Id = 1},
-                Avatar = "default"
+                id = 4,
+                email = "admin4@gmail.com",
+                password = null,
+                firstname = "admin",
+                lastname = "4",
+                postal_code = 0,
+                country_id = 1,
+                state_id = 1,
+                district_id = 1,
+                avatar = "default"
             };
             ;
             ActualValueDelegate<object> e = () => dao.Update(user);
@@ -258,15 +250,15 @@ namespace UnitTest.DAO
         {
             var user = new User
             {
-                Email = "admin4@gmail.com",
-                Password = "12345",
-                Firstname = "admin",
-                Lastname = "4",
-                PostalCode = 0,
-                Country = new Country {Id = 1},
-                State = null,
-                District = new District {Id = 1},
-                Avatar = "default"
+                email = "admin4@gmail.com",
+                password = "12345",
+                firstname = "admin",
+                lastname = "4",
+                postal_code = 0,
+                country_id = 1,
+                state_id = 1,
+                district_id = 1,
+                avatar = "default"
             };
             ;
             ActualValueDelegate<object> e = () => dao.Insert(user);

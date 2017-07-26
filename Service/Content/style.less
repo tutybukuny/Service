@@ -151,7 +151,16 @@ ul {
 .center-vertical-child {
     position: absolute;
     top: 50%;
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
+}
+
+.ptb-15 {
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 /*
@@ -234,7 +243,7 @@ ul {
 .footer {
     background-color: #09111D;
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 100px;
 
     .left-footer {
         ul {
@@ -343,13 +352,17 @@ ul {
                 margin-right: 10px;
             }
 
-            select {
+            #footer-dropdown {
                 background-color: #414141;
                 color: white;
-                box-shadow: none;
-                border: none;
-                width: 40%;
                 margin-top: 25px;
+                padding: 5px 5px;
+                font-size: 12px;
+                .font-comfortaa-light;
+
+                span {
+                    margin-left: 20px;
+                }
             }
         }
     }

@@ -23,14 +23,14 @@ namespace UnitTest.DAO
         [Test]
         public void TestDelete()
         {
-            var district = new District { Id = 5 };
+            var district = new District {id = 5};
             Assert.AreEqual(true, dao.Delete(district));
         }
 
         [Test]
         public void TestDeleteNotId()
         {
-            var district = new District { Id = 101212 };
+            var district = new District {id = 101212};
             Assert.AreEqual(true, dao.Delete(district));
         }
 
@@ -38,13 +38,11 @@ namespace UnitTest.DAO
         public void TestGetAll()
         {
             var districts = dao.GetAll();
-            var stateDao = new StateDao(Settings.Default.ConnectionString);
-            var state = stateDao.GetById(1);
             var expecteDistricts = new List<District>
             {
-                new District {Id = 1, Name = "Hà Đông", State = state},
-                new District {Id = 2, Name = "Cầu Giấy", State = state},
-                new District {Id = 4, Name = "Đống Đa", State = state}
+                new District {id = 1, name = "Hà Đông", state_id = 1},
+                new District {id = 2, name = "Cầu Giấy", state_id = 1},
+                new District {id = 4, name = "Đống Đa", state_id = 1}
             };
 
             var result = true;
@@ -59,8 +57,7 @@ namespace UnitTest.DAO
         public void TestGetById()
         {
             var stateDao = new StateDao(Settings.Default.ConnectionString);
-            var state = stateDao.GetById(1);
-            var expectedDistrict = new District { Id = 1, Name = "Hà Đông", State = state };
+            var expectedDistrict = new District {id = 1, name = "Hà Đông", state_id = 1};
             var district = dao.GetById(1);
 
             Assert.AreEqual(true, district.MyEquals(expectedDistrict));
@@ -77,14 +74,14 @@ namespace UnitTest.DAO
         [Test]
         public void TestInsert()
         {
-            var district = new District { Name = "Hoàng Cầu", State = new State { Id = 1 } };
+            var district = new District {name = "Hoàng Cầu", state_id = 1};
             Assert.AreEqual(true, dao.Insert(district));
         }
 
         [Test]
         public void TestInsertDuplicateName()
         {
-            var district = new District { Name = "Hoàng Cầu", State = new State { Id = 1 } };
+            var district = new District {name = "Hoàng Cầu", state_id = 1};
             ActualValueDelegate<object> e = () => dao.Insert(district);
             Assert.That(e, Throws.TypeOf<SqlException>());
         }
@@ -92,7 +89,7 @@ namespace UnitTest.DAO
         [Test]
         public void TestInsertNullName()
         {
-            var district = new District { Name = null, State = new State() { Id = 1 } };
+            var district = new District {name = null, state_id = 1};
             ActualValueDelegate<object> e = () => dao.Insert(district);
             Assert.That(e, Throws.TypeOf<SqlException>());
         }
@@ -100,7 +97,7 @@ namespace UnitTest.DAO
         [Test]
         public void TestInsertNullState()
         {
-            var district = new District { Id = 6, Name = "Một cái tên xa lạ", State = null };
+            var district = new District {id = 6, name = "Một cái tên xa lạ"};
             ActualValueDelegate<object> e = () => dao.Insert(district);
             Assert.That(e, Throws.TypeOf<NullReferenceException>());
         }
@@ -108,31 +105,31 @@ namespace UnitTest.DAO
         [Test]
         public void TestUpdate()
         {
-            var district = new District { Id = 6, Name = "Hai Bà Trưng", State = new State { Id = 1 } };
+            var district = new District {id = 6, name = "Hai Bà Trưng", state_id = 1};
             Assert.AreEqual(true, dao.Update(district));
         }
 
         [Test]
         public void TestUpdateNotId()
         {
-            var district = new District { Id = 1324, Name = "Hai Bà Trưng", State = new State { Id = 1 } };
+            var district = new District {id = 1324, name = "Hai Bà Trưng", state_id = 1};
             Assert.AreEqual(true, dao.Update(district));
-        }
-
-        [Test]
-        public void TestUpdateNullState()
-        {
-            var district = new District { Id = 6, Name = "Hai Bà Trưng", State = null };
-            ActualValueDelegate<object> e = () => dao.Insert(district);
-            Assert.That(e, Throws.TypeOf<NullReferenceException>());
         }
 
         [Test]
         public void TestUpdateNullName()
         {
-            var district = new District { Id = 11, Name = null, State = new State { Id = 1 } };
+            var district = new District {id = 11, name = null, state_id = 1};
             ActualValueDelegate<object> e = () => dao.Update(district);
             Assert.That(e, Throws.TypeOf<SqlException>());
+        }
+
+        [Test]
+        public void TestUpdateNullState()
+        {
+            var district = new District {id = 6, name = "Hai Bà Trưng"};
+            ActualValueDelegate<object> e = () => dao.Insert(district);
+            Assert.That(e, Throws.TypeOf<NullReferenceException>());
         }
     }
 }

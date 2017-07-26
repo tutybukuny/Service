@@ -2,13 +2,13 @@
 {
     public class Country
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
 
         public bool MyEquals(object obj)
         {
             var country = (Country) obj;
-            return Id == country.Id && Name == country.Name;
+            return id == country.id && name == country.name;
         }
     }
 }

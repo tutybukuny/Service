@@ -23,14 +23,14 @@ namespace UnitTest.DAO
         [Test]
         public void TestDelete()
         {
-            var state = new State { Id = 7 };
+            var state = new State { id = 7 };
             Assert.AreEqual(true, dao.Delete(state));
         }
 
         [Test]
         public void TestDeleteNotId()
         {
-            var state = new State { Id = 101212 };
+            var state = new State { id = 101212 };
             Assert.AreEqual(true, dao.Delete(state));
         }
 
@@ -40,9 +40,9 @@ namespace UnitTest.DAO
             var states = dao.GetAll();
             var expectedStates = new List<State>
             {
-                new State {Id = 1, Name = "Hà Nội", Country = new Country {Id = 1, Name = "Việt Nam"}},
-                new State {Id = 2, Name = "Thành Phố Hồ Chí Minh", Country = new Country {Id = 1, Name = "Việt Nam"}},
-                new State {Id = 3, Name = "Hà Tây", Country = new Country {Id = 1, Name = "Việt Nam"}}
+                new State {id = 1, name = "Hà Nội", country_id = 1},
+                new State {id = 2, name = "Thành Phố Hồ Chí Minh", country_id = 1},
+                new State {id = 3, name = "Hà Tây", country_id = 1}
             };
 
             var result = true;
@@ -56,7 +56,7 @@ namespace UnitTest.DAO
         [Test]
         public void TestGetById()
         {
-            var expectedState = new State { Id = 1, Name = "Hà Nội", Country = new Country { Id = 1, Name = "Việt Nam" } };
+            var expectedState = new State { id = 1, name = "Hà Nội", country_id = 1 };
             var state = dao.GetById(1);
 
             Assert.AreEqual(true, expectedState.MyEquals(state));
@@ -73,14 +73,14 @@ namespace UnitTest.DAO
         [Test]
         public void TestInsert()
         {
-            var state = new State { Name = "Quảng Bình", Country = new Country { Id = 1 } };
+            var state = new State { name = "Quảng Bình", country_id = 1 };
             Assert.AreEqual(true, dao.Insert(state));
         }
 
         [Test]
         public void TestInsertDuplicateName()
         {
-            var state = new State { Name = "Quảng Bình", Country = new Country { Id = 1 } };
+            var state = new State { name = "Quảng Bình", country_id = 1 };
             ActualValueDelegate<object> e = () => dao.Insert(state);
             Assert.That(e, Throws.TypeOf<SqlException>());
         }
@@ -88,7 +88,7 @@ namespace UnitTest.DAO
         [Test]
         public void TestInsertNullCountry()
         {
-            var state = new State { Name = "Một cái tên xa lạ", Country = null };
+            var state = new State { name = "Một cái tên xa lạ" };
             ActualValueDelegate<object> e = () => dao.Insert(state);
             Assert.That(e, Throws.TypeOf<NullReferenceException>());
         }
@@ -96,7 +96,7 @@ namespace UnitTest.DAO
         [Test]
         public void TestInsertNullName()
         {
-            var state = new State { Name = null, Country = new Country { Id = 1 } };
+            var state = new State { name = null, country_id = 1 };
             ActualValueDelegate<object> e = () => dao.Insert(state);
             Assert.That(e, Throws.TypeOf<SqlException>());
         }
@@ -104,21 +104,21 @@ namespace UnitTest.DAO
         [Test]
         public void TestUpdate()
         {
-            var state = new State { Id = 7, Name = "Quảng Ngãi", Country = new Country { Id = 1 } };
+            var state = new State { id = 7, name = "Quảng Ngãi", country_id = 1 };
             Assert.AreEqual(true, dao.Update(state));
         }
 
         [Test]
         public void TestUpdateNotId()
         {
-            var state = new State { Id = 1234, Name = "Quảng Ngãi", Country = new Country { Id = 1 } };
+            var state = new State { id = 1234, name = "Quảng Ngãi", country_id = 1 };
             Assert.AreEqual(true, dao.Update(state));
         }
 
         [Test]
         public void TestUpdateNullCountry()
         {
-            var state = new State { Id = 7, Name = null, Country = null };
+            var state = new State { id = 7, name = null };
             ActualValueDelegate<object> e = () => dao.Update(state);
             Assert.That(e, Throws.TypeOf<NullReferenceException>());
         }
@@ -126,7 +126,7 @@ namespace UnitTest.DAO
         [Test]
         public void TestUpdateNullName()
         {
-            var state = new State { Id = 7, Name = null, Country = new Country { Id = 1 } };
+            var state = new State { id = 7, name = null, country_id = 1 };
             ActualValueDelegate<object> e = () => dao.Update(state);
             Assert.That(e, Throws.TypeOf<SqlException>());
         }

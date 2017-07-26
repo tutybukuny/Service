@@ -2,15 +2,15 @@
 {
     public class District
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public State State { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public int state_id { get; set; }
 
         public bool MyEquals(object obj)
         {
             var d = (District) obj;
 
-            return Id == d.Id && Name == d.Name && State.MyEquals(d.State);
+            return id == d.id && name == d.name && state_id == d.state_id;
         }
     }
 }

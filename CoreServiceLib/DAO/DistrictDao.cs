@@ -11,6 +11,8 @@ namespace CoreServiceLib.DAO
         {
         }
 
+        #region insert update delete
+
         public override bool Insert(District obj)
         {
             OpenConnection();
@@ -18,7 +20,7 @@ namespace CoreServiceLib.DAO
             var sql = "INSERT INTO tbl_districts (name, state_id) VALUES(@name, @id)";
             var paramNames = new List<string> {"@name", "@id"};
             var dbTypes = new List<DbType> {DbType.String, DbType.Int32};
-            var values = new List<object> {obj.Name, obj.State.Id};
+            var values = new List<object> {obj.name, obj.state_id};
 
             var cmd = CreateCommand(sql, paramNames, dbTypes, values);
 
@@ -36,7 +38,7 @@ namespace CoreServiceLib.DAO
             var sql = "DELETE FROM tbl_districts WHERE id=@id";
             var paramNames = new List<string> {"@id"};
             var dbTypes = new List<DbType> {DbType.Int32};
-            var values = new List<object> {obj.Id};
+            var values = new List<object> {obj.id};
 
             var cmd = CreateCommand(sql, paramNames, dbTypes, values);
 
@@ -54,7 +56,7 @@ namespace CoreServiceLib.DAO
             var sql = "UPDATE tbl_districts SET name=@name, state_id=@state_id WHERE id=@id";
             var paramNames = new List<string> {"@name", "@state_id", "@id"};
             var dbTypes = new List<DbType> {DbType.String, DbType.Int32, DbType.Int32};
-            var values = new List<object> {obj.Name, obj.State.Id, obj.Id};
+            var values = new List<object> {obj.name, obj.state_id, obj.id};
 
             var cmd = CreateCommand(sql, paramNames, dbTypes, values);
 
@@ -65,6 +67,10 @@ namespace CoreServiceLib.DAO
             return true;
         }
 
+        #endregion
+
+        #region get item
+
         public override List<District> GetAll()
         {
             OpenConnection();
@@ -74,14 +80,13 @@ namespace CoreServiceLib.DAO
             var cmd = CreateCommand(sql);
 
             var reader = cmd.ExecuteReader();
-            var stateDao = new StateDao(connectStr);
 
             while (reader.Read())
                 districts.Add(new District
                 {
-                    Id = (int) reader["id"],
-                    Name = reader["name"].ToString(),
-                    State = stateDao.GetById((int) reader["state_id"])
+                    id = (int) reader["id"],
+                    name = reader["name"].ToString(),
+                    state_id = (int) reader["state_id"]
                 });
 
             CloseConnection();
@@ -106,14 +111,16 @@ namespace CoreServiceLib.DAO
             if (reader.Read())
                 district = new District
                 {
-                    Id = (int) reader["id"],
-                    Name = reader["name"].ToString(),
-                    State = stateDao.GetById((int) reader["state_id"])
+                    id = (int) reader["id"],
+                    name = reader["name"].ToString(),
+                    state_id = (int) reader["state_id"]
                 };
 
             CloseConnection();
 
             return district;
         }
+
+        #endregion
     }
 }

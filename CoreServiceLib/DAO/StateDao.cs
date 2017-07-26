@@ -1,15 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using CoreServiceLib.Models;
 
 namespace CoreServiceLib.DAO
 {
     public class StateDao : AbstractDao<State>
     {
-        public StateDao(string connectStr) : base(connectStr)
+        public StateDao(string connectStr)
+            : base(connectStr)
         {
         }
+
+        #region insert update delete
 
         public override bool Insert(State obj)
         {
@@ -18,7 +20,7 @@ namespace CoreServiceLib.DAO
             var sql = "INSERT INTO tbl_states (name, country_id) VALUES(@name, @id)";
             var paramNames = new List<string> {"@name", "@id"};
             var dbTypes = new List<DbType> {DbType.String, DbType.Int32};
-            var values = new List<object> {obj.Name, obj.Country.Id};
+            var values = new List<object> {obj.name, obj.country_id};
 
             var cmd = CreateCommand(sql, paramNames, dbTypes, values);
 
@@ -36,7 +38,7 @@ namespace CoreServiceLib.DAO
             var sql = "DELETE FROM tbl_states WHERE id=@id";
             var paramNames = new List<string> {"@id"};
             var dbTypes = new List<DbType> {DbType.Int32};
-            var values = new List<object> {obj.Id};
+            var values = new List<object> {obj.id};
 
             var cmd = CreateCommand(sql, paramNames, dbTypes, values);
 
@@ -54,7 +56,7 @@ namespace CoreServiceLib.DAO
             var sql = "UPDATE tbl_states SET name=@name, country_id=@country_id WHERE id=@id";
             var paramNames = new List<string> {"@name", "@country_id", "@id"};
             var dbTypes = new List<DbType> {DbType.String, DbType.Int32, DbType.Int32};
-            var values = new List<object> {obj.Name, obj.Country.Id, obj.Id};
+            var values = new List<object> {obj.name, obj.country_id, obj.id};
 
             var cmd = CreateCommand(sql, paramNames, dbTypes, values);
 
@@ -65,6 +67,10 @@ namespace CoreServiceLib.DAO
             return true;
         }
 
+        #endregion
+
+        #region get item
+
         public override List<State> GetAll()
         {
             OpenConnection();
@@ -74,14 +80,13 @@ namespace CoreServiceLib.DAO
             var cmd = CreateCommand(sql);
 
             var reader = cmd.ExecuteReader();
-            var countryDao = new CountryDao(connectStr);
 
             while (reader.Read())
                 states.Add(new State
                 {
-                    Id = (int) reader["id"],
-                    Name = reader["name"].ToString(),
-                    Country = countryDao.GetById((int) reader["country_id"])
+                    id = (int) reader["id"],
+                    name = reader["name"].ToString(),
+                    country_id = (int) reader["country_id"]
                 });
 
             CloseConnection();
@@ -100,20 +105,21 @@ namespace CoreServiceLib.DAO
             var values = new List<object> {id};
             var cmd = CreateCommand(sql, paramNames, dbTypes, values);
 
-            var countryDao = new CountryDao(connectStr);
             var reader = cmd.ExecuteReader();
 
             if (reader.Read())
                 state = new State
                 {
-                    Id = (int) reader["id"],
-                    Name = reader["name"].ToString(),
-                    Country = countryDao.GetById((int) reader["country_id"])
+                    id = (int) reader["id"],
+                    name = reader["name"].ToString(),
+                    country_id = (int) reader["country_id"]
                 };
 
             CloseConnection();
 
             return state;
         }
+
+        #endregion
     }
 }

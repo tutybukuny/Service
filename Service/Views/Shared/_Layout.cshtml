@@ -6,6 +6,7 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <script src="~/Scripts/jquery-3.1.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Content/index.js"></script>
     <meta name="viewport" content="width=device-width" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -14,73 +15,106 @@
     <link href="~/Content/style.css" rel="stylesheet" />
 </head>
 <body>
-<header class="header container-fluid row">
-    <div class="action col-md-3 col-sm-3 font-comfortaa-bold">
-        <button class="btn btn-yellow">Create</button>
-        <button class="btn btn-light-gray">Discover</button>
-    </div>
-    <div class="logo col-md-6 col-sm-6 col-xs-12 text-center font-bebasneue-bold">
-        <a href="@Url.Action("Index", "Home")"><img src="~/Images/logo.png" /> The Project</a>
-    </div>
-    <div class="support col-md-3 col-sm-3">
-        <div class="pull-right">
-            <button class="btn btn-light-gray glyphicon glyphicon-search"></button>
-            <button class="btn btn-light-gray">Login</button>
-            <button class="btn btn-light-gray">Sign up</button>
+    <header class="header container-fluid row">
+        <div class="action col-md-3 col-sm-3 font-comfortaa-bold">
+            <button class="btn btn-yellow">Create</button>
+            <button class="btn btn-light-gray">Discover</button>
         </div>
-    </div>
-</header>
-<div id="body">
-    @RenderSection("featured", false)
-    <section class="content-wrapper main-content clear-fix">
-        @RenderBody()
-    </section>
-</div>
-<footer class="footer container-fluid row">
-    <div class="left-footer col-md-6 col-sm-6 col-xs-12">
-        <div class="col-md-offset-5 col-sm-offset-5 col-md-4 col-sm-4 no-padding">
-            <ul>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">What is We The Project</a></li>
-                <li><a href="#">Blog</a></li>
-            </ul>
-        </div>
-        <div class="col-md-3 col-sm-3">
-            <ul>
-                <li><a href="#">Help</a></li>
-                <li><a href="#">FAQs</a></li>
-                <li><a href="#">Support and Contact</a></li>
-                <li><a href="#">Term of User</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-            </ul>
-        </div>
-        <div class="col-md-offset-5 col-sm-offset-5 col-md-7 col-sm-7 no-padding">
+        <div class="logo col-md-6 col-sm-6 col-xs-12 text-center font-bebasneue-bold">
             <a href="@Url.Action("Index", "Home")"><img src="~/Images/logo.png" /> The Project</a>
         </div>
-    </div>
-    <div class="right-footer col-md-6 col-sm-6 col-xs-12">
-        <p>Stay up to date with the latest projects</p>
-        <input type="text" value="" class="form-control pull-left" placeholder="Your email address"/>
-        <button class="btn btn-yellow pull-left">Sign Up</button>
-        <div class="col-md-6 col-sm-6">
-            <p>Follow us</p>
-            <div class="clear"></div>
-            <a href="#"><img src="~/Images/twitter-icon.png" alt="" /></a>
-            <a href="#"><img src="~/Images/in-icon.png" alt="" /></a>
-            <a href="#"><img src="~/Images/fb-icon.png" alt="" /></a>
-            <a href="#"><img src="~/Images/insta-icon.png" alt="" /></a>
-            <a href="#"><img src="~/Images/youtube-icon.png" alt="" /></a>
+        <div class="support col-md-3 col-sm-3">
+            <div class="pull-right">
+                <button class="btn btn-light-gray glyphicon glyphicon-search"></button>
+                <button class="btn btn-light-gray">Login</button>
+                <button class="btn btn-light-gray">Sign up</button>
+            </div>
         </div>
-        <div class="col-md-6 col-sm-6">
-            <select class="form-control">
-                <option>English</option>
-                <option>Vietnames</option>
-            </select>
-        </div>
+    </header>
+    <div id="body">
+        @RenderSection("featured", false)
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
     </div>
-</footer>
+    <footer class="footer container-fluid row">
+        <div class="left-footer col-md-6 col-sm-6 col-xs-12">
+            <div class="col-md-offset-5 col-sm-offset-5 col-md-4 col-sm-4 no-padding">
+                <ul>
+                    <li>
+                        <a href="#">About Us</a>
+                    </li>
+                    <li>
+                        <a href="#">What is We The Project</a>
+                    </li>
+                    <li>
+                        <a href="#">Blog</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-3 col-sm-3">
+                <ul>
+                    <li>
+                        <a href="#">Help</a>
+                    </li>
+                    <li>
+                        <a href="#">FAQs</a>
+                    </li>
+                    <li>
+                        <a href="#">Support and Contact</a>
+                    </li>
+                    <li>
+                        <a href="#">Term of User</a>
+                    </li>
+                    <li>
+                        <a href="#">Privacy Policy</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-offset-5 col-sm-offset-5 col-md-7 col-sm-7 no-padding">
+                <a href="@Url.Action("Index", "Home")"><img src="~/Images/logo.png" /> The Project</a>
+            </div>
+        </div>
+        <div class="right-footer col-md-6 col-sm-6 col-xs-12">
+            <p>Stay up to date with the latest projects</p>
+            <input type="text" value="" class="form-control pull-left" placeholder="Your email address" />
+            <button class="btn btn-yellow pull-left">Sign Up</button>
+            <div class="col-md-6 col-sm-6">
+                <p>Follow us</p>
+                <div class="clear"></div>
+                <a href="#">
+                    <img src="~/Images/twitter-icon.png" alt="" />
+                </a>
+                <a href="#">
+                    <img src="~/Images/in-icon.png" alt="" />
+                </a>
+                <a href="#">
+                    <img src="~/Images/fb-icon.png" alt="" />
+                </a>
+                <a href="#">
+                    <img src="~/Images/insta-icon.png" alt="" />
+                </a>
+                <a href="#">
+                    <img src="~/Images/youtube-icon.png" alt="" />
+                </a>
+            </div>
+            <div class="col-md-6 col-sm-6 dropdown no-padding">
+                <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" id="footer-dropdown">
+                    English <span class="glyphicon glyphicon-chevron-down"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a>English</a>
+                    </li>
+                    <li>
+                        <a>Vietnames</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
 
-@*@Scripts.Render("~/bundles/jquery")*@
-@RenderSection("scripts", false)
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @RenderSection("scripts", false)
 </body>
 </html>

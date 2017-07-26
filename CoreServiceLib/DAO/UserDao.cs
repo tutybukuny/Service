@@ -6,9 +6,12 @@ namespace CoreServiceLib.DAO
 {
     public class UserDao : AbstractDao<User>
     {
-        public UserDao(string connectStr) : base(connectStr)
+        public UserDao(string connectStr)
+            : base(connectStr)
         {
         }
+
+        #region insert update delete
 
         public override bool Insert(User obj)
         {
@@ -59,7 +62,7 @@ namespace CoreServiceLib.DAO
             var sql = "DELETE FROM tbl_users WHERE id=@id";
             var paramNames = new List<string> {"@id"};
             var dbTypes = new List<DbType> {DbType.Int32};
-            var values = new List<object> {obj.Id};
+            var values = new List<object> {obj.id};
 
             var cmd = CreateCommand(sql, paramNames, dbTypes, values);
 
@@ -75,12 +78,10 @@ namespace CoreServiceLib.DAO
             OpenConnection();
 
             var sql =
-                "UPDATE tbl_users SET email=@email, password=@password, firstname=@firstname, lastname=@lastname, " +
+                "UPDATE tbl_users SET firstname=@firstname, lastname=@lastname, " +
                 "postal_code=@postal_code, country_id=@country_id, state_id=@state_id, district_id=@district_id, avatar=@avatar WHERE id=@id";
             var paramNames = new List<string>
             {
-                "@email",
-                "@password",
                 "@firstname",
                 "@lastname",
                 "@postal_code",
@@ -94,8 +95,6 @@ namespace CoreServiceLib.DAO
             {
                 DbType.String,
                 DbType.String,
-                DbType.String,
-                DbType.String,
                 DbType.Int32,
                 DbType.Int32,
                 DbType.Int32,
@@ -103,8 +102,17 @@ namespace CoreServiceLib.DAO
                 DbType.String,
                 DbType.Int32
             };
-            var values = obj.PropsToList();
-            values.Add(obj.Id);
+            var values = new List<object>
+            {
+                obj.firstname,
+                obj.lastname,
+                obj.postal_code,
+                obj.country_id,
+                obj.state_id,
+                obj.district_id,
+                obj.avatar,
+                obj.id
+            };
 
             var cmd = CreateCommand(sql, paramNames, dbTypes, values);
 
@@ -115,6 +123,10 @@ namespace CoreServiceLib.DAO
             return true;
         }
 
+        #endregion
+
+        #region get item
+
         public override List<User> GetAll()
         {
             OpenConnection();
@@ -122,24 +134,26 @@ namespace CoreServiceLib.DAO
             var sql = "SELECT * FROM tbl_users ORDER BY id ASC";
             var comd = CreateCommand(sql);
             var reader = comd.ExecuteReader();
-            var dao = new DistrictDao(connectStr);
+            var districtDao = new DistrictDao(connectStr);
+            var stateDao = new StateDao(connectStr);
+            var countryDao = new CountryDao(connectStr);
 
             while (reader.Read())
             {
-                var district = dao.GetById((int) reader["district_id"]);
-                var state = district.State;
-                var country = state.Country;
+                var district = districtDao.GetById((int) reader["district_id"]);
+                var state = stateDao.GetById(district.state_id);
+                var country = countryDao.GetById(state.country_id);
 
                 users.Add(new User
                 {
-                    Id = (int) reader["id"],
-                    Firstname = reader["firstname"].ToString(),
-                    Lastname = reader["lastname"].ToString(),
-                    PostalCode = (int) reader["postal_code"],
-                    Country = country,
-                    State = state,
-                    District = district,
-                    Avatar = reader["avatar"].ToString()
+                    id = (int) reader["id"],
+                    firstname = reader["firstname"].ToString(),
+                    lastname = reader["lastname"].ToString(),
+                    postal_code = (int) reader["postal_code"],
+                    country_id = country.id,
+                    state_id = state.id,
+                    district_id = district.id,
+                    avatar = reader["avatar"].ToString()
                 });
             }
 
@@ -159,24 +173,26 @@ namespace CoreServiceLib.DAO
 
             var comd = CreateCommand(sql, paramNames, dbTypes, values);
             var reader = comd.ExecuteReader();
-            var dao = new DistrictDao(connectStr);
+            var districtDao = new DistrictDao(connectStr);
+            var stateDao = new StateDao(connectStr);
+            var countryDao = new CountryDao(connectStr);
 
             if (reader.Read())
             {
-                var district = dao.GetById((int) reader["district_id"]);
-                var state = district.State;
-                var country = state.Country;
+                var district = districtDao.GetById((int) reader["district_id"]);
+                var state = stateDao.GetById(district.state_id);
+                var country = countryDao.GetById(state.country_id);
 
                 user = new User
                 {
-                    Id = (int) reader["id"],
-                    Firstname = reader["firstname"].ToString(),
-                    Lastname = reader["lastname"].ToString(),
-                    PostalCode = (int) reader["postal_code"],
-                    Country = country,
-                    State = state,
-                    District = district,
-                    Avatar = reader["avatar"].ToString()
+                    id = (int) reader["id"],
+                    firstname = reader["firstname"].ToString(),
+                    lastname = reader["lastname"].ToString(),
+                    postal_code = (int) reader["postal_code"],
+                    country_id = country.id,
+                    state_id = state.id,
+                    district_id = district.id,
+                    avatar = reader["avatar"].ToString()
                 };
             }
 
@@ -196,24 +212,26 @@ namespace CoreServiceLib.DAO
 
             var comd = CreateCommand(sql, paramNames, dbTypes, values);
             var reader = comd.ExecuteReader();
-            var dao = new DistrictDao(connectStr);
+            var districtDao = new DistrictDao(connectStr);
+            var stateDao = new StateDao(connectStr);
+            var countryDao = new CountryDao(connectStr);
 
             if (reader.Read())
             {
-                var district = dao.GetById((int) reader["district_id"]);
-                var state = district.State;
-                var country = state.Country;
+                var district = districtDao.GetById((int) reader["district_id"]);
+                var state = stateDao.GetById(district.state_id);
+                var country = countryDao.GetById(state.country_id);
 
                 user = new User
                 {
-                    Id = (int) reader["id"],
-                    Firstname = reader["firstname"].ToString(),
-                    Lastname = reader["lastname"].ToString(),
-                    PostalCode = (int) reader["postal_code"],
-                    Country = country,
-                    State = state,
-                    District = district,
-                    Avatar = reader["avatar"].ToString()
+                    id = (int) reader["id"],
+                    firstname = reader["firstname"].ToString(),
+                    lastname = reader["lastname"].ToString(),
+                    postal_code = (int) reader["postal_code"],
+                    country_id = country.id,
+                    state_id = state.id,
+                    district_id = district.id,
+                    avatar = reader["avatar"].ToString()
                 };
             }
 
@@ -221,5 +239,7 @@ namespace CoreServiceLib.DAO
 
             return user;
         }
+
+        #endregion
     }
 }

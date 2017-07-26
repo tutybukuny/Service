@@ -4,23 +4,24 @@ namespace CoreServiceLib.Models
 {
     public class User
     {
-        public int Id { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string Firstname { get; set; }
-        public string Lastname { get; set; }
-        public int PostalCode { get; set; }
-        public Country Country { get; set; }
-        public State State { get; set; }
-        public District District { get; set; }
-        public string Avatar { get; set; }
+        public int id { get; set; }
+        public string email { get; set; }
+        public string password { get; set; }
+        public string firstname { get; set; }
+        public string lastname { get; set; }
+        public int postal_code { get; set; }
+        public int country_id { get; set; }
+        public int state_id { get; set; }
+        public int district_id { get; set; }
+        public string avatar { get; set; }
+        public string token { get; set; }
 
         public bool MyEquals(object obj)
         {
             var u = (User) obj;
-            return Id == u.Id && Firstname == u.Firstname && Lastname == u.Lastname && PostalCode == u.PostalCode &&
-                   Country.MyEquals(u.Country) && State.MyEquals(u.State) && District.MyEquals(u.District) &&
-                   Avatar == u.Avatar;
+            return id == u.id && firstname == u.firstname && lastname == u.lastname && postal_code == u.postal_code &&
+                   country_id == u.country_id && state_id == u.state_id && district_id == u.district_id &&
+                   avatar == u.avatar;
         }
 
         public List<object> PropsToList()
@@ -32,28 +33,11 @@ namespace CoreServiceLib.Models
             foreach (var prop in props)
             {
                 var value = prop.GetValue(this, null);
-                if (value.GetType() == typeof(Country))
-                {
-                    var c = (Country) value;
-                    list.Add(c.Id);
-                }
-                else if (value.GetType() == typeof(State))
-                {
-                    var s = (State) value;
-                    list.Add(s.Id);
-                }
-                else if (value.GetType() == typeof(District))
-                {
-                    var d = (District) value;
-                    list.Add(d.Id);
-                }
-                else
-                {
-                    list.Add(value);
-                }
+                list.Add(value);
             }
 
             list.RemoveAt(0);
+            list.RemoveAt(list.Count - 1);
 
             return list;
         }
