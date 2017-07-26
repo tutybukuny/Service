@@ -7,3 +7,6 @@ C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-26\Service\CoreServiceLib\
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-26\Service\CoreServiceLib\bin\Debug\CoreServiceLib.pdb
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-26\Service\CoreServiceLib\obj\Debug\CoreServiceLib.dll
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-26\Service\CoreServiceLib\obj\Debug\CoreServiceLib.pdb
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-26\Service\CoreServiceLib\bin\Debug\RestSharp.dll
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-26\Service\CoreServiceLib\bin\Debug\RestSharp.xml
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-26\Service\CoreServiceLib\obj\Debug\CoreServiceLib.csprojResolveAssemblyReference.cache

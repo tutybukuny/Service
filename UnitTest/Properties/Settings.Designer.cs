@@ -32,5 +32,32 @@ namespace UnitTest.Properties {
                 return ((string)(this["ConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:21790")]
+        public string ApiAddress {
+            get {
+                return ((string)(this["ApiAddress"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/api/UserApi/Login")]
+        public string LoginApiUrl {
+            get {
+                return ((string)(this["LoginApiUrl"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/api/UserApi/EditProfile")]
+        public string EditProfileApiUrl {
+            get {
+                return ((string)(this["EditProfileApiUrl"]));
+            }
+        }
     }
 }
