@@ -12,7 +12,7 @@ namespace CoreServiceLib.DAO
         }
 
         /// <summary>
-        /// Check email is exsist or not
+        ///     Check email is exsist or not
         /// </summary>
         /// <param name="email">email</param>
         /// <returns></returns>
@@ -29,7 +29,7 @@ namespace CoreServiceLib.DAO
 
             var reader = cmd.ExecuteReader();
 
-            bool result = reader.Read();
+            var result = reader.Read();
 
             CloseConnection();
 
@@ -41,6 +41,19 @@ namespace CoreServiceLib.DAO
         public override bool Insert(User obj)
         {
             OpenConnection();
+
+            if (obj.country_id == 0)
+                obj.country_id = 21;
+
+            if (obj.state_id == 0)
+                obj.state_id = 17;
+
+            if (obj.district_id == 0)
+                obj.district_id = 17;
+
+            if (string.IsNullOrEmpty(obj.avatar))
+                obj.avatar = "default";
+
 
             var sql =
                 "INSERT INTO tbl_users (email, password, firstname, lastname, postal_code, country_id, state_id, district_id, avatar) " +
@@ -69,7 +82,19 @@ namespace CoreServiceLib.DAO
                 DbType.Int32,
                 DbType.String
             };
-            var values = obj.PropsToList();
+
+            var values = new List<object>
+            {
+                obj.email,
+                obj.password,
+                obj.firstname,
+                obj.lastname,
+                obj.postal_code,
+                obj.country_id,
+                obj.state_id,
+                obj.district_id,
+                obj.avatar
+            };
 
             var cmd = CreateCommand(sql, paramNames, dbTypes, values);
 

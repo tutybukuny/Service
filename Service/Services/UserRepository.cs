@@ -85,25 +85,42 @@ namespace Service.Services
         #region Register action
 
         /// <summary>
-        /// Register action
+        ///     Register action
         /// </summary>
         /// <param name="profile">profile of user</param>
         /// <returns></returns>
         public Dictionary<string, object> Register(User profile)
         {
             var dic = new Dictionary<string, object>();
+            var success = true;
+            var message = "";
 
-            try
+            if (_userDao.CheckExistsEmail(profile.email))
             {
-                _userDao.Insert(profile);
-                dic.Add("success", true);
-                dic.Add("message", "New User has been created!");
+                success = false;
+                message = "Email existed!";
             }
-            catch (SqlException e)
+
+            if (string.IsNullOrEmpty(profile.password))
             {
-                dic.Add("error", true);
-                dic.Add("message", "Something went wrong when creating new User!");
+                success = false;
+                message = "Password cannot empty!";
             }
+
+            if (success)
+                try
+                {
+                    _userDao.Insert(profile);
+                    message = "New User has been created!";
+                }
+                catch (SqlException e)
+                {
+                    success = false;
+                    message = "Something went wrong when creating new User!";
+                }
+
+            dic.Add("success", success);
+            dic.Add("message", message);
 
             return dic;
         }
