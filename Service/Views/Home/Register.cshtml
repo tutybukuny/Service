@@ -1,7 +1,66 @@
-﻿@model dynamic
+﻿@model CoreServiceLib.Models.User
 
 @{
     ViewBag.Title = "title";
 }
 
-<h2>title</h2>
+<div class="my-form col-md-4 col-sm-4 col-xs-6 col-md-offset-4 col-sm-offset-4 col-xs-offset-3">
+    @if (ViewBag.Success != null)
+    {
+        <p>
+            Đăng ký thành công! Click vào <a href="@Url.Action("Index", "Home")">đây</a> để quay về trang chủ
+        </p>
+    }
+    else
+    {
+        using (Html.BeginForm())
+        {
+            <p>Log In</p>
+            @Html.TextBoxFor(m => m.firstname, new {@class = "form-control", placeholder = "First name"})
+            @Html.TextBoxFor(m => m.lastname, new {@class = "form-control", placeholder = "Last name"})
+            @Html.TextBoxFor(m => m.email, new {@class = "form-control", placeholder = "Email"})
+            <input type="text" id="re-email" class="form-control" placeholder="Re-enter email"/>
+            @Html.TextBoxFor(m => m.password, new {@class = "form-control", type = "password", placeholder = "Password"})
+            <input type="password" id="re-password" class="form-control" placeholder="Re-enter password"/>
+            <p class="red-text">Red border is the properties cannot be empty!</p>
+            <input type="submit" class="btn btn-yellow" value="Become a member"/>
+            if (ViewBag.Message != null)
+            {
+                <p class="red-text">@ViewBag.Message</p>
+            }
+        }
+    }
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(':input[type="submit"]').prop("disabled", true);
+        $('#firstname').focusout(checkEmpty);
+        $('#lastname').focusout(checkEmpty);
+        $('#email').focusout(checkEmpty);
+        $('#password').focusout(checkEmpty);
+        $('#re-email').focusout(checkEmpty);
+        $('#re-password').focusout(checkEmpty);
+
+        function checkEmpty() {
+            if ($(this).val() === '') {
+                $(this).addClass('error-border');
+            } else {
+                $(this).removeClass('error-border');
+            }
+
+            checkValid();
+        }
+
+        function checkValid() {
+            if ($('#firstname').val() !== '' &&
+                $('#lastname').val() !== '' &&
+                $('#email').val() !== '' &&
+                $('#password').val() !== '' &&
+                $('#email').val() === $('#re-email').val() &&
+                $('#password').val() === $('#re-password').val()) {
+                $(':input[type="submit"]').prop("disabled", false);
+            } else $(':input[type="submit"]').prop("disabled", true);
+        }
+    });
+</script>

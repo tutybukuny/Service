@@ -26,8 +26,15 @@
         <div class="support col-md-3 col-sm-3">
             <div class="pull-right">
                 <button class="btn btn-light-gray glyphicon glyphicon-search"></button>
-                <a href="@Url.Action("Login", "Home")"><button class="btn btn-light-gray">Login</button></a>
-                <a href="@Url.Action("Register", "Home")"><button class="btn btn-light-gray">Sign up</button></a>
+                @if (Session["User"] == null)
+                {
+                    <a href="@Url.Action("Login", "Home")"><button class="btn btn-light-gray">Login</button></a>
+                    <a href="@Url.Action("Register", "Home")"><button class="btn btn-light-gray">Sign up</button></a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Logout", "Home")"><button class="btn btn-light-gray">Logout</button></a>
+                }
             </div>
         </div>
     </header>

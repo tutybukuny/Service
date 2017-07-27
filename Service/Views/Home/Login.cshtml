@@ -4,14 +4,18 @@
     ViewBag.Title = "Login";
 }
 
-<div class="login-form col-md-4 col-sm-4 col-xs-6 col-md-offset-4 col-sm-offset-4 col-xs-offset-3">
+<div class="my-form col-md-4 col-sm-4 col-xs-6 col-md-offset-4 col-sm-offset-4 col-xs-offset-3">
     @using (Html.BeginForm())
     {
         <p>Log In</p>
-        @Html.TextBoxFor(m => m.User.email, new {@class = "form-control", placeholder = "Email"})
-        @Html.TextBoxFor(m => m.User.password, new {@class = "form-control", type = "password", placeholder = "Password"})
+        @Html.TextBoxFor(m => m.User.email, new { @class = "form-control", placeholder = "Email" })
+        @Html.TextBoxFor(m => m.User.password, new { @class = "form-control", type = "password", placeholder = "Password" })
         <a href="@Url.Action("ForgotPassword", "Home")">Forgot your password?</a>
-        <input type="submit" class="btn btn-yellow" value="Log in"/>
+        <input type="submit" class="btn btn-yellow" value="Log in" />
         <p>@Html.CheckBoxFor(m => m.Remember) Remember me</p>
+        if (ViewBag.Message != null)
+        {
+            <p class="red-text">@ViewBag.Message</p>
+        }
     }
 </div>

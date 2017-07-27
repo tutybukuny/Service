@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using CoreServiceLib.Models;
 
 namespace CoreServiceLib.DAO
@@ -284,6 +285,21 @@ namespace CoreServiceLib.DAO
                     avatar = reader["avatar"].ToString()
                 };
             }
+
+            CloseConnection();
+
+            return user;
+        }
+
+        public User GetUserByToken(string token)
+        {
+            OpenConnection();
+
+            User user = null;
+
+            TokenDao tokenDao = new TokenDao(connectStr);
+            user = GetById(tokenDao.CheckToken(token));
+            tokenDao.DisposeConnection();
 
             CloseConnection();
 
