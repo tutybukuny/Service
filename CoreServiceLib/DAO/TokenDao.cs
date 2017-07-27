@@ -12,6 +12,8 @@ namespace CoreServiceLib.DAO
         {
         }
 
+        #region specify
+
         /// <summary>
         ///     check whether the token is in use
         /// </summary>
@@ -57,6 +59,8 @@ namespace CoreServiceLib.DAO
             return token;
         }
 
+        #endregion
+
         #region get item
 
         public override List<Token> GetAll()
@@ -97,9 +101,38 @@ namespace CoreServiceLib.DAO
             throw new NotImplementedException();
         }
 
+        public bool DeleteExpert()
+        {
+            OpenConnection();
+
+            var sql =
+                "DELETE FROM tbl_token WHERE DATEDIFF(MINUTE, created_date, GETDATE()) > 30";
+
+            var cmd = CreateCommand(sql);
+
+            cmd.ExecuteNonQuery();
+
+            CloseConnection();
+
+            return true;
+        }
+
         public override bool Update(Token obj)
         {
-            throw new NotImplementedException();
+            OpenConnection();
+
+            var sql = "UPDATE tbl_token SET created_date=@created_date WHERE token=@token";
+            var paramNames = new List<string> {"@created_date", "@token"};
+            var dbTypes = new List<DbType> {DbType.DateTime, DbType.String};
+            var values = new List<object> {DateTime.Now, obj.TokenString};
+
+            var cmd = CreateCommand(sql, paramNames, dbTypes, values);
+
+            cmd.ExecuteNonQuery();
+
+            CloseConnection();
+
+            return true;
         }
 
         #endregion
