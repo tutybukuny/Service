@@ -38,6 +38,10 @@
     <Reference Include="CoreServiceLib">
       <HintPath>..\CoreServiceLib\bin\Debug\CoreServiceLib.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="nunit.framework, Version=3.7.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.7.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
@@ -62,7 +66,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="API\LoginApiTest.cs" />
+    <Compile Include="API\UserApiTest.cs" />
     <Compile Include="DAO\CountryDaoTest.cs" />
     <Compile Include="DAO\DistrictDaoTest.cs" />
     <Compile Include="DAO\StateDaoTest.cs" />

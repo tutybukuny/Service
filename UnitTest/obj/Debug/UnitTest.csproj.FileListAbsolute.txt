@@ -30,3 +30,5 @@ C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\UnitTest\bin\De
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\UnitTest\obj\Debug\UnitTest.csprojResolveAssemblyReference.cache
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\UnitTest\obj\Debug\UnitTest.dll
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\UnitTest\obj\Debug\UnitTest.pdb
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\UnitTest\bin\Debug\Newtonsoft.Json.dll
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\UnitTest\bin\Debug\Newtonsoft.Json.xml

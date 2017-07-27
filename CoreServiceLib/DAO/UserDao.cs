@@ -11,6 +11,31 @@ namespace CoreServiceLib.DAO
         {
         }
 
+        /// <summary>
+        /// Check email is exsist or not
+        /// </summary>
+        /// <param name="email">email</param>
+        /// <returns></returns>
+        public bool CheckExistsEmail(string email)
+        {
+            OpenConnection();
+
+            var sql = "SELECT * FROM tbl_users WHERE email=@email";
+            var paramNames = new List<string> {"@email"};
+            var dbTypes = new List<DbType> {DbType.String};
+            var values = new List<object> {email};
+
+            var cmd = CreateCommand(sql, paramNames, dbTypes, values);
+
+            var reader = cmd.ExecuteReader();
+
+            bool result = reader.Read();
+
+            CloseConnection();
+
+            return result;
+        }
+
         #region insert update delete
 
         public override bool Insert(User obj)

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.SqlClient;
 using CoreServiceLib.DAO;
 using CoreServiceLib.Models;
 using Service.Properties;
@@ -16,6 +17,13 @@ namespace Service.Services
             _tokenDao = new TokenDao(Settings.Default.ConnectionString);
         }
 
+        #region Login action
+
+        /// <summary>
+        ///     action when user logins
+        /// </summary>
+        /// <param name="info">login info</param>
+        /// <returns></returns>
         public Dictionary<string, object> Login(User info)
         {
             var user = _userDao.GetUserByLoginInfo(info.email, info.password);
@@ -36,12 +44,21 @@ namespace Service.Services
             return dic;
         }
 
-        public Dictionary<string, object> EditProfile(User user)
+        #endregion
+
+        #region Edit profile action
+
+        /// <summary>
+        ///     action when user edits profile
+        /// </summary>
+        /// <param name="profile">user's profile</param>
+        /// <returns></returns>
+        public Dictionary<string, object> EditProfile(User profile)
         {
             Dictionary<string, object> dic;
-            user.id = _tokenDao.CheckToken(user.token);
+            profile.id = _tokenDao.CheckToken(profile.token);
 
-            if (user.id == -1)
+            if (profile.id == -1)
             {
                 dic = new Dictionary<string, object>
                 {
@@ -51,7 +68,7 @@ namespace Service.Services
             }
             else
             {
-                _userDao.Update(user);
+                _userDao.Update(profile);
 
                 dic = new Dictionary<string, object>
                 {
@@ -62,5 +79,35 @@ namespace Service.Services
 
             return dic;
         }
+
+        #endregion
+
+        #region Register action
+
+        /// <summary>
+        /// Register action
+        /// </summary>
+        /// <param name="profile">profile of user</param>
+        /// <returns></returns>
+        public Dictionary<string, object> Register(User profile)
+        {
+            var dic = new Dictionary<string, object>();
+
+            try
+            {
+                _userDao.Insert(profile);
+                dic.Add("success", true);
+                dic.Add("message", "New User has been created!");
+            }
+            catch (SqlException e)
+            {
+                dic.Add("error", true);
+                dic.Add("message", "Something went wrong when creating new User!");
+            }
+
+            return dic;
+        }
+
+        #endregion
     }
 }

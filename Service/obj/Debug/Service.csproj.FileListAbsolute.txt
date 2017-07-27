@@ -287,6 +287,5 @@ C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\Service\bin\ko\
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\Service\bin\ru\System.Spatial.resources.dll
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\Service\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\Service\bin\zh-Hant\System.Spatial.resources.dll
-C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\Service\obj\Debug\Service.dll
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\Service\obj\Debug\Service.pdb

@@ -16,3 +16,5 @@ C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\CoreServiceLib\
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\CoreServiceLib\bin\Debug\RestSharp.xml
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\CoreServiceLib\obj\Debug\CoreServiceLib.dll
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\CoreServiceLib\obj\Debug\CoreServiceLib.pdb
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\CoreServiceLib\bin\Debug\Newtonsoft.Json.dll
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\CoreServiceLib\bin\Debug\Newtonsoft.Json.xml

@@ -20,11 +20,27 @@ namespace UnitTest.DAO
 
         private UserDao dao;
 
+        #region check exist testing
+
+        [Test]
+        public void TestEmailExisted()
+        {
+            Assert.AreEqual(true, dao.CheckExistsEmail("admin1@gmail.com"));
+        }
+
+        [Test]
+        public void TestEmailNotExisted()
+        {
+            Assert.AreEqual(false, dao.CheckExistsEmail("admi@gmail.com"));
+        }
+
+        #endregion
+
         #region delete testing
         [Test]
         public void TestDelete()
         {
-            var user = new User { id = 3 };
+            var user = new User { id = 12 };
             Assert.AreEqual(true, dao.Delete(user));
         }
 
