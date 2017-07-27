@@ -26,14 +26,14 @@
         <div class="support col-md-3 col-sm-3">
             <div class="pull-right">
                 <button class="btn btn-light-gray glyphicon glyphicon-search"></button>
-                <button class="btn btn-light-gray">Login</button>
-                <button class="btn btn-light-gray">Sign up</button>
+                <a href="@Url.Action("Login", "Home")"><button class="btn btn-light-gray">Login</button></a>
+                <a href="@Url.Action("Register", "Home")"><button class="btn btn-light-gray">Sign up</button></a>
             </div>
         </div>
     </header>
     <div id="body">
         @RenderSection("featured", false)
-        <section class="content-wrapper main-content clear-fix">
+        <section class="content-wrapper main-content clear-fix container-fluid row">
             @RenderBody()
         </section>
     </div>

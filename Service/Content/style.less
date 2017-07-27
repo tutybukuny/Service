@@ -217,21 +217,68 @@ ul {
     }
 
     .support {
-        div button {
-            font-weight: bold;
-            font-size: 16px;
-            -moz-transition: background-color 0.2s ease !important;
-            -o-transition: background-color 0.2s ease !important;
-            -webkit-transition: background-color 0.2s ease !important;
-            transition: background-color 0.2s ease !important;
+        div {
+            a {
+                color: black;
 
-            &:first-of-type {
-                font-size: 20px !important;
+                button {
+                    font-family: Comfortaa-Bold;
+                }
             }
 
-            &:not(:first-of-type) {
-                font-family: Comfortaa-Bold;
+            button {
+                font-weight: bold;
+                font-size: 16px;
+                -moz-transition: background-color 0.2s ease !important;
+                -o-transition: background-color 0.2s ease !important;
+                -webkit-transition: background-color 0.2s ease !important;
+                transition: background-color 0.2s ease !important;
             }
+        }
+    }
+}
+
+/*
+    content
+*/
+
+.content-wrapper {
+    padding-bottom: 20px !important;
+}
+
+.login-form {
+    @login-gray: #D1D2D3;
+    border: 1px solid @login-gray;
+    border-radius: 10px;
+    margin-top: 80px;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 40px;
+
+    .form-control {
+        margin-bottom: 15px;
+        background-color: #E7E8E9;
+        border: none;
+        outline: none;
+        box-shadow: none;
+    }
+
+    .btn {
+        width: 100%;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        font-size: 18px;
+        .font-comfortaa-bold;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-bottom: 5px solid #F6BB44;
+    }
+
+    p {
+        .font-comfortaa-bold;
+
+        &:first-of-type {
+            font-size: 24px;
         }
     }
 }

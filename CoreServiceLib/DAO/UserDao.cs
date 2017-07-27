@@ -251,14 +251,14 @@ namespace CoreServiceLib.DAO
             return user;
         }
 
-        public User GetUserByLoginInfo(string email, string password)
+        public User GetUserByLoginInfo(User obj)
         {
             OpenConnection();
             User user = null;
             var sql = "SELECT * FROM tbl_users WHERE email=@email AND password=@password";
             var paramNames = new List<string> {"@email", "@password"};
             var dbTypes = new List<DbType> {DbType.String, DbType.String};
-            var values = new List<object> {email, password};
+            var values = new List<object> {obj.email, obj.password};
 
             var comd = CreateCommand(sql, paramNames, dbTypes, values);
             var reader = comd.ExecuteReader();

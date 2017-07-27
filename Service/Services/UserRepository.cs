@@ -26,7 +26,7 @@ namespace Service.Services
         /// <returns></returns>
         public Dictionary<string, object> Login(User info)
         {
-            var user = _userDao.GetUserByLoginInfo(info.email, info.password);
+            var user = _userDao.GetUserByLoginInfo(info);
 
             Dictionary<string, object> dic;
 
