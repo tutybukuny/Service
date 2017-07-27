@@ -19,7 +19,7 @@ namespace UnitTest.DAO
         [Test]
         public void TestCheckToken()
         {
-            var token = "j1+1scnT1Eij2AqdUYdoRKYby6Hjvxu6";
+            var token = "+w8+ho3U1EjUtCkMNllmQJaBFukfaD2g";
             Assert.AreEqual(true, dao.CheckToken(token) > -1);
         }
 

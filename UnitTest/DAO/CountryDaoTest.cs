@@ -77,7 +77,7 @@ namespace UnitTest.DAO
         [Test]
         public void TestInsert()
         {
-            var country = new Country { name = "Miến Điện" };
+            var country = new Country { name = "Cai Lao" };
             Assert.AreEqual(true, dao.Insert(country));
         }
 

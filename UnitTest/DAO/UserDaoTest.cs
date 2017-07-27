@@ -48,8 +48,8 @@ namespace UnitTest.DAO
                     id = 1,
                     email = "admin1@gmail.com",
                     password = "12345",
-                    firstname = "admin",
-                    lastname = "1",
+                    firstname = "Thiện",
+                    lastname = "Trần",
                     postal_code = 0,
                     country_id = 1,
                     state_id = 1,
@@ -61,8 +61,8 @@ namespace UnitTest.DAO
                     id = 2,
                     email = "admin2@gmail.com",
                     password = "12345",
-                    firstname = "admin",
-                    lastname = "2",
+                    firstname = "Thiện",
+                    lastname = "Trần",
                     postal_code = 0,
                     country_id = 1,
                     state_id = 1,
@@ -87,8 +87,8 @@ namespace UnitTest.DAO
                 id = 1,
                 email = "admin1@gmail.com",
                 password = "12345",
-                firstname = "admin",
-                lastname = "1",
+                firstname = "Thiện",
+                lastname = "Trần",
                 postal_code = 0,
                 country_id = 1,
                 state_id = 1,
@@ -116,10 +116,10 @@ namespace UnitTest.DAO
         {
             var user = new User
             {
-                email = "admin5@gmail.com",
+                email = "admin6@gmail.com",
                 password = "12345",
                 firstname = "admin",
-                lastname = "5",
+                lastname = "6",
                 postal_code = 0,
                 country_id = 1,
                 state_id = 1,
@@ -166,7 +166,7 @@ namespace UnitTest.DAO
             };
             ;
             ActualValueDelegate<object> e = () => dao.Insert(user);
-            Assert.That(e, Throws.TypeOf<NullReferenceException>());
+            Assert.That(e, Throws.TypeOf<SqlException>());
         }
 
         [Test]
@@ -186,7 +186,7 @@ namespace UnitTest.DAO
             };
             ;
             ActualValueDelegate<object> e = () => dao.Insert(user);
-            Assert.That(e, Throws.TypeOf<NullReferenceException>());
+            Assert.That(e, Throws.TypeOf<SqlException>());
         }
         #endregion
 
@@ -232,14 +232,14 @@ namespace UnitTest.DAO
         }
 
         [Test]
-        public void TestUpdateNullPassword()
+        public void TestUpdateNullFirstname()
         {
             var user = new User
             {
                 id = 4,
                 email = "admin4@gmail.com",
                 password = null,
-                firstname = "admin",
+                firstname = null,
                 lastname = "4",
                 postal_code = 0,
                 country_id = 1,
@@ -249,7 +249,7 @@ namespace UnitTest.DAO
             };
             ;
             ActualValueDelegate<object> e = () => dao.Update(user);
-            Assert.That(e, Throws.TypeOf<NullReferenceException>());
+            Assert.That(e, Throws.TypeOf<SqlException>());
         }
 
         [Test]
@@ -269,7 +269,7 @@ namespace UnitTest.DAO
             };
             ;
             ActualValueDelegate<object> e = () => dao.Insert(user);
-            Assert.That(e, Throws.TypeOf<NullReferenceException>());
+            Assert.That(e, Throws.TypeOf<SqlException>());
         }
         #endregion
     }

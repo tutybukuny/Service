@@ -79,7 +79,7 @@ namespace UnitTest.DAO
         [Test]
         public void TestInsert()
         {
-            var district = new District { name = "Hoàng Cầu", state_id = 1 };
+            var district = new District { name = "Hoàng Hoa Thám", state_id = 1 };
             Assert.AreEqual(true, dao.Insert(district));
         }
 
@@ -104,7 +104,7 @@ namespace UnitTest.DAO
         {
             var district = new District { id = 6, name = "Một cái tên xa lạ" };
             ActualValueDelegate<object> e = () => dao.Insert(district);
-            Assert.That(e, Throws.TypeOf<NullReferenceException>());
+            Assert.That(e, Throws.TypeOf<SqlException>());
         }
         #endregion
 
@@ -136,7 +136,7 @@ namespace UnitTest.DAO
         {
             var district = new District { id = 6, name = "Hai Bà Trưng" };
             ActualValueDelegate<object> e = () => dao.Insert(district);
-            Assert.That(e, Throws.TypeOf<NullReferenceException>());
+            Assert.That(e, Throws.TypeOf<SqlException>());
         }
         #endregion
     }

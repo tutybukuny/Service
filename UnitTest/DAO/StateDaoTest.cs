@@ -78,7 +78,7 @@ namespace UnitTest.DAO
         [Test]
         public void TestInsert()
         {
-            var state = new State { name = "Quảng Bình", country_id = 1 };
+            var state = new State { name = "Quảng Trị", country_id = 1 };
             Assert.AreEqual(true, dao.Insert(state));
         }
 
@@ -95,7 +95,7 @@ namespace UnitTest.DAO
         {
             var state = new State { name = "Một cái tên xa lạ" };
             ActualValueDelegate<object> e = () => dao.Insert(state);
-            Assert.That(e, Throws.TypeOf<NullReferenceException>());
+            Assert.That(e, Throws.TypeOf<SqlException>());
         }
 
         [Test]
@@ -127,7 +127,7 @@ namespace UnitTest.DAO
         {
             var state = new State { id = 7, name = null };
             ActualValueDelegate<object> e = () => dao.Update(state);
-            Assert.That(e, Throws.TypeOf<NullReferenceException>());
+            Assert.That(e, Throws.TypeOf<SqlException>());
         }
 
         [Test]

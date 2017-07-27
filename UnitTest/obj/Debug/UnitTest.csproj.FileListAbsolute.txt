@@ -18,3 +18,15 @@ C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-26\Service\UnitTest\bin\De
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-26\Service\UnitTest\obj\Debug\UnitTest.csprojResolveAssemblyReference.cache
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-26\Service\UnitTest\obj\Debug\UnitTest.dll
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-26\Service\UnitTest\obj\Debug\UnitTest.pdb
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\UnitTest\bin\Debug\UnitTest.dll.config
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\UnitTest\bin\Debug\UnitTest.dll
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\UnitTest\bin\Debug\UnitTest.pdb
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\UnitTest\bin\Debug\CoreServiceLib.dll
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\UnitTest\bin\Debug\nunit.framework.dll
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\UnitTest\bin\Debug\RestSharp.dll
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\UnitTest\bin\Debug\CoreServiceLib.pdb
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\UnitTest\bin\Debug\nunit.framework.xml
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\UnitTest\bin\Debug\RestSharp.xml
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\UnitTest\obj\Debug\UnitTest.csprojResolveAssemblyReference.cache
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\UnitTest\obj\Debug\UnitTest.dll
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-27\Service\UnitTest\obj\Debug\UnitTest.pdb
