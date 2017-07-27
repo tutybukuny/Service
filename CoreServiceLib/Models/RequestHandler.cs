@@ -11,7 +11,7 @@ namespace UnitTest.Models
             _client = new RestClient(url);
         }
 
-        public object SendRequest(object obj, string apiUrl, Method method)
+        public string SendRequest(object obj, string apiUrl, Method method)
         {
             var request = new RestRequest(apiUrl, method);
             request.AddHeader("Content-Type", "application/x-www-form-urlencoded");//add header
