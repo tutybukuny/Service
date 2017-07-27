@@ -14,5 +14,8 @@
     <Setting Name="EditProfileApiUrl" Type="System.String" Scope="Application">
       <Value Profile="(Default)">/api/UserApi/EditProfile</Value>
     </Setting>
+    <Setting Name="RegisterApiUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/api/UserApi/Register</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

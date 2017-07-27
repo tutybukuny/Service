@@ -59,5 +59,14 @@ namespace UnitTest.Properties {
                 return ((string)(this["EditProfileApiUrl"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/api/UserApi/Register")]
+        public string RegisterApiUrl {
+            get {
+                return ((string)(this["RegisterApiUrl"]));
+            }
+        }
     }
 }

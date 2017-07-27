@@ -82,5 +82,45 @@ namespace UnitTest.API
         }
 
         #endregion
+
+        #region test register
+
+        [Test]
+        public void TestRegister()
+        {
+            User user = new User(){email="emailchuatungxuathien", password = "paaa", firstname = "blabla", lastname = "bleble"};
+            string content = _handler.SendRequest(user, Settings.Default.RegisterApiUrl, Method.POST);
+
+            Assert.AreEqual(true, content.Contains("New User has been created!"));
+        }
+
+        [Test]
+        public void TestRegisterEmptyEmail()
+        {
+            User user = new User() { email = "", password = "paaa", firstname = "blabla", lastname = "bleble" };
+            string content = _handler.SendRequest(user, Settings.Default.RegisterApiUrl, Method.POST);
+
+            Assert.AreEqual(true, content.Contains("Email cannot empty!"));
+        }
+
+        [Test]
+        public void TestRegisterExistedEmail()
+        {
+            User user = new User() { email = "emailchuatungxuathien", password = "paaa", firstname = "blabla", lastname = "bleble" };
+            string content = _handler.SendRequest(user, Settings.Default.RegisterApiUrl, Method.POST);
+
+            Assert.AreEqual(true, content.Contains("Email existed!"));
+        }
+
+        [Test]
+        public void TestRegisterEmptyPassword()
+        {
+            User user = new User() { email = "emailchuatungxuathien", firstname = "blabla", lastname = "bleble" };
+            string content = _handler.SendRequest(user, Settings.Default.RegisterApiUrl, Method.POST);
+
+            Assert.AreEqual(true, content.Contains("Password cannot empty!"));
+        }
+
+        #endregion
     }
 }

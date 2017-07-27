@@ -95,13 +95,19 @@ namespace Service.Services
             var success = true;
             var message = "";
 
-            if (_userDao.CheckExistsEmail(profile.email))
+            if (string.IsNullOrEmpty(profile.email))
+            {
+                success = false;
+                message = "Email cannot empty!";
+            }
+
+            if (success && _userDao.CheckExistsEmail(profile.email))
             {
                 success = false;
                 message = "Email existed!";
             }
 
-            if (string.IsNullOrEmpty(profile.password))
+            if (success && string.IsNullOrEmpty(profile.password))
             {
                 success = false;
                 message = "Password cannot empty!";
