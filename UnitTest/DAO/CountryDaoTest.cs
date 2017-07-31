@@ -70,7 +70,8 @@ namespace UnitTest.DAO
         public void TestGetById()
         {
             var expectedCountry = new Country { id = 1, name = "Andorra" };
-            var country = dao.GetById(1);
+            CountryDao countryDao = (CountryDao) dao;
+            var country = countryDao.GetById(1);
 
             Assert.AreEqual(true, country.name == expectedCountry.name);
         }

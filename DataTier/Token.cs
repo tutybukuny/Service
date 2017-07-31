@@ -15,7 +15,7 @@ namespace DataTier
     public partial class Token
     {
         public int id { get; set; }
-        public string token1 { get; set; }
+        public string token { get; set; }
         public int user_id { get; set; }
         public System.DateTime created_date { get; set; }
     

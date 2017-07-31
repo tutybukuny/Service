@@ -1049,7 +1049,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="token1" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="token" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="user_id" Type="Int32" Nullable="false" />
           <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="User" Relationship="Self.FK_Token_User" FromRole="Token" ToRole="User" />
@@ -1908,7 +1908,7 @@
             <EntityTypeMapping TypeName="TheProjectModel.Token">
               <MappingFragment StoreEntitySet="Token">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="token1" ColumnName="token" />
+                <ScalarProperty Name="token" ColumnName="token" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="created_date" ColumnName="created_date" />
               </MappingFragment>

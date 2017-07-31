@@ -9,6 +9,9 @@ namespace DataTier.Module
         {
             Bind(typeof(IDao<>)).To(typeof(CountryDao)).Named("CountryDao");
             Bind(typeof(IDao<>)).To(typeof(StateDao)).Named("StateDao");
+            Bind(typeof(IDao<>)).To(typeof(DistrictDao)).Named("DistrictDao");
+            Bind(typeof(IDao<>)).To(typeof(TokenDao)).Named("TokenDao");
+            Bind(typeof(IDao<>)).To(typeof(UserDao)).Named("UserDao");
         }
     }
 }
