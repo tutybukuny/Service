@@ -18,7 +18,7 @@ namespace CoreServiceLib.DAO
             OpenConnection();
 
             var countries = new List<Country>();
-            var sql = "SELECT * FROM tbl_countries ORDER BY id ASC";
+            var sql = "SELECT * FROM Country ORDER BY id ASC";
             var cmd = CreateCommand(sql);
 
             var reader = cmd.ExecuteReader();
@@ -36,7 +36,7 @@ namespace CoreServiceLib.DAO
             OpenConnection();
 
             Country country = null;
-            var sql = "SELECT * FROM tbl_countries Where id=@id";
+            var sql = "SELECT * FROM Country Where id=@id";
             var paramNames = new List<string> {"@id"};
             var dbTypes = new List<DbType> {DbType.Int32};
             var values = new List<object> {id};
@@ -60,7 +60,7 @@ namespace CoreServiceLib.DAO
         {
             OpenConnection();
 
-            var sql = "INSERT INTO tbl_countries (name) VALUES(@name)";
+            var sql = "INSERT INTO Country (name) VALUES(@name)";
             var paramNames = new List<string> {"@name"};
             var dbTypes = new List<DbType> {DbType.String};
             var values = new List<object> {obj.name};
@@ -77,7 +77,7 @@ namespace CoreServiceLib.DAO
         {
             OpenConnection();
 
-            var sql = "DELETE FROM tbl_countries WHERE id=@id";
+            var sql = "DELETE FROM Country WHERE id=@id";
             var paramNames = new List<string> {"@id"};
             var dbTypes = new List<DbType> {DbType.Int32};
             var values = new List<object> {obj.id};
@@ -96,7 +96,7 @@ namespace CoreServiceLib.DAO
         {
             OpenConnection();
 
-            var sql = "UPDATE tbl_countries SET name=@name WHERE id=@id";
+            var sql = "UPDATE Country SET name=@name WHERE id=@id";
             var paramNames = new List<string> {"@id", "@name"};
             var dbTypes = new List<DbType> {DbType.Int32, DbType.String};
             var values = CreateValues(obj);

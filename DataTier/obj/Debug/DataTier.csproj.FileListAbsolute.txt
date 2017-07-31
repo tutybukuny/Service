@@ -1,0 +1,16 @@
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\DataTier\bin\Debug\DataTier.dll.config
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\DataTier\bin\Debug\DataTier.dll
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\DataTier\bin\Debug\DataTier.pdb
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\DataTier\bin\Debug\Castle.Core.dll
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\DataTier\bin\Debug\EntityFramework.dll
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\DataTier\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\DataTier\bin\Debug\Ninject.dll
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\DataTier\bin\Debug\Ninject.Extensions.Factory.dll
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\DataTier\bin\Debug\Castle.Core.xml
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\DataTier\bin\Debug\EntityFramework.xml
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\DataTier\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\DataTier\bin\Debug\Ninject.xml
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\DataTier\bin\Debug\Ninject.Extensions.Factory.xml
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\DataTier\obj\Debug\DataTier.csprojResolveAssemblyReference.cache
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\DataTier\obj\Debug\DataTier.dll
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\DataTier\obj\Debug\DataTier.pdb

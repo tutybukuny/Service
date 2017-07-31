@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="83d4d9ab1c384f0f8457b94cf7890cf4" Name="Diagram1" ZoomLevel="100">
+        <EntityTypeShape EntityType="TheProjectModel.ActionType" Width="1.5" PointX="3.75" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheProjectModel.Admin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheProjectModel.Block" Width="1.5" PointX="11.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheProjectModel.Category" Width="1.5" PointX="15" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheProjectModel.ChatContent" Width="1.5" PointX="11.25" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheProjectModel.ChatGroup" Width="1.5" PointX="14.25" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheProjectModel.ChatGroupContent" Width="1.5" PointX="19.5" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheProjectModel.Country" Width="1.5" PointX="15" PointY="27.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheProjectModel.District" Width="1.5" PointX="15" PointY="32.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheProjectModel.Following" Width="1.5" PointX="11.25" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheProjectModel.FollowingProject" Width="1.5" PointX="14.25" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheProjectModel.Friend" Width="1.5" PointX="11.25" PointY="29" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheProjectModel.JoinedProject" Width="1.5" PointX="3" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheProjectModel.Like" Width="1.5" PointX="14.25" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheProjectModel.Notification" Width="1.5" PointX="6" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheProjectModel.Project" Width="1.5" PointX="17.25" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheProjectModel.Role" Width="1.5" PointX="0.75" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheProjectModel.State" Width="1.5" PointX="12.75" PointY="32.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheProjectModel.Token" Width="1.5" PointX="11.25" PointY="40.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheProjectModel.User" Width="1.5" PointX="9" PointY="16.625" IsExpanded="true" />
+        <AssociationConnector Association="TheProjectModel.FK_Notification_ActionType" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_Block_User" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_Block_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_Project_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_ChatContent_User" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_ChatContent_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_ChatGroup_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_ChatGroup_User" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_ChatGroupContent_ChatGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_ChatGroupContent_User" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_Project_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_State_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_User_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_District_State" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_Project_District" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_User_District" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_Following_User" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_Following_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_FollowingProject_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_FollowingProject_User" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_Friend_User" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_Friend_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_JoinedProject_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_JoinedProject_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_JoinedProject_User" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_Like_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_Like_User" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_Notification_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_Notification_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_Notification_User" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_Notification_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_Project_State" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_Project_User" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_User_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_User_Role1" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_User_State" ManuallyRouted="false" />
+        <AssociationConnector Association="TheProjectModel.FK_Token_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

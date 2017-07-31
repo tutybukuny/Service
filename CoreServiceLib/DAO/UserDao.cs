@@ -21,7 +21,7 @@ namespace CoreServiceLib.DAO
         {
             OpenConnection();
 
-            var sql = "SELECT * FROM tbl_users WHERE email=@email";
+            var sql = "SELECT * FROM [User] WHERE email=@email";
             var paramNames = new List<string> {"@email"};
             var dbTypes = new List<DbType> {DbType.String};
             var values = new List<object> {email};
@@ -57,7 +57,7 @@ namespace CoreServiceLib.DAO
 
 
             var sql =
-                "INSERT INTO tbl_users (email, password, firstname, lastname, postal_code, country_id, state_id, district_id, avatar) " +
+                "INSERT INTO User (email, password, firstname, lastname, postal_code, country_id, state_id, district_id, avatar) " +
                 "VALUES(@email, @password, @firstname, @lastname, @postal_code, @country_id, @state_id, @district_id, @avatar)";
             var paramNames = new List<string>
             {
@@ -110,7 +110,7 @@ namespace CoreServiceLib.DAO
         {
             OpenConnection();
 
-            var sql = "DELETE FROM tbl_users WHERE id=@id";
+            var sql = "DELETE FROM [User] WHERE id=@id";
             var paramNames = new List<string> {"@id"};
             var dbTypes = new List<DbType> {DbType.Int32};
             var values = new List<object> {obj.id};
@@ -129,7 +129,7 @@ namespace CoreServiceLib.DAO
             OpenConnection();
 
             var sql =
-                "UPDATE tbl_users SET firstname=@firstname, lastname=@lastname, " +
+                "UPDATE User SET firstname=@firstname, lastname=@lastname, " +
                 "postal_code=@postal_code, country_id=@country_id, state_id=@state_id, district_id=@district_id, avatar=@avatar WHERE id=@id";
             var paramNames = new List<string>
             {
@@ -182,7 +182,7 @@ namespace CoreServiceLib.DAO
         {
             OpenConnection();
             var users = new List<User>();
-            var sql = "SELECT * FROM tbl_users ORDER BY id ASC";
+            var sql = "SELECT * FROM [User] ORDER BY id ASC";
             var comd = CreateCommand(sql);
             var reader = comd.ExecuteReader();
             var districtDao = new DistrictDao(connectStr);
@@ -217,7 +217,7 @@ namespace CoreServiceLib.DAO
         {
             OpenConnection();
             User user = null;
-            var sql = "SELECT * FROM tbl_users WHERE id=@id";
+            var sql = "SELECT * FROM [User] WHERE id=@id";
             var paramNames = new List<string> {"@id"};
             var dbTypes = new List<DbType> {DbType.Int32};
             var values = new List<object> {id};
@@ -256,7 +256,7 @@ namespace CoreServiceLib.DAO
         {
             OpenConnection();
             User user = null;
-            var sql = "SELECT * FROM tbl_users WHERE email=@email AND password=@password";
+            var sql = "SELECT * FROM [User] WHERE email=@email AND password=@password";
             var paramNames = new List<string> {"@email", "@password"};
             var dbTypes = new List<DbType> {DbType.String, DbType.String};
             var values = new List<object> {obj.email, obj.password};

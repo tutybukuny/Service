@@ -1,0 +1,890 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TheProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ActionType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Notifications" Relationship="Self.FK_Notification_ActionType" FromRole="ActionType" ToRole="Notification" />
+  </EntityType>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="email" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="firstname" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="lastname" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Block">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="blocker_id" Type="Int32" Nullable="false" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Block_User" FromRole="Block" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="Self.FK_Block_User1" FromRole="Block" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="category1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Projects" Relationship="Self.FK_Project_Category" FromRole="Category" ToRole="Project" />
+  </EntityType>
+  <EntityType Name="ChatContent">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sender_id" Type="Int32" Nullable="false" />
+    <Property Name="receiver_id" Type="Int32" Nullable="false" />
+    <Property Name="content" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="User" Relationship="Self.FK_ChatContent_User" FromRole="ChatContent" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="Self.FK_ChatContent_User1" FromRole="ChatContent" ToRole="User" />
+  </EntityType>
+  <EntityType Name="ChatGroup">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="project_id" Type="Int32" Nullable="false" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Project" Relationship="Self.FK_ChatGroup_Project" FromRole="ChatGroup" ToRole="Project" />
+    <NavigationProperty Name="User" Relationship="Self.FK_ChatGroup_User" FromRole="ChatGroup" ToRole="User" />
+    <NavigationProperty Name="ChatGroupContents" Relationship="Self.FK_ChatGroupContent_ChatGroup" FromRole="ChatGroup" ToRole="ChatGroupContent" />
+  </EntityType>
+  <EntityType Name="ChatGroupContent">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chatgroup_id" Type="Int32" Nullable="false" />
+    <Property Name="sender_id" Type="Int32" Nullable="false" />
+    <Property Name="content" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="ChatGroup" Relationship="Self.FK_ChatGroupContent_ChatGroup" FromRole="ChatGroupContent" ToRole="ChatGroup" />
+    <NavigationProperty Name="User" Relationship="Self.FK_ChatGroupContent_User" FromRole="ChatGroupContent" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Projects" Relationship="Self.FK_Project_Country" FromRole="Country" ToRole="Project" />
+    <NavigationProperty Name="States" Relationship="Self.FK_State_Country" FromRole="Country" ToRole="State" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_Country" FromRole="Country" ToRole="User" />
+  </EntityType>
+  <EntityType Name="District">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="state_id" Type="Int32" Nullable="false" />
+    <Property Name="postal_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="State" Relationship="Self.FK_District_State" FromRole="District" ToRole="State" />
+    <NavigationProperty Name="Projects" Relationship="Self.FK_Project_District" FromRole="District" ToRole="Project" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_District" FromRole="District" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Following">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="follower_id" Type="Int32" Nullable="false" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Following_User" FromRole="Following" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="Self.FK_Following_User1" FromRole="Following" ToRole="User" />
+  </EntityType>
+  <EntityType Name="FollowingProject">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="project_id" Type="Int32" Nullable="false" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Project" Relationship="Self.FK_FollowingProject_Project" FromRole="FollowingProject" ToRole="Project" />
+    <NavigationProperty Name="User" Relationship="Self.FK_FollowingProject_User" FromRole="FollowingProject" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Friend">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="friend_id" Type="Int32" Nullable="false" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Friend_User" FromRole="Friend" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="Self.FK_Friend_User1" FromRole="Friend" ToRole="User" />
+  </EntityType>
+  <EntityType Name="JoinedProject">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="project_id" Type="Int32" Nullable="false" />
+    <Property Name="role_id" Type="Int32" Nullable="false" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Project" Relationship="Self.FK_JoinedProject_Project" FromRole="JoinedProject" ToRole="Project" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_JoinedProject_Role" FromRole="JoinedProject" ToRole="Role" />
+    <NavigationProperty Name="User" Relationship="Self.FK_JoinedProject_User" FromRole="JoinedProject" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Like">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="project_id" Type="Int32" Nullable="false" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Project" Relationship="Self.FK_Like_Project" FromRole="Like" ToRole="Project" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Like_User" FromRole="Like" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Notification">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="action_user_id" Type="Int32" Nullable="false" />
+    <Property Name="action_type_id" Type="Int32" Nullable="false" />
+    <Property Name="project_id" Type="Int32" />
+    <Property Name="role_id" Type="Int32" />
+    <Property Name="readed" Type="Boolean" Nullable="false" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="ActionType" Relationship="Self.FK_Notification_ActionType" FromRole="Notification" ToRole="ActionType" />
+    <NavigationProperty Name="Project" Relationship="Self.FK_Notification_Project" FromRole="Notification" ToRole="Project" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_Notification_Role" FromRole="Notification" ToRole="Role" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Notification_User" FromRole="Notification" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="Self.FK_Notification_User1" FromRole="Notification" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="image" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="category_id" Type="Int32" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="country_id" Type="Int32" />
+    <Property Name="state_id" Type="Int32" />
+    <Property Name="district_id" Type="Int32" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Project_Category" FromRole="Project" ToRole="Category" />
+    <NavigationProperty Name="ChatGroups" Relationship="Self.FK_ChatGroup_Project" FromRole="Project" ToRole="ChatGroup" />
+    <NavigationProperty Name="Country" Relationship="Self.FK_Project_Country" FromRole="Project" ToRole="Country" />
+    <NavigationProperty Name="District" Relationship="Self.FK_Project_District" FromRole="Project" ToRole="District" />
+    <NavigationProperty Name="FollowingProjects" Relationship="Self.FK_FollowingProject_Project" FromRole="Project" ToRole="FollowingProject" />
+    <NavigationProperty Name="JoinedProjects" Relationship="Self.FK_JoinedProject_Project" FromRole="Project" ToRole="JoinedProject" />
+    <NavigationProperty Name="Likes" Relationship="Self.FK_Like_Project" FromRole="Project" ToRole="Like" />
+    <NavigationProperty Name="Notifications" Relationship="Self.FK_Notification_Project" FromRole="Project" ToRole="Notification" />
+    <NavigationProperty Name="State" Relationship="Self.FK_Project_State" FromRole="Project" ToRole="State" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Project_User" FromRole="Project" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="role1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="JoinedProjects" Relationship="Self.FK_JoinedProject_Role" FromRole="Role" ToRole="JoinedProject" />
+    <NavigationProperty Name="Notifications" Relationship="Self.FK_Notification_Role" FromRole="Role" ToRole="Notification" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+    <NavigationProperty Name="Users1" Relationship="Self.FK_User_Role1" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="country_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Country" Relationship="Self.FK_State_Country" FromRole="State" ToRole="Country" />
+    <NavigationProperty Name="Districts" Relationship="Self.FK_District_State" FromRole="State" ToRole="District" />
+    <NavigationProperty Name="Projects" Relationship="Self.FK_Project_State" FromRole="State" ToRole="Project" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_State" FromRole="State" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Token">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="token1" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Token_User" FromRole="Token" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="email" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="firstname" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="lastname" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="about_me" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+    <Property Name="postal_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="avatar" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="birthday" Type="DateTime" Precision="0" />
+    <Property Name="country_id" Type="Int32" />
+    <Property Name="state_id" Type="Int32" />
+    <Property Name="district_id" Type="Int32" />
+    <Property Name="role1" Type="Int32" />
+    <Property Name="role2" Type="Int32" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Blocks" Relationship="Self.FK_Block_User" FromRole="User" ToRole="Block" />
+    <NavigationProperty Name="Blocks1" Relationship="Self.FK_Block_User1" FromRole="User" ToRole="Block" />
+    <NavigationProperty Name="ChatContents" Relationship="Self.FK_ChatContent_User" FromRole="User" ToRole="ChatContent" />
+    <NavigationProperty Name="ChatContents1" Relationship="Self.FK_ChatContent_User1" FromRole="User" ToRole="ChatContent" />
+    <NavigationProperty Name="ChatGroups" Relationship="Self.FK_ChatGroup_User" FromRole="User" ToRole="ChatGroup" />
+    <NavigationProperty Name="ChatGroupContents" Relationship="Self.FK_ChatGroupContent_User" FromRole="User" ToRole="ChatGroupContent" />
+    <NavigationProperty Name="Country" Relationship="Self.FK_User_Country" FromRole="User" ToRole="Country" />
+    <NavigationProperty Name="District" Relationship="Self.FK_User_District" FromRole="User" ToRole="District" />
+    <NavigationProperty Name="Followings" Relationship="Self.FK_Following_User" FromRole="User" ToRole="Following" />
+    <NavigationProperty Name="Followings1" Relationship="Self.FK_Following_User1" FromRole="User" ToRole="Following" />
+    <NavigationProperty Name="FollowingProjects" Relationship="Self.FK_FollowingProject_User" FromRole="User" ToRole="FollowingProject" />
+    <NavigationProperty Name="Friends" Relationship="Self.FK_Friend_User" FromRole="User" ToRole="Friend" />
+    <NavigationProperty Name="Friends1" Relationship="Self.FK_Friend_User1" FromRole="User" ToRole="Friend" />
+    <NavigationProperty Name="JoinedProjects" Relationship="Self.FK_JoinedProject_User" FromRole="User" ToRole="JoinedProject" />
+    <NavigationProperty Name="Likes" Relationship="Self.FK_Like_User" FromRole="User" ToRole="Like" />
+    <NavigationProperty Name="Notifications" Relationship="Self.FK_Notification_User" FromRole="User" ToRole="Notification" />
+    <NavigationProperty Name="Notifications1" Relationship="Self.FK_Notification_User1" FromRole="User" ToRole="Notification" />
+    <NavigationProperty Name="Projects" Relationship="Self.FK_Project_User" FromRole="User" ToRole="Project" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="Role3" Relationship="Self.FK_User_Role1" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="State" Relationship="Self.FK_User_State" FromRole="User" ToRole="State" />
+    <NavigationProperty Name="Tokens" Relationship="Self.FK_Token_User" FromRole="User" ToRole="Token" />
+  </EntityType>
+  <Association Name="FK_Notification_ActionType">
+    <End Role="ActionType" Type="Self.ActionType" Multiplicity="1" />
+    <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ActionType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Notification">
+        <PropertyRef Name="action_type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Block_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Block" Type="Self.Block" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Block">
+        <PropertyRef Name="blocker_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Block_User1">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Block" Type="Self.Block" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Block">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Project_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChatContent_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="ChatContent" Type="Self.ChatContent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ChatContent">
+        <PropertyRef Name="sender_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChatContent_User1">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="ChatContent" Type="Self.ChatContent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ChatContent">
+        <PropertyRef Name="receiver_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChatGroup_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="1" />
+    <End Role="ChatGroup" Type="Self.ChatGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ChatGroup">
+        <PropertyRef Name="project_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChatGroup_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="ChatGroup" Type="Self.ChatGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ChatGroup">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChatGroupContent_ChatGroup">
+    <End Role="ChatGroup" Type="Self.ChatGroup" Multiplicity="1" />
+    <End Role="ChatGroupContent" Type="Self.ChatGroupContent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChatGroup">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ChatGroupContent">
+        <PropertyRef Name="chatgroup_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChatGroupContent_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="ChatGroupContent" Type="Self.ChatGroupContent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ChatGroupContent">
+        <PropertyRef Name="sender_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Project_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="country_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_State_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="State" Type="Self.State" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="State">
+        <PropertyRef Name="country_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="country_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_District_State">
+    <End Role="State" Type="Self.State" Multiplicity="1" />
+    <End Role="District" Type="Self.District" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="District">
+        <PropertyRef Name="state_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Project_District">
+    <End Role="District" Type="Self.District" Multiplicity="0..1" />
+    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="District">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="district_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_District">
+    <End Role="District" Type="Self.District" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="District">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="district_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Following_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Following" Type="Self.Following" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Following">
+        <PropertyRef Name="follower_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Following_User1">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Following" Type="Self.Following" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Following">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FollowingProject_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="1" />
+    <End Role="FollowingProject" Type="Self.FollowingProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="FollowingProject">
+        <PropertyRef Name="project_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FollowingProject_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="FollowingProject" Type="Self.FollowingProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="FollowingProject">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Friend_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Friend" Type="Self.Friend" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Friend">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Friend_User1">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Friend" Type="Self.Friend" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Friend">
+        <PropertyRef Name="friend_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JoinedProject_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="1" />
+    <End Role="JoinedProject" Type="Self.JoinedProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="JoinedProject">
+        <PropertyRef Name="project_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JoinedProject_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="JoinedProject" Type="Self.JoinedProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="JoinedProject">
+        <PropertyRef Name="role_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JoinedProject_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="JoinedProject" Type="Self.JoinedProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="JoinedProject">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Like_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="1" />
+    <End Role="Like" Type="Self.Like" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Like">
+        <PropertyRef Name="project_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Like_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Like" Type="Self.Like" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Like">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notification_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+    <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Notification">
+        <PropertyRef Name="project_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notification_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Notification">
+        <PropertyRef Name="role_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notification_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Notification">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notification_User1">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Notification">
+        <PropertyRef Name="action_user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Project_State">
+    <End Role="State" Type="Self.State" Multiplicity="0..1" />
+    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="country_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Project_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="role1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role1">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="role2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_State">
+    <End Role="State" Type="Self.State" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="state_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Token_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Token" Type="Self.Token" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Token">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TheProjectEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ActionTypes" EntityType="Self.ActionType" />
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="Blocks" EntityType="Self.Block" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="ChatContents" EntityType="Self.ChatContent" />
+    <EntitySet Name="ChatGroups" EntityType="Self.ChatGroup" />
+    <EntitySet Name="ChatGroupContents" EntityType="Self.ChatGroupContent" />
+    <EntitySet Name="Countries" EntityType="Self.Country" />
+    <EntitySet Name="Districts" EntityType="Self.District" />
+    <EntitySet Name="Followings" EntityType="Self.Following" />
+    <EntitySet Name="FollowingProjects" EntityType="Self.FollowingProject" />
+    <EntitySet Name="Friends" EntityType="Self.Friend" />
+    <EntitySet Name="JoinedProjects" EntityType="Self.JoinedProject" />
+    <EntitySet Name="Likes" EntityType="Self.Like" />
+    <EntitySet Name="Notifications" EntityType="Self.Notification" />
+    <EntitySet Name="Projects" EntityType="Self.Project" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="States" EntityType="Self.State" />
+    <EntitySet Name="Tokens" EntityType="Self.Token" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_Notification_ActionType" Association="Self.FK_Notification_ActionType">
+      <End Role="ActionType" EntitySet="ActionTypes" />
+      <End Role="Notification" EntitySet="Notifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Block_User" Association="Self.FK_Block_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Block" EntitySet="Blocks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Block_User1" Association="Self.FK_Block_User1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Block" EntitySet="Blocks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Project_Category" Association="Self.FK_Project_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Project" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChatContent_User" Association="Self.FK_ChatContent_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="ChatContent" EntitySet="ChatContents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChatContent_User1" Association="Self.FK_ChatContent_User1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="ChatContent" EntitySet="ChatContents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChatGroup_Project" Association="Self.FK_ChatGroup_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="ChatGroup" EntitySet="ChatGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChatGroup_User" Association="Self.FK_ChatGroup_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="ChatGroup" EntitySet="ChatGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChatGroupContent_ChatGroup" Association="Self.FK_ChatGroupContent_ChatGroup">
+      <End Role="ChatGroup" EntitySet="ChatGroups" />
+      <End Role="ChatGroupContent" EntitySet="ChatGroupContents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChatGroupContent_User" Association="Self.FK_ChatGroupContent_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="ChatGroupContent" EntitySet="ChatGroupContents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Project_Country" Association="Self.FK_Project_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="Project" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_State_Country" Association="Self.FK_State_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="State" EntitySet="States" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Country" Association="Self.FK_User_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_District_State" Association="Self.FK_District_State">
+      <End Role="State" EntitySet="States" />
+      <End Role="District" EntitySet="Districts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Project_District" Association="Self.FK_Project_District">
+      <End Role="District" EntitySet="Districts" />
+      <End Role="Project" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_District" Association="Self.FK_User_District">
+      <End Role="District" EntitySet="Districts" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Following_User" Association="Self.FK_Following_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Following" EntitySet="Followings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Following_User1" Association="Self.FK_Following_User1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Following" EntitySet="Followings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FollowingProject_Project" Association="Self.FK_FollowingProject_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="FollowingProject" EntitySet="FollowingProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FollowingProject_User" Association="Self.FK_FollowingProject_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="FollowingProject" EntitySet="FollowingProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Friend_User" Association="Self.FK_Friend_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Friend" EntitySet="Friends" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Friend_User1" Association="Self.FK_Friend_User1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Friend" EntitySet="Friends" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JoinedProject_Project" Association="Self.FK_JoinedProject_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="JoinedProject" EntitySet="JoinedProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JoinedProject_Role" Association="Self.FK_JoinedProject_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="JoinedProject" EntitySet="JoinedProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JoinedProject_User" Association="Self.FK_JoinedProject_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="JoinedProject" EntitySet="JoinedProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Like_Project" Association="Self.FK_Like_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="Like" EntitySet="Likes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Like_User" Association="Self.FK_Like_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Like" EntitySet="Likes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notification_Project" Association="Self.FK_Notification_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="Notification" EntitySet="Notifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notification_Role" Association="Self.FK_Notification_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="Notification" EntitySet="Notifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notification_User" Association="Self.FK_Notification_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Notification" EntitySet="Notifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notification_User1" Association="Self.FK_Notification_User1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Notification" EntitySet="Notifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Project_State" Association="Self.FK_Project_State">
+      <End Role="State" EntitySet="States" />
+      <End Role="Project" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Project_User" Association="Self.FK_Project_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Project" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role1" Association="Self.FK_User_Role1">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_State" Association="Self.FK_User_State">
+      <End Role="State" EntitySet="States" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Token_User" Association="Self.FK_Token_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Token" EntitySet="Tokens" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

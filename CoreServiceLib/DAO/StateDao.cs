@@ -17,7 +17,7 @@ namespace CoreServiceLib.DAO
         {
             OpenConnection();
 
-            var sql = "INSERT INTO tbl_states (name, country_id) VALUES(@name, @id)";
+            var sql = "INSERT INTO State (name, country_id) VALUES(@name, @id)";
             var paramNames = new List<string> {"@name", "@id"};
             var dbTypes = new List<DbType> {DbType.String, DbType.Int32};
             var values = new List<object> {obj.name, obj.country_id};
@@ -35,7 +35,7 @@ namespace CoreServiceLib.DAO
         {
             OpenConnection();
 
-            var sql = "DELETE FROM tbl_states WHERE id=@id";
+            var sql = "DELETE FROM State WHERE id=@id";
             var paramNames = new List<string> {"@id"};
             var dbTypes = new List<DbType> {DbType.Int32};
             var values = new List<object> {obj.id};
@@ -53,7 +53,7 @@ namespace CoreServiceLib.DAO
         {
             OpenConnection();
 
-            var sql = "UPDATE tbl_states SET name=@name, country_id=@country_id WHERE id=@id";
+            var sql = "UPDATE State SET name=@name, country_id=@country_id WHERE id=@id";
             var paramNames = new List<string> {"@name", "@country_id", "@id"};
             var dbTypes = new List<DbType> {DbType.String, DbType.Int32, DbType.Int32};
             var values = new List<object> {obj.name, obj.country_id, obj.id};
@@ -76,7 +76,7 @@ namespace CoreServiceLib.DAO
             OpenConnection();
 
             var states = new List<State>();
-            var sql = "SELECT * FROM tbl_states ORDER BY id ASC";
+            var sql = "SELECT * FROM State ORDER BY id ASC";
             var cmd = CreateCommand(sql);
 
             var reader = cmd.ExecuteReader();
@@ -99,7 +99,7 @@ namespace CoreServiceLib.DAO
             OpenConnection();
 
             State state = null;
-            var sql = "SELECT * FROM tbl_states Where id=@id";
+            var sql = "SELECT * FROM State Where id=@id";
             var paramNames = new List<string> {"@id"};
             var dbTypes = new List<DbType> {DbType.Int32};
             var values = new List<object> {id};

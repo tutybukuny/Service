@@ -17,7 +17,7 @@ namespace CoreServiceLib.DAO
         {
             OpenConnection();
 
-            var sql = "INSERT INTO tbl_districts (name, state_id) VALUES(@name, @id)";
+            var sql = "INSERT INTO District (name, state_id) VALUES(@name, @id)";
             var paramNames = new List<string> {"@name", "@id"};
             var dbTypes = new List<DbType> {DbType.String, DbType.Int32};
             var values = new List<object> {obj.name, obj.state_id};
@@ -35,7 +35,7 @@ namespace CoreServiceLib.DAO
         {
             OpenConnection();
 
-            var sql = "DELETE FROM tbl_districts WHERE id=@id";
+            var sql = "DELETE FROM District WHERE id=@id";
             var paramNames = new List<string> {"@id"};
             var dbTypes = new List<DbType> {DbType.Int32};
             var values = new List<object> {obj.id};
@@ -53,7 +53,7 @@ namespace CoreServiceLib.DAO
         {
             OpenConnection();
 
-            var sql = "UPDATE tbl_districts SET name=@name, state_id=@state_id WHERE id=@id";
+            var sql = "UPDATE District SET name=@name, state_id=@state_id WHERE id=@id";
             var paramNames = new List<string> {"@name", "@state_id", "@id"};
             var dbTypes = new List<DbType> {DbType.String, DbType.Int32, DbType.Int32};
             var values = new List<object> {obj.name, obj.state_id, obj.id};
@@ -76,7 +76,7 @@ namespace CoreServiceLib.DAO
             OpenConnection();
 
             var districts = new List<District>();
-            var sql = "SELECT * FROM tbl_districts ORDER BY id ASC";
+            var sql = "SELECT * FROM District ORDER BY id ASC";
             var cmd = CreateCommand(sql);
 
             var reader = cmd.ExecuteReader();
@@ -99,7 +99,7 @@ namespace CoreServiceLib.DAO
             OpenConnection();
 
             District district = null;
-            var sql = "SELECT * FROM tbl_districts Where id=@id";
+            var sql = "SELECT * FROM District Where id=@id";
             var paramNames = new List<string> {"@id"};
             var dbTypes = new List<DbType> {DbType.Int32};
             var values = new List<object> {id};

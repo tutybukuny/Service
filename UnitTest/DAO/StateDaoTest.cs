@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using CoreServiceLib.DAO;
 using CoreServiceLib.Models;
+using DataTier.Dao;
+using DataTier.Module;
+using Ninject;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
 using UnitTest.Properties;
+using StateDao = CoreServiceLib.DAO.StateDao;
 
 namespace UnitTest.DAO
 {
@@ -19,6 +22,15 @@ namespace UnitTest.DAO
         }
 
         private StateDao dao;
+
+        [Test]
+        public void TestCreateDao()
+        {
+            var kernel  = new StandardKernel(new DaoModule());
+            var dao = kernel.Get<IDao<DataTier.State>>("StateDao");
+
+            Assert.AreEqual(typeof(DataTier.Dao.StateDao), dao.GetType());
+        }
 
         #region delete testing
         [Test]

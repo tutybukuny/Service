@@ -23,7 +23,7 @@ namespace CoreServiceLib.DAO
         {
             OpenConnection();
 
-            var sql = "SELECT * FROM tbl_token WHERE token=@token";
+            var sql = "SELECT * FROM Token WHERE token=@token";
             var paramNames = new List<string> {"@token"};
             var dbTypes = new List<DbType> {DbType.String};
             var values = new List<object> {token};
@@ -82,7 +82,7 @@ namespace CoreServiceLib.DAO
             OpenConnection();
 
             var sql =
-                "INSERT INTO tbl_token (token, user_id, created_date) VALUES(@token, @user_id, @created_date)";
+                "INSERT INTO Token (token, user_id, created_date) VALUES(@token, @user_id, @created_date)";
             var paramNames = new List<string> {"@token", "@user_id", "@created_date"};
             var dbTypes = new List<DbType> {DbType.String, DbType.Int32, DbType.DateTime};
             var values = new List<object> {obj.TokenString, obj.User.id, DateTime.Now};
@@ -106,7 +106,7 @@ namespace CoreServiceLib.DAO
             OpenConnection();
 
             var sql =
-                "DELETE FROM tbl_token WHERE DATEDIFF(MINUTE, created_date, GETDATE()) > 30";
+                "DELETE FROM Token WHERE DATEDIFF(MINUTE, created_date, GETDATE()) > 30";
 
             var cmd = CreateCommand(sql);
 
@@ -121,7 +121,7 @@ namespace CoreServiceLib.DAO
         {
             OpenConnection();
 
-            var sql = "UPDATE tbl_token SET created_date=@created_date WHERE token=@token";
+            var sql = "UPDATE Token SET created_date=@created_date WHERE token=@token";
             var paramNames = new List<string> {"@created_date", "@token"};
             var dbTypes = new List<DbType> {DbType.DateTime, DbType.String};
             var values = new List<object> {DateTime.Now, obj.TokenString};
