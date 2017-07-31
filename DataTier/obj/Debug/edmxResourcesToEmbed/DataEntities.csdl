@@ -71,9 +71,6 @@
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Projects" Relationship="Self.FK_Project_Country" FromRole="Country" ToRole="Project" />
-    <NavigationProperty Name="States" Relationship="Self.FK_State_Country" FromRole="Country" ToRole="State" />
-    <NavigationProperty Name="Users" Relationship="Self.FK_User_Country" FromRole="Country" ToRole="User" />
   </EntityType>
   <EntityType Name="District">
     <Key>
@@ -83,9 +80,6 @@
     <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="state_id" Type="Int32" Nullable="false" />
     <Property Name="postal_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="State" Relationship="Self.FK_District_State" FromRole="District" ToRole="State" />
-    <NavigationProperty Name="Projects" Relationship="Self.FK_Project_District" FromRole="District" ToRole="Project" />
-    <NavigationProperty Name="Users" Relationship="Self.FK_User_District" FromRole="District" ToRole="User" />
   </EntityType>
   <EntityType Name="Following">
     <Key>
@@ -113,8 +107,6 @@
     <Property Name="user_id" Type="Int32" Nullable="false" />
     <Property Name="friend_id" Type="Int32" Nullable="false" />
     <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="User" Relationship="Self.FK_Friend_User" FromRole="Friend" ToRole="User" />
-    <NavigationProperty Name="User1" Relationship="Self.FK_Friend_User1" FromRole="Friend" ToRole="User" />
   </EntityType>
   <EntityType Name="JoinedProject">
     <Key>
@@ -177,10 +169,6 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="country_id" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Country" Relationship="Self.FK_State_Country" FromRole="State" ToRole="Country" />
-    <NavigationProperty Name="Districts" Relationship="Self.FK_District_State" FromRole="State" ToRole="District" />
-    <NavigationProperty Name="Projects" Relationship="Self.FK_Project_State" FromRole="State" ToRole="Project" />
-    <NavigationProperty Name="Users" Relationship="Self.FK_User_State" FromRole="State" ToRole="User" />
   </EntityType>
   <EntityType Name="Token">
     <Key>

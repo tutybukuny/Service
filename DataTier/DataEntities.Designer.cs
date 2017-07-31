@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\DataTier\DataEntities.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\Learning\C#\Service\DataTier\DataEntities.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

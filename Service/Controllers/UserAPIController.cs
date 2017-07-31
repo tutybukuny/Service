@@ -2,14 +2,14 @@
 using System.Web.Http;
 using BusinessTier.Repository;
 using DataTier;
-using DataTier.Dao;
 using Ninject;
+using Service.Models;
 
 namespace Service.Controllers
 {
     public class UserApiController : ApiController
     {
-        private UserRepo _repo;
+        private readonly UserRepo _repo;
 
         private UserApiController()
         {
@@ -19,7 +19,7 @@ namespace Service.Controllers
         }
 
         /// <summary>
-        /// Login service
+        ///     Login service
         /// </summary>
         /// <param name="info">login info</param>
         /// <returns></returns>
@@ -31,20 +31,19 @@ namespace Service.Controllers
         }
 
         /// <summary>
-        /// edit profile of user service
+        ///     edit profile of user service
         /// </summary>
-        /// <param name="profile">user's profile containing token</param>
+        /// <param name="user">user's profile contains token</param>
         /// <returns></returns>
         [ActionName("EditProfile")]
         [HttpPost]
-        public Dictionary<string, object> EditProfile(User profile)
+        public Dictionary<string, object> EditProfile([FromBody] TokenUser user)
         {
-            //return _repo.EditProfile(profile);
-            return null;
+            return _repo.EditProfile(user.user, user.token);
         }
 
         /// <summary>
-        /// register service
+        ///     register service
         /// </summary>
         /// <param name="profile">user's profile containing token</param>
         /// <returns></returns>
@@ -52,8 +51,7 @@ namespace Service.Controllers
         [HttpPost]
         public Dictionary<string, object> Register(User profile)
         {
-            //return _repo.Register(profile);
-            return null;
+            return _repo.Register(profile);
         }
     }
 }

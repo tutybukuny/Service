@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="83d4d9ab1c384f0f8457b94cf7890cf4" Name="Diagram1" ZoomLevel="100">
+      <Diagram DiagramId="83d4d9ab1c384f0f8457b94cf7890cf4" Name="Diagram1" ZoomLevel="47">
         <EntityTypeShape EntityType="TheProjectModel.ActionType" Width="1.5" PointX="3.75" PointY="17" IsExpanded="true" />
         <EntityTypeShape EntityType="TheProjectModel.Admin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TheProjectModel.Block" Width="1.5" PointX="11.25" PointY="13.75" IsExpanded="true" />
@@ -23,7 +23,7 @@
         <EntityTypeShape EntityType="TheProjectModel.Project" Width="1.5" PointX="17.25" PointY="18.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TheProjectModel.Role" Width="1.5" PointX="0.75" PointY="19.625" IsExpanded="true" />
         <EntityTypeShape EntityType="TheProjectModel.State" Width="1.5" PointX="12.75" PointY="32.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TheProjectModel.Token" Width="1.5" PointX="11.25" PointY="40.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheProjectModel.Token" Width="1.5" PointX="6.875" PointY="23.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TheProjectModel.User" Width="1.5" PointX="9" PointY="16.625" IsExpanded="true" />
         <AssociationConnector Association="TheProjectModel.FK_Notification_ActionType" ManuallyRouted="false" />
         <AssociationConnector Association="TheProjectModel.FK_Block_User" ManuallyRouted="false" />
