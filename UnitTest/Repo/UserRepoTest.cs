@@ -1,6 +1,8 @@
 ﻿using BusinessTier.Repository;
+using DataTier;
 using DataTier.Dao;
 using Ninject;
+using Ninject.Parameters;
 using NUnit.Framework;
 
 namespace UnitTest.Repo
@@ -12,7 +14,6 @@ namespace UnitTest.Repo
         public void SetUp()
         {
             var kernel = new StandardKernel();
-            kernel.Bind(typeof(IDao<>)).To(typeof(UserDao));
             kernel.Bind<IRepo>().To<UserRepo>();
             _repo = (UserRepo) kernel.Get<IRepo>();
         }
@@ -22,6 +23,7 @@ namespace UnitTest.Repo
         [Test]
         public void TestCreateRepo()
         {
+            Assert.AreNotEqual(null, _repo);
         }
     }
 }

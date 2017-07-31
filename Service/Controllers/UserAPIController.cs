@@ -14,7 +14,6 @@ namespace Service.Controllers
         private UserApiController()
         {
             var kernel = new StandardKernel();
-            kernel.Bind(typeof(IDao<>)).To(typeof(UserDao));
             kernel.Bind<IRepo>().To<UserRepo>();
             _repo = (UserRepo) kernel.Get<IRepo>();
         }
