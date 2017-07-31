@@ -22,11 +22,5 @@ namespace DataTier
         public Nullable<int> role_id { get; set; }
         public bool readed { get; set; }
         public System.DateTime created_date { get; set; }
-    
-        public virtual ActionType ActionType { get; set; }
-        public virtual Project Project { get; set; }
-        public virtual Role Role { get; set; }
-        public virtual User User { get; set; }
-        public virtual User User1 { get; set; }
     }
 }

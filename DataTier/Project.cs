@@ -14,16 +14,6 @@ namespace DataTier
     
     public partial class Project
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Project()
-        {
-            this.ChatGroups = new HashSet<ChatGroup>();
-            this.FollowingProjects = new HashSet<FollowingProject>();
-            this.JoinedProjects = new HashSet<JoinedProject>();
-            this.Likes = new HashSet<Like>();
-            this.Notifications = new HashSet<Notification>();
-        }
-    
         public int id { get; set; }
         public string title { get; set; }
         public string image { get; set; }
@@ -34,21 +24,5 @@ namespace DataTier
         public Nullable<int> state_id { get; set; }
         public Nullable<int> district_id { get; set; }
         public System.DateTime created_date { get; set; }
-    
-        public virtual Category Category { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChatGroup> ChatGroups { get; set; }
-        public virtual Country Country { get; set; }
-        public virtual District District { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FollowingProject> FollowingProjects { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<JoinedProject> JoinedProjects { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Like> Likes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Notification> Notifications { get; set; }
-        public virtual State State { get; set; }
-        public virtual User User { get; set; }
     }
 }

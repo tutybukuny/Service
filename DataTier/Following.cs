@@ -18,8 +18,5 @@ namespace DataTier
         public int follower_id { get; set; }
         public int user_id { get; set; }
         public System.DateTime created_date { get; set; }
-    
-        public virtual User User { get; set; }
-        public virtual User User1 { get; set; }
     }
 }

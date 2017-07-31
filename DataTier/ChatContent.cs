@@ -19,8 +19,5 @@ namespace DataTier
         public int receiver_id { get; set; }
         public string content { get; set; }
         public System.DateTime created_date { get; set; }
-    
-        public virtual User User { get; set; }
-        public virtual User User1 { get; set; }
     }
 }

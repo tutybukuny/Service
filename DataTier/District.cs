@@ -14,22 +14,9 @@ namespace DataTier
     
     public partial class District
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public District()
-        {
-            this.Projects = new HashSet<Project>();
-            this.Users = new HashSet<User>();
-        }
-    
         public int id { get; set; }
         public string name { get; set; }
         public int state_id { get; set; }
         public string postal_code { get; set; }
-    
-        public virtual State State { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Project> Projects { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
     }
 }

@@ -19,9 +19,5 @@ namespace DataTier
         public int project_id { get; set; }
         public int role_id { get; set; }
         public System.DateTime created_date { get; set; }
-    
-        public virtual Project Project { get; set; }
-        public virtual Role Role { get; set; }
-        public virtual User User { get; set; }
     }
 }

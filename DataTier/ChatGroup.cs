@@ -14,21 +14,10 @@ namespace DataTier
     
     public partial class ChatGroup
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ChatGroup()
-        {
-            this.ChatGroupContents = new HashSet<ChatGroupContent>();
-        }
-    
         public int id { get; set; }
         public string name { get; set; }
         public int user_id { get; set; }
         public int project_id { get; set; }
         public System.DateTime created_date { get; set; }
-    
-        public virtual Project Project { get; set; }
-        public virtual User User { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChatGroupContent> ChatGroupContents { get; set; }
     }
 }

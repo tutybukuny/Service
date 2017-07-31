@@ -829,7 +829,6 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Notifications" Relationship="Self.FK_Notification_ActionType" FromRole="ActionType" ToRole="Notification" />
         </EntityType>
         <EntityType Name="Admin">
           <Key>
@@ -850,9 +849,7 @@
           <Property Name="blocker_id" Type="Int32" Nullable="false" />
           <Property Name="user_id" Type="Int32" Nullable="false" />
           <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Block_User" FromRole="Block" ToRole="User" />
-          <NavigationProperty Name="User1" Relationship="Self.FK_Block_User1" FromRole="Block" ToRole="User" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="id" />
@@ -860,7 +857,6 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="category1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Projects" Relationship="Self.FK_Project_Category" FromRole="Category" ToRole="Project" />
         </EntityType>
         <EntityType Name="ChatContent">
           <Key>
@@ -871,9 +867,7 @@
           <Property Name="receiver_id" Type="Int32" Nullable="false" />
           <Property Name="content" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="User" Relationship="Self.FK_ChatContent_User" FromRole="ChatContent" ToRole="User" />
-          <NavigationProperty Name="User1" Relationship="Self.FK_ChatContent_User1" FromRole="ChatContent" ToRole="User" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="ChatGroup">
           <Key>
             <PropertyRef Name="id" />
@@ -883,10 +877,7 @@
           <Property Name="user_id" Type="Int32" Nullable="false" />
           <Property Name="project_id" Type="Int32" Nullable="false" />
           <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Project" Relationship="Self.FK_ChatGroup_Project" FromRole="ChatGroup" ToRole="Project" />
-          <NavigationProperty Name="User" Relationship="Self.FK_ChatGroup_User" FromRole="ChatGroup" ToRole="User" />
-          <NavigationProperty Name="ChatGroupContents" Relationship="Self.FK_ChatGroupContent_ChatGroup" FromRole="ChatGroup" ToRole="ChatGroupContent" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="ChatGroupContent">
           <Key>
             <PropertyRef Name="id" />
@@ -896,19 +887,14 @@
           <Property Name="sender_id" Type="Int32" Nullable="false" />
           <Property Name="content" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="ChatGroup" Relationship="Self.FK_ChatGroupContent_ChatGroup" FromRole="ChatGroupContent" ToRole="ChatGroup" />
-          <NavigationProperty Name="User" Relationship="Self.FK_ChatGroupContent_User" FromRole="ChatGroupContent" ToRole="User" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="Country">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Projects" Relationship="Self.FK_Project_Country" FromRole="Country" ToRole="Project" />
-          <NavigationProperty Name="States" Relationship="Self.FK_State_Country" FromRole="Country" ToRole="State" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_User_Country" FromRole="Country" ToRole="User" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="District">
           <Key>
             <PropertyRef Name="id" />
@@ -917,10 +903,7 @@
           <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="state_id" Type="Int32" Nullable="false" />
           <Property Name="postal_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="State" Relationship="Self.FK_District_State" FromRole="District" ToRole="State" />
-          <NavigationProperty Name="Projects" Relationship="Self.FK_Project_District" FromRole="District" ToRole="Project" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_User_District" FromRole="District" ToRole="User" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="Following">
           <Key>
             <PropertyRef Name="id" />
@@ -929,9 +912,7 @@
           <Property Name="follower_id" Type="Int32" Nullable="false" />
           <Property Name="user_id" Type="Int32" Nullable="false" />
           <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Following_User" FromRole="Following" ToRole="User" />
-          <NavigationProperty Name="User1" Relationship="Self.FK_Following_User1" FromRole="Following" ToRole="User" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="FollowingProject">
           <Key>
             <PropertyRef Name="id" />
@@ -940,9 +921,7 @@
           <Property Name="user_id" Type="Int32" Nullable="false" />
           <Property Name="project_id" Type="Int32" Nullable="false" />
           <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Project" Relationship="Self.FK_FollowingProject_Project" FromRole="FollowingProject" ToRole="Project" />
-          <NavigationProperty Name="User" Relationship="Self.FK_FollowingProject_User" FromRole="FollowingProject" ToRole="User" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="Friend">
           <Key>
             <PropertyRef Name="id" />
@@ -951,9 +930,7 @@
           <Property Name="user_id" Type="Int32" Nullable="false" />
           <Property Name="friend_id" Type="Int32" Nullable="false" />
           <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Friend_User" FromRole="Friend" ToRole="User" />
-          <NavigationProperty Name="User1" Relationship="Self.FK_Friend_User1" FromRole="Friend" ToRole="User" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="JoinedProject">
           <Key>
             <PropertyRef Name="id" />
@@ -963,10 +940,7 @@
           <Property Name="project_id" Type="Int32" Nullable="false" />
           <Property Name="role_id" Type="Int32" Nullable="false" />
           <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Project" Relationship="Self.FK_JoinedProject_Project" FromRole="JoinedProject" ToRole="Project" />
-          <NavigationProperty Name="Role" Relationship="Self.FK_JoinedProject_Role" FromRole="JoinedProject" ToRole="Role" />
-          <NavigationProperty Name="User" Relationship="Self.FK_JoinedProject_User" FromRole="JoinedProject" ToRole="User" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="Like">
           <Key>
             <PropertyRef Name="id" />
@@ -975,9 +949,7 @@
           <Property Name="user_id" Type="Int32" Nullable="false" />
           <Property Name="project_id" Type="Int32" Nullable="false" />
           <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Project" Relationship="Self.FK_Like_Project" FromRole="Like" ToRole="Project" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Like_User" FromRole="Like" ToRole="User" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="Notification">
           <Key>
             <PropertyRef Name="id" />
@@ -990,12 +962,7 @@
           <Property Name="role_id" Type="Int32" />
           <Property Name="readed" Type="Boolean" Nullable="false" />
           <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="ActionType" Relationship="Self.FK_Notification_ActionType" FromRole="Notification" ToRole="ActionType" />
-          <NavigationProperty Name="Project" Relationship="Self.FK_Notification_Project" FromRole="Notification" ToRole="Project" />
-          <NavigationProperty Name="Role" Relationship="Self.FK_Notification_Role" FromRole="Notification" ToRole="Role" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Notification_User" FromRole="Notification" ToRole="User" />
-          <NavigationProperty Name="User1" Relationship="Self.FK_Notification_User1" FromRole="Notification" ToRole="User" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="Project">
           <Key>
             <PropertyRef Name="id" />
@@ -1010,16 +977,6 @@
           <Property Name="state_id" Type="Int32" />
           <Property Name="district_id" Type="Int32" />
           <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Category" Relationship="Self.FK_Project_Category" FromRole="Project" ToRole="Category" />
-          <NavigationProperty Name="ChatGroups" Relationship="Self.FK_ChatGroup_Project" FromRole="Project" ToRole="ChatGroup" />
-          <NavigationProperty Name="Country" Relationship="Self.FK_Project_Country" FromRole="Project" ToRole="Country" />
-          <NavigationProperty Name="District" Relationship="Self.FK_Project_District" FromRole="Project" ToRole="District" />
-          <NavigationProperty Name="FollowingProjects" Relationship="Self.FK_FollowingProject_Project" FromRole="Project" ToRole="FollowingProject" />
-          <NavigationProperty Name="JoinedProjects" Relationship="Self.FK_JoinedProject_Project" FromRole="Project" ToRole="JoinedProject" />
-          <NavigationProperty Name="Likes" Relationship="Self.FK_Like_Project" FromRole="Project" ToRole="Like" />
-          <NavigationProperty Name="Notifications" Relationship="Self.FK_Notification_Project" FromRole="Project" ToRole="Notification" />
-          <NavigationProperty Name="State" Relationship="Self.FK_Project_State" FromRole="Project" ToRole="State" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Project_User" FromRole="Project" ToRole="User" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -1027,11 +984,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="role1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="JoinedProjects" Relationship="Self.FK_JoinedProject_Role" FromRole="Role" ToRole="JoinedProject" />
-          <NavigationProperty Name="Notifications" Relationship="Self.FK_Notification_Role" FromRole="Role" ToRole="Notification" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
-          <NavigationProperty Name="Users1" Relationship="Self.FK_User_Role1" FromRole="Role" ToRole="User" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="State">
           <Key>
             <PropertyRef Name="id" />
@@ -1039,11 +992,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="country_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Country" Relationship="Self.FK_State_Country" FromRole="State" ToRole="Country" />
-          <NavigationProperty Name="Districts" Relationship="Self.FK_District_State" FromRole="State" ToRole="District" />
-          <NavigationProperty Name="Projects" Relationship="Self.FK_Project_State" FromRole="State" ToRole="Project" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_User_State" FromRole="State" ToRole="User" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="Token">
           <Key>
             <PropertyRef Name="id" />
@@ -1073,29 +1022,7 @@
           <Property Name="role1" Type="Int32" />
           <Property Name="role2" Type="Int32" />
           <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Blocks" Relationship="Self.FK_Block_User" FromRole="User" ToRole="Block" />
-          <NavigationProperty Name="Blocks1" Relationship="Self.FK_Block_User1" FromRole="User" ToRole="Block" />
-          <NavigationProperty Name="ChatContents" Relationship="Self.FK_ChatContent_User" FromRole="User" ToRole="ChatContent" />
-          <NavigationProperty Name="ChatContents1" Relationship="Self.FK_ChatContent_User1" FromRole="User" ToRole="ChatContent" />
-          <NavigationProperty Name="ChatGroups" Relationship="Self.FK_ChatGroup_User" FromRole="User" ToRole="ChatGroup" />
-          <NavigationProperty Name="ChatGroupContents" Relationship="Self.FK_ChatGroupContent_User" FromRole="User" ToRole="ChatGroupContent" />
-          <NavigationProperty Name="Country" Relationship="Self.FK_User_Country" FromRole="User" ToRole="Country" />
-          <NavigationProperty Name="District" Relationship="Self.FK_User_District" FromRole="User" ToRole="District" />
-          <NavigationProperty Name="Followings" Relationship="Self.FK_Following_User" FromRole="User" ToRole="Following" />
-          <NavigationProperty Name="Followings1" Relationship="Self.FK_Following_User1" FromRole="User" ToRole="Following" />
-          <NavigationProperty Name="FollowingProjects" Relationship="Self.FK_FollowingProject_User" FromRole="User" ToRole="FollowingProject" />
-          <NavigationProperty Name="Friends" Relationship="Self.FK_Friend_User" FromRole="User" ToRole="Friend" />
-          <NavigationProperty Name="Friends1" Relationship="Self.FK_Friend_User1" FromRole="User" ToRole="Friend" />
-          <NavigationProperty Name="JoinedProjects" Relationship="Self.FK_JoinedProject_User" FromRole="User" ToRole="JoinedProject" />
-          <NavigationProperty Name="Likes" Relationship="Self.FK_Like_User" FromRole="User" ToRole="Like" />
-          <NavigationProperty Name="Notifications" Relationship="Self.FK_Notification_User" FromRole="User" ToRole="Notification" />
-          <NavigationProperty Name="Notifications1" Relationship="Self.FK_Notification_User1" FromRole="User" ToRole="Notification" />
-          <NavigationProperty Name="Projects" Relationship="Self.FK_Project_User" FromRole="User" ToRole="Project" />
-          <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
-          <NavigationProperty Name="Role3" Relationship="Self.FK_User_Role1" FromRole="User" ToRole="Role" />
-          <NavigationProperty Name="State" Relationship="Self.FK_User_State" FromRole="User" ToRole="State" />
-          <NavigationProperty Name="Tokens" Relationship="Self.FK_Token_User" FromRole="User" ToRole="Token" />
-        </EntityType>
+          </EntityType>
         <Association Name="FK_Notification_ActionType">
           <End Role="ActionType" Type="Self.ActionType" Multiplicity="1" />
           <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
