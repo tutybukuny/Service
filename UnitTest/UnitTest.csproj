@@ -99,6 +99,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Repo\UserRepoTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -112,6 +113,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessTier\BusinessTier.csproj">
+      <Project>{8bf61f41-27a0-429f-89e0-75c8394010c1}</Project>
+      <Name>BusinessTier</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataTier\DataTier.csproj">
       <Project>{916eff0c-fa75-4dbd-a160-5d18a7f1577a}</Project>
       <Name>DataTier</Name>

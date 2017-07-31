@@ -90,6 +90,8 @@
     <Compile Include="Dao\DistrictDao.cs" />
     <Compile Include="Dao\IDao.cs" />
     <Compile Include="Dao\StateDao.cs" />
+    <Compile Include="Dao\TokenDao.cs" />
+    <Compile Include="Dao\UserDao.cs" />
     <Compile Include="DataEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -108,7 +110,6 @@
     <Compile Include="District.cs">
       <DependentUpon>DataEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Factory\DaoFactory.cs" />
     <Compile Include="Following.cs">
       <DependentUpon>DataEntities.tt</DependentUpon>
     </Compile>

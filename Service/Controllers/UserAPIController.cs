@@ -1,17 +1,22 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
-using CoreServiceLib.Models;
-using Service.Services;
+using BusinessTier.Repository;
+using DataTier;
+using DataTier.Dao;
+using Ninject;
 
 namespace Service.Controllers
 {
     public class UserApiController : ApiController
     {
-        private readonly UserRepository _repository;
+        private UserRepo _repo;
 
         private UserApiController()
         {
-            _repository = new UserRepository();
+            var kernel = new StandardKernel();
+            kernel.Bind(typeof(IDao<>)).To(typeof(UserDao));
+            kernel.Bind<IRepo>().To<UserRepo>();
+            _repo = (UserRepo) kernel.Get<IRepo>();
         }
 
         /// <summary>
@@ -23,7 +28,7 @@ namespace Service.Controllers
         [HttpPost]
         public Dictionary<string, object> Login(User info)
         {
-            return _repository.Login(info);
+            return _repo.Login(info);
         }
 
         /// <summary>
@@ -35,7 +40,8 @@ namespace Service.Controllers
         [HttpPost]
         public Dictionary<string, object> EditProfile(User profile)
         {
-            return _repository.EditProfile(profile);
+            //return _repo.EditProfile(profile);
+            return null;
         }
 
         /// <summary>
@@ -47,7 +53,8 @@ namespace Service.Controllers
         [HttpPost]
         public Dictionary<string, object> Register(User profile)
         {
-            return _repository.Register(profile);
+            //return _repo.Register(profile);
+            return null;
         }
     }
 }

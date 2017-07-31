@@ -193,7 +193,7 @@
       <EntityTypeMapping TypeName="TheProjectModel.Token">
         <MappingFragment StoreEntitySet="Token">
           <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="token1" ColumnName="token" />
+          <ScalarProperty Name="token" ColumnName="token" />
           <ScalarProperty Name="user_id" ColumnName="user_id" />
           <ScalarProperty Name="created_date" ColumnName="created_date" />
         </MappingFragment>
