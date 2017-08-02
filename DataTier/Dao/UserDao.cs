@@ -53,7 +53,9 @@ namespace DataTier.Dao
                     entities.Users.Attach(obj);
                     var entry = entities.Entry(obj);
                     entry.State = EntityState.Modified;
-                    entry.Property(e => e.id).IsModified = false;
+                    entry.Property(e => e.email).IsModified = false;
+                    entry.Property(e => e.password).IsModified = false;
+                    entry.Property(e => e.created_date).IsModified = false;
 
                     entities.SaveChanges();
                 }

@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Http;
 using BusinessTier.Repository;
 using DataTier;
+using Newtonsoft.Json.Linq;
 using Ninject;
-using Service.Models;
 
 namespace Service.Controllers
 {
@@ -33,13 +34,30 @@ namespace Service.Controllers
         /// <summary>
         ///     edit profile of user service
         /// </summary>
-        /// <param name="user">user's profile contains token</param>
+        /// <param name="data">data</param>
         /// <returns></returns>
         [ActionName("EditProfile")]
         [HttpPost]
-        public Dictionary<string, object> EditProfile([FromBody] TokenUser user)
+        public Dictionary<string, object> EditProfile(JObject data)
         {
-            return _repo.EditProfile(user.user, user.token);
+            var user = new User
+            {
+                email = (string) data["email"],
+                password = (string) data["password"],
+                about_me = (string) data["about_me"],
+                avatar = (string) data["avatar"],
+                birthday = (DateTime?) data["birthday"],
+                country_id = (int?) data["country_id"],
+                district_id = (int?) data["district_id"],
+                firstname = (string) data["firstname"],
+                lastname = (string) data["lastname"],
+                postal_code = (string) data["postal_code"],
+                state_id = (int?) data["state_id"],
+                role1 = (int?) data["role1"],
+                role2 = (int?) data["role2"]
+            };
+
+            return _repo.EditProfile(user, (string) data["token"]);
         }
 
         /// <summary>
