@@ -126,7 +126,9 @@ namespace DataTier.Dao
 
             using (var entities = new TheProjectEntities())
             {
-                var row = (from t in entities.Tokens where t.token == token select t).FirstOrDefault();
+                var row = (from t in entities.Tokens
+                    where t.token == token && DbFunctions.DiffMinutes(t.created_date, DateTime.Now) <= 30
+                    select t).FirstOrDefault();
 
                 if (row != null)
                 {

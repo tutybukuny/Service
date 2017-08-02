@@ -1,20 +1,23 @@
 ﻿using System;
 using System.Web;
 using System.Web.Mvc;
-using CoreServiceLib.DAO;
-using CoreServiceLib.Models;
+using BusinessTier.Core;
+using BusinessTier.Factory;
+using DataTier;
+using DataTier.Dao;
 using Service.Models;
-using Service.Properties;
 
 namespace Service.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly UserDao _dao;
+        private readonly UserDao _userDao;
+        private readonly TokenDao _tokenDao;
 
         public HomeController()
         {
-            _dao = new UserDao(Settings.Default.ConnectionString);
+            _userDao = (UserDao) DaoFactory.GetDao("UserDao");
+            _tokenDao = (TokenDao) DaoFactory.GetDao("TokenDao");
         }
 
         public ActionResult Index()
@@ -55,9 +58,9 @@ namespace Service.Controllers
         [HttpPost]
         public ActionResult Register(User user)
         {
-            if (!_dao.CheckExistsEmail(user.email))
+            if (!_userDao.CheckExistsEmail(user.email))
             {
-                _dao.Insert(user);
+                _userDao.Insert(user);
                 ViewBag.Success = true;
             }
             else
@@ -80,7 +83,7 @@ namespace Service.Controllers
 
             if (cookie != null)
             {
-                var user = _dao.GetUserByToken(cookie.Value);
+                var user = _userDao.GetByToken(cookie.Value);
 
                 if (user != null)
                 {
@@ -98,7 +101,7 @@ namespace Service.Controllers
         {
             if (string.IsNullOrEmpty(info.User.email) || string.IsNullOrEmpty(info.User.password)) return View();
 
-            var user = _dao.GetUserByLoginInfo(info.User);
+            var user = _userDao.Login(info.User.email, info.User.password);
 
             if (user == null)
             {
@@ -106,15 +109,17 @@ namespace Service.Controllers
                 return View();
             }
 
+            var token = TokenGen.AutoGenerate();
+            _tokenDao.Insert(new Token {token = token, user_id = user.id, created_date = DateTime.Now});
+
             if (info.Remember)
             {
-                var cookie = new HttpCookie("TheProjectToken");
-                cookie.Value = user.token;
+                var cookie = new HttpCookie("TheProjectToken") {Value = token};
                 Response.Cookies.Add(cookie);
             }
 
-            Session["User"] = user;
-
+            Session["user"] = user;
+            Session["token"] = token;
 
             return View("Home", user);
         }

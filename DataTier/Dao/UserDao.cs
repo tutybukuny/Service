@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using DataTier.Module;
+using Ninject;
 
 namespace DataTier.Dao
 {
@@ -158,6 +160,14 @@ namespace DataTier.Dao
             }
 
             return user;
+        }
+
+        public User GetByToken(string token)
+        {
+            var kernel = new StandardKernel(new DaoModule());
+            TokenDao tokenDao = (TokenDao) kernel.Get<IDao<Token>>();
+            int id = tokenDao.GetUserId(token);
+            return GetById(id);
         }
 
         public User Login(string email, string password)
