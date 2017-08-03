@@ -81,6 +81,8 @@ namespace Service.Controllers
 
         public ActionResult Register()
         {
+            if (IsLoggedIn()) return View("Home", Session["User"]);
+
             return View();
         }
 
@@ -100,6 +102,10 @@ namespace Service.Controllers
                 foreach (var message in messages)
                     html += "<p class=\"red-text\">" + message + "</p>";
                 ViewBag.Html = html;
+            }
+            else
+            {
+                ViewBag.Success = true;
             }
 
             return View("Register");
