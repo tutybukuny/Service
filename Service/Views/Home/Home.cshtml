@@ -1,9 +1,16 @@
-﻿@model DataTier.User
+﻿@model DataTier.Project
 
 @{
     ViewBag.Title = "User Home";
+    string project_image;
+
+    project_image = Model.image ?? "~/Images/default_project.png";
 }
 
 <div class="home-view col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
     <p>Featured Project</p>
+    <div class="project-image col-md-5">
+        <img src="@project_image" alt="" />
+    </div>
+    <div class="project-detail col-md-5"></div>
 </div>

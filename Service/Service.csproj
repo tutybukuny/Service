@@ -186,6 +186,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProjectAPIController.cs" />
     <Compile Include="Controllers\UserAPIController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -305,6 +306,7 @@
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Images\avartars\default_avatar.png" />
     <Content Include="Images\Bell.png" />
+    <Content Include="Images\default_project.png" />
     <Content Include="Images\fb-icon.png" />
     <Content Include="Images\folder.png" />
     <Content Include="Images\folder2.png" />

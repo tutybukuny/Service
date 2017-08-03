@@ -226,6 +226,18 @@ ul {
   font-size: 24px;
 }
 /*
+    Home
+*/
+.home-view > p {
+  font-family: Comfortaa-Regular;
+  color: black;
+  font-size: 16px;
+}
+.home-view .project-image img {
+  height: 100%;
+  width: 100%;
+}
+/*
     footer
 */
 .footer {

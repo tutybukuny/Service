@@ -62,8 +62,11 @@
   <ItemGroup>
     <Compile Include="Core\TokenGen.cs" />
     <Compile Include="Factory\DaoFactory.cs" />
+    <Compile Include="Factory\RepoFactory.cs" />
+    <Compile Include="Module\RepoModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IRepo.cs" />
+    <Compile Include="Repository\ProjectRepo.cs" />
     <Compile Include="Repository\UserRepo.cs" />
   </ItemGroup>
   <ItemGroup>
