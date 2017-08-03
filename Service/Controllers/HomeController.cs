@@ -22,6 +22,8 @@ namespace Service.Controllers
             _repo = (UserRepo) kernel.Get<IRepo>();
         }
 
+        #region Check logged in
+
         /// <summary>
         ///     Is User logged in?
         /// </summary>
@@ -47,6 +49,8 @@ namespace Service.Controllers
 
             return false;
         }
+
+        #endregion
 
         public ActionResult Index()
         {

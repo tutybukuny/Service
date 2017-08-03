@@ -1,14 +1,6 @@
 ﻿@using DataTier
 <!DOCTYPE html>
 <html lang="en">
-@{
-    var avatar = "";
-
-    if (Session["User"] != null)
-    {
-        avatar = ((User)Session["User"]).avatar;
-    }
-}
 <head>
     <meta charset="utf-8" />
     <title>@ViewBag.Title - My ASP.NET MVC Application</title>
@@ -51,7 +43,7 @@
     </header>
     <div id="body">
         @RenderSection("featured", false)
-        <section class="content-wrapper main-content clear-fix container-fluid row">
+        <section class="content-wrapper container-fluid row">
             @RenderBody()
         </section>
     </div>

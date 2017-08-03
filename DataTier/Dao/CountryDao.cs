@@ -36,7 +36,6 @@ namespace DataTier.Dao
                     entities.Countries.Attach(obj);
                     var entry = entities.Entry(obj);
                     entry.State = EntityState.Modified;
-                    entry.Property(e => e.id).IsModified = false;
 
                     entities.SaveChanges();
                 }

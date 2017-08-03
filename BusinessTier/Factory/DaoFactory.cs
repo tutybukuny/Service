@@ -7,25 +7,27 @@ namespace BusinessTier.Factory
 {
     public class DaoFactory
     {
-        public static IKernel Kernel;
+        private static IKernel _kernel;
 
         public static object GetDao(string name)
         {
-            if (Kernel == null)
-                Kernel = new StandardKernel(new DaoModule());
+            if (_kernel == null)
+                _kernel = new StandardKernel(new DaoModule());
 
             switch (name)
             {
                 case "CountryDao":
-                    return Kernel.Get<IDao<Country>>(name);
+                    return _kernel.Get<IDao<Country>>(name);
                 case "StateDao":
-                    return Kernel.Get<IDao<State>>(name);
+                    return _kernel.Get<IDao<State>>(name);
                 case "DistrictDao":
-                    return Kernel.Get<IDao<District>>(name);
+                    return _kernel.Get<IDao<District>>(name);
                 case "TokenDao":
-                    return Kernel.Get<IDao<Token>>(name);
+                    return _kernel.Get<IDao<Token>>(name);
                 case "UserDao":
-                    return Kernel.Get<IDao<User>>(name);
+                    return _kernel.Get<IDao<User>>(name);
+                case "ProjectDao":
+                    return _kernel.Get<IDao<Project>>(name);
             }
 
             return null;
