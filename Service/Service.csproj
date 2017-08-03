@@ -304,7 +304,10 @@
     </None>
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Images\avartars\default_avatar.png" />
+    <Content Include="Images\Bell.png" />
     <Content Include="Images\fb-icon.png" />
+    <Content Include="Images\folder.png" />
+    <Content Include="Images\folder2.png" />
     <Content Include="Images\in-icon.png" />
     <Content Include="Images\insta-icon.png" />
     <Content Include="Images\logo.png" />

@@ -1,5 +1,14 @@
-﻿<!DOCTYPE html>
+﻿@using DataTier
+<!DOCTYPE html>
 <html lang="en">
+@{
+    var avatar = "";
+
+    if (Session["User"] != null)
+    {
+        avatar = ((User)Session["User"]).avatar;
+    }
+}
 <head>
     <meta charset="utf-8" />
     <title>@ViewBag.Title - My ASP.NET MVC Application</title>
@@ -33,6 +42,8 @@
                 }
                 else
                 {
+                    <img src="~/Images/Bell.png" height="30" width="30" />
+                    <img src="~/Images/folder2.png" height="30" width="40" />
                     <a href="@Url.Action("Logout", "Home")"><button class="btn btn-light-gray">Logout</button></a>
                 }
             </div>
