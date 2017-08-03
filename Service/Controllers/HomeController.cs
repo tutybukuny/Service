@@ -55,10 +55,14 @@ namespace Service.Controllers
             return View();
         }
 
+        #region Forgot Password
+
         public ActionResult ForgotPassword()
         {
             return View();
         }
+
+        #endregion
 
         #region Log out
 
