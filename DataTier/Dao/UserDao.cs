@@ -63,7 +63,8 @@ namespace DataTier.Dao
                 }
                 catch (Exception e)
                 {
-                    return false;
+                    throw;
+                    //return false;
                 }
             }
 

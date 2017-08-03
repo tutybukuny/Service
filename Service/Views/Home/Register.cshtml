@@ -1,4 +1,4 @@
-﻿@model CoreServiceLib.Models.User
+﻿@model DataTier.User
 
 @{
     ViewBag.Title = "title";
@@ -27,6 +27,11 @@
             if (ViewBag.Message != null)
             {
                 <p class="red-text">@ViewBag.Message</p>
+            }
+            
+            if (ViewBag.Html != null)
+            {
+                @ViewBag.Html
             }
         }
     }

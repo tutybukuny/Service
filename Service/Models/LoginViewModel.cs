@@ -1,4 +1,4 @@
-﻿using CoreServiceLib.Models;
+﻿using DataTier;
 
 namespace Service.Models
 {

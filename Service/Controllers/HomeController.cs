@@ -1,27 +1,57 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
-using BusinessTier.Core;
 using BusinessTier.Factory;
+using BusinessTier.Repository;
 using DataTier;
 using DataTier.Dao;
+using Ninject;
 using Service.Models;
 
 namespace Service.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly UserDao _userDao;
-        private readonly TokenDao _tokenDao;
+        private readonly UserRepo _repo;
 
         public HomeController()
         {
-            _userDao = (UserDao) DaoFactory.GetDao("UserDao");
-            _tokenDao = (TokenDao) DaoFactory.GetDao("TokenDao");
+            var kernel = new StandardKernel();
+            kernel.Bind<IRepo>().To<UserRepo>();
+            _repo = (UserRepo) kernel.Get<IRepo>();
+        }
+
+        /// <summary>
+        ///     Is User logged in?
+        /// </summary>
+        /// <returns></returns>
+        private bool IsLoggedIn()
+        {
+            if (Session["User"] != null) return true;
+
+            var cookie = Request.Cookies["TheProjectToken"];
+            var userDao = (UserDao) DaoFactory.GetDao("UserDao");
+
+            if (cookie != null)
+            {
+                var user = userDao.GetByToken(cookie.Value);
+
+                if (user != null)
+                {
+                    Session["User"] = user;
+
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public ActionResult Index()
         {
+            if (IsLoggedIn()) return View("Home", Session["User"]);
+
             return View();
         }
 
@@ -38,8 +68,7 @@ namespace Service.Controllers
 
             if (Request.Cookies["TheProjectToken"] != null)
             {
-                var cookie = new HttpCookie("TheProjectToken");
-                cookie.Expires = DateTime.Now.AddDays(-1);
+                var cookie = new HttpCookie("TheProjectToken") {Expires = DateTime.Now.AddDays(-1)};
                 Response.Cookies.Add(cookie);
             }
 
@@ -55,17 +84,22 @@ namespace Service.Controllers
             return View();
         }
 
+        /// <summary>
+        ///     Register
+        /// </summary>
+        /// <param name="info">user's info</param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult Register(User user)
+        public ActionResult Register(User info)
         {
-            if (!_userDao.CheckExistsEmail(user.email))
+            var dic = _repo.Register(info);
+            if (!(bool) dic["success"])
             {
-                _userDao.Insert(user);
-                ViewBag.Success = true;
-            }
-            else
-            {
-                ViewBag.Message = "Email is existed!";
+                var messages = (List<string>) dic["messages"];
+                var html = "";
+                foreach (var message in messages)
+                    html += "<p class=\"red-text\">" + message + "</p>";
+                ViewBag.Html = html;
             }
 
             return View("Register");
@@ -77,31 +111,23 @@ namespace Service.Controllers
 
         public ActionResult Login()
         {
-            if (Session["User"] != null) return View("Home", Session["User"]);
-
-            var cookie = Request.Cookies["TheProjectToken"];
-
-            if (cookie != null)
-            {
-                var user = _userDao.GetByToken(cookie.Value);
-
-                if (user != null)
-                {
-                    Session["User"] = user;
-
-                    return View("Home", user);
-                }
-            }
+            if (IsLoggedIn()) return View("Home", Session["User"]);
 
             return View();
         }
 
+        /// <summary>
+        ///     Login
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Login(LoginViewModel info)
         {
             if (string.IsNullOrEmpty(info.User.email) || string.IsNullOrEmpty(info.User.password)) return View();
 
-            var user = _userDao.Login(info.User.email, info.User.password);
+            var dic = _repo.Login(info.User);
+            var user = (User) dic["user"];
 
             if (user == null)
             {
@@ -109,8 +135,7 @@ namespace Service.Controllers
                 return View();
             }
 
-            var token = TokenGen.AutoGenerate();
-            _tokenDao.Insert(new Token {token = token, user_id = user.id, created_date = DateTime.Now});
+            var token = (string) dic["token"];
 
             if (info.Remember)
             {
