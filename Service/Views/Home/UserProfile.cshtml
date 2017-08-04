@@ -8,12 +8,15 @@
 <div class="user-profile col-md-12 no-padding">
     <div class="profile col-md-8 col-md-offset-2 font-comfortaa-light">
         <img src="@Href(avatar)" alt="" class="col-md-3 no-padding" />
-        <div class="col-md-8">
-            <p class="font">@string.Format("{0} {1}", Model.firstname, Model.lastname)</p>
+        <div class="col-md-8 no-padding-right">
+            <p>@string.Format("{0} {1}", Model.firstname, Model.lastname)</p>
             <div id="roles"></div>
             <div style="clear: both;"></div>
             <div id="info"></div>
         </div>
+    </div>
+    <div class="options col-md-8 col-md-offset-2 font-comfortaa-bold no-padding">
+        
     </div>
 </div>
 

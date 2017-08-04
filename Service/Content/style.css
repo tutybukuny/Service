@@ -193,6 +193,12 @@ ul {
 }
 .header .support > div .menu {
   display: none;
+  /*visibility: hidden;
+                opacity: 0;
+                -moz-transition: visibility 0s, opacity 0.5s linear;
+                -o-transition: visibility 0s, opacity 0.5s linear;
+                -webkit-transition: visibility 0s, opacity 0.5s linear;
+                transition: visibility 0s, opacity 0.5s linear;*/
   width: 550px;
   padding-top: 20px;
   background-color: white;
