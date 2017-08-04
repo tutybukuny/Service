@@ -99,7 +99,7 @@ namespace DataTier.Dao
             return list;
         }
 
-        public Token GetById(int id)
+        public Token GetById(int? id)
         {
             Token token = null;
 

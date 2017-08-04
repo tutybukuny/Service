@@ -174,7 +174,7 @@ ul {
   color: black;
 }
 .header .support > div a button {
-  font-family: Comfortaa-Bold;
+  font-family: Comfortaa;
 }
 .header .support > div button {
   font-weight: bold;
@@ -188,6 +188,8 @@ ul {
   height: 40px;
   line-height: 40px;
   margin-left: 20px;
+  font-family: Comfortaa;
+  font-weight: bold;
 }
 .header .support > div .menu {
   display: none;
@@ -299,6 +301,10 @@ ul {
   margin-right: 20px;
   padding: 5px 10px;
   color: white;
+}
+.user-profile .profile > div #info {
+  color: #5870B6;
+  font-weight: bold;
 }
 /*
     footer

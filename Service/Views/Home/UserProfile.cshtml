@@ -9,8 +9,10 @@
     <div class="profile col-md-8 col-md-offset-2 font-comfortaa-light">
         <img src="@Href(avatar)" alt="" class="col-md-3 no-padding" />
         <div class="col-md-8">
-            <p class="font-comfortaa-bold">@string.Format("{0} {1}", Model.firstname, Model.lastname)</p>
+            <p class="font">@string.Format("{0} {1}", Model.firstname, Model.lastname)</p>
             <div id="roles"></div>
+            <div style="clear: both;"></div>
+            <div id="info"></div>
         </div>
     </div>
 </div>
@@ -25,6 +27,41 @@
             getRole(@Model.role2);
         }
 
+        getAddress();
+
+        function getAddress() {
+            $.ajax({
+                url: '@(Request.Url.Scheme + Uri.SchemeDelimiter + Request.Url.Host +
+                    (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port))' +
+                    '/api/@Url.Action("GetAddress", "AddressApi")',
+                type: 'get',
+                data: {
+                    country_id: '@Model.country_id',
+                    state_id: '@Model.state_id',
+                    district_id: '@Model.district_id'
+                },
+                success: function(data) {
+                    var html = $('#info').html();
+                    if (data.district != null) {
+                        html += data.district.name;
+                    }
+
+                    if (data.state != null) {
+                        html += ' '+data.state.name;
+                    }
+
+                    if (data.country != null) {
+                        html += ' '+data.country.name;
+                    }
+
+                    $('#info').html(html+' - Joined @(Model.created_date.ToString("Y"))');
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        }
+
         function getRole(role) {
             $.ajax({
                 url: '@(Request.Url.Scheme + Uri.SchemeDelimiter + Request.Url.Host +
@@ -35,7 +72,7 @@
                     id: role
                 },
                 success: function (data) {
-                    console.log(data.role.role);
+                    //                    console.log(data.role.role);
                     var html = $('#roles').html();
                     html += '<p>'+data.role.role+'</p>';
                     $('#roles').html(html);

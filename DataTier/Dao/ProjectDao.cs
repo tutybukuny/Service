@@ -102,7 +102,7 @@ namespace DataTier.Dao
             return list;
         }
 
-        public Project GetById(int id)
+        public Project GetById(int? id)
         {
             Project project = null;
 

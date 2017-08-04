@@ -132,7 +132,7 @@ namespace DataTier.Dao
             return list;
         }
 
-        public User GetById(int id)
+        public User GetById(int? id)
         {
             User user = null;
 

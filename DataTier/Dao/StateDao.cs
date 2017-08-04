@@ -96,7 +96,7 @@ namespace DataTier.Dao
             return list;
         }
 
-        public State GetById(int id)
+        public State GetById(int? id)
         {
             State state = null;
             using (var entities = new TheProjectEntities())

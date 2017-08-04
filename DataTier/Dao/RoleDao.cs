@@ -50,7 +50,7 @@ namespace DataTier.Dao
             return list;
         }
 
-        public Role GetById(int id)
+        public Role GetById(int? id)
         {
             Role role = null;
 

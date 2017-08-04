@@ -94,7 +94,7 @@ namespace DataTier.Dao
             return list;
         }
 
-        public Country GetById(int id)
+        public Country GetById(int? id)
         {
             Country country = null;
             using (var entities = new TheProjectEntities())
