@@ -23,6 +23,7 @@ namespace DataTier
         public Nullable<int> country_id { get; set; }
         public Nullable<int> state_id { get; set; }
         public Nullable<int> district_id { get; set; }
-        public System.DateTime created_date { get; set; }
+        public Nullable<System.DateTime> created_date { get; set; }
+        public bool completed { get; set; }
     }
 }

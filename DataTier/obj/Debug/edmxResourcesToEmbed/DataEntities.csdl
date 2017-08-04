@@ -153,7 +153,8 @@
     <Property Name="country_id" Type="Int32" />
     <Property Name="state_id" Type="Int32" />
     <Property Name="district_id" Type="Int32" />
-    <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="created_date" Type="DateTime" Precision="3" />
+    <Property Name="completed" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Role">
     <Key>

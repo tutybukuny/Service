@@ -159,6 +159,7 @@
     <EntitySetMapping Name="Projects">
       <EntityTypeMapping TypeName="TheProjectModel.Project">
         <MappingFragment StoreEntitySet="Project">
+          <ScalarProperty Name="completed" ColumnName="completed" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="title" ColumnName="title" />
           <ScalarProperty Name="image" ColumnName="image" />
