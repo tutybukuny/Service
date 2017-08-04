@@ -37,8 +37,7 @@ namespace BusinessTier.Repository
 
             var project = _dao.GetUserFirstProject(user_id);
 
-            if (project == null)
-                dic.Add("message", "User doesn't have project!");
+            if (project == null) dic.Add("message", "User doesn't have project!");
 
             dic.Add("project", project);
 
