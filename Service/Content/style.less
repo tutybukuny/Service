@@ -226,7 +226,7 @@ ul {
     }
 
     .support {
-        div {
+        > div {
             a {
                 color: black;
 
@@ -242,6 +242,50 @@ ul {
                 -o-transition: background-color 0.2s ease !important;
                 -webkit-transition: background-color 0.2s ease !important;
                 transition: background-color 0.2s ease !important;
+            }
+
+            .menu-control {
+                height: 40px;
+                line-height: 40px;
+                margin-left: 20px;
+            }
+
+            .menu {
+                display: none;
+                width: 550px;
+                padding-top: 20px;
+                background-color: white;
+                position: absolute;
+                z-index: 1;
+                top: 83px;
+                right: 0;
+                border: 1px #B9AE9E solid;
+                border-top: none;
+                border-right: none;
+                .font-comfortaa-light;
+                -webkit-box-shadow: 2px 2px 13px -1px rgba(0,0,0,0.75);
+                -moz-box-shadow: 2px 2px 13px -1px rgba(0,0,0,0.75);
+                box-shadow: 2px 2px 13px -1px rgba(0,0,0,0.75);
+
+                ul {
+                    width: 50%;
+                    float: left;
+
+                    li {
+                        &:first-of-type {
+                            .font-comfortaa-bold;
+                            font-size: 14px;
+                        }
+
+                        height: 40px;
+                        line-height: 40px;
+                        padding-left: 20px;
+                    }
+                }
+
+                a {
+                    color: #5E73B8;
+                }
             }
         }
     }

@@ -1,0 +1,10 @@
+﻿@model List<DataTier.Project>
+
+@{
+    ViewBag.Title = "User Projects";
+}
+
+@foreach (var item in Model)
+{
+    <p>@item.title</p>
+}
