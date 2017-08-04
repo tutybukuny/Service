@@ -180,6 +180,7 @@ ul {
     padding-top: 30px;
     padding-bottom: 30px;
     border-bottom: 2px solid #CCCCCC;
+    margin-bottom: 50px;
 
     .action {
         height: 100%;
@@ -258,8 +259,6 @@ ul {
     @login-gray: #D1D2D3;
     border: 1px solid @login-gray;
     border-radius: 10px;
-    margin-top: 80px;
-    margin-bottom: 20px;
     padding-top: 20px;
     padding-bottom: 40px;
 
@@ -297,15 +296,31 @@ ul {
 
 .home-view {
     > p {
-        .font-comfortaa-regular;
         color: black;
-        font-size: 16px;
+        font-size: 24px;
     }
 
     .project-image {
         img {
             height: 100%;
             width: 100%;
+        }
+    }
+
+    .project-detail {
+        p {
+            &:first-of-type {
+                font-size: 16px;
+            }
+
+            &:nth-of-type(2) {
+                font-size: 12px;
+                margin-bottom: 30px;
+            }
+
+            &:last-of-type {
+                font-size: 14px;
+            }
         }
     }
 }
@@ -316,6 +331,7 @@ ul {
 
 .footer {
     background-color: #09111D;
+    margin-top: 50px;
     padding-top: 20px;
     padding-bottom: 100px;
 

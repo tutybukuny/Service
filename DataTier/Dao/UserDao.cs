@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using DataTier.Factory;
 using DataTier.Module;
 using Ninject;
 
@@ -165,9 +166,8 @@ namespace DataTier.Dao
 
         public User GetByToken(string token)
         {
-            var kernel = new StandardKernel(new DaoModule());
-            TokenDao tokenDao = (TokenDao) kernel.Get<IDao<Token>>();
-            int id = tokenDao.GetUserId(token);
+            var tokenDao = (TokenDao) DaoFactory.GetDao("TokenDao");
+            var id = tokenDao.GetUserId(token);
             return GetById(id);
         }
 

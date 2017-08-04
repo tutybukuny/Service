@@ -111,6 +111,7 @@
     <Compile Include="District.cs">
       <DependentUpon>DataEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Factory\DaoFactory.cs" />
     <Compile Include="Following.cs">
       <DependentUpon>DataEntities.tt</DependentUpon>
     </Compile>

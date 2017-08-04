@@ -1,9 +1,8 @@
-﻿using DataTier;
-using DataTier.Dao;
+﻿using DataTier.Dao;
 using DataTier.Module;
 using Ninject;
 
-namespace BusinessTier.Factory
+namespace DataTier.Factory
 {
     public class DaoFactory
     {

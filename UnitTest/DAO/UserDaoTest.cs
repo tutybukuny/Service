@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using BusinessTier.Factory;
 using DataTier;
 using DataTier.Dao;
+using DataTier.Factory;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
-using UnitTest.Properties;
 
 namespace UnitTest.DAO
 {
@@ -21,7 +20,19 @@ namespace UnitTest.DAO
 
         private UserDao _dao;
 
-        #region check exist testing
+        [Test]
+        public void TestDelete()
+        {
+            var user = new User {id = 12};
+            Assert.AreEqual(true, _dao.Delete(user));
+        }
+
+        [Test]
+        public void TestDeleteNotId()
+        {
+            var user = new User {id = 101212};
+            Assert.AreEqual(true, _dao.Delete(user));
+        }
 
         [Test]
         public void TestEmailExisted()
@@ -35,25 +46,6 @@ namespace UnitTest.DAO
 //            Assert.AreEqual(false, _dao.CheckExistsEmail("admi@gmail.com"));
         }
 
-        #endregion
-
-        #region delete testing
-        [Test]
-        public void TestDelete()
-        {
-            var user = new User { id = 12 };
-            Assert.AreEqual(true, _dao.Delete(user));
-        }
-
-        [Test]
-        public void TestDeleteNotId()
-        {
-            var user = new User { id = 101212 };
-            Assert.AreEqual(true, _dao.Delete(user));
-        }
-        #endregion
-
-        #region get item testing
         [Test]
         public void TestGetAll()
         {
@@ -91,7 +83,7 @@ namespace UnitTest.DAO
             for (var i = 0; i < expecteUsers.Count; i++)
 //                result = expecteUsers[i].MyEquals(users[i]) && result;
 
-            Assert.AreEqual(true, result);
+                Assert.AreEqual(true, result);
         }
 
         [Test]
@@ -122,9 +114,7 @@ namespace UnitTest.DAO
 
             Assert.AreEqual(null, user);
         }
-        #endregion
 
-        #region insert testing
         [Test]
         public void TestInsert()
         {
@@ -188,13 +178,11 @@ namespace UnitTest.DAO
                 email = "admin10@gmail.com",
                 password = "12345",
                 firstname = "admin",
-                lastname = "7",
+                lastname = "7"
             };
             Assert.AreEqual(true, _dao.Insert(user));
         }
-        #endregion
 
-        #region update testing
         [Test]
         public void TestUpdate()
         {
@@ -270,6 +258,5 @@ namespace UnitTest.DAO
             ActualValueDelegate<object> e = () => _dao.Insert(user);
             Assert.That(e, Throws.TypeOf<SqlException>());
         }
-        #endregion
     }
 }

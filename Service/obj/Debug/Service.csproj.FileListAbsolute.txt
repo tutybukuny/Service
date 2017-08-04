@@ -371,7 +371,6 @@ C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\Service\bin\Ser
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\Service\bin\Antlr3.Runtime.dll
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\Service\bin\BusinessTier.dll
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\Service\bin\Castle.Core.dll
-C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\Service\bin\CoreServiceLib.dll
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\Service\bin\DataTier.dll
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\Service\bin\EntityFramework.dll
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\Service\bin\EntityFramework.SqlServer.dll
@@ -401,7 +400,6 @@ C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\Service\bin\Web
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\Service\bin\BusinessTier.pdb
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\Service\bin\DataTier.pdb
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\Service\bin\Castle.Core.xml
-C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\Service\bin\CoreServiceLib.pdb
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\Service\bin\EntityFramework.xml
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\Service\bin\EntityFramework.SqlServer.xml
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\Service\bin\Newtonsoft.Json.xml

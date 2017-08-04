@@ -6,20 +6,20 @@ using BusinessTier.Factory;
 using BusinessTier.Repository;
 using DataTier;
 using DataTier.Dao;
-using Ninject;
+using DataTier.Factory;
 using Service.Models;
 
 namespace Service.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly UserRepo _repo;
+        private readonly ProjectRepo _projectRepo;
+        private readonly UserRepo _userRepo;
 
         public HomeController()
         {
-            var kernel = new StandardKernel();
-            kernel.Bind<IRepo>().To<UserRepo>();
-            _repo = (UserRepo) kernel.Get<IRepo>();
+            _userRepo = (UserRepo) RepoFactory.GetRepo("UserRepo");
+            _projectRepo = (ProjectRepo) RepoFactory.GetRepo("ProjectRepo");
         }
 
         #region Check logged in
@@ -54,9 +54,13 @@ namespace Service.Controllers
 
         public ActionResult Index()
         {
-            if (IsLoggedIn()) return View("Home", Session["User"]);
+            if (!IsLoggedIn()) return View();
 
-            return View();
+            var dic = _projectRepo.GetUserFirstProject(((User) Session["User"]).id);
+            var project = (Project) dic["project"];
+            var model = new HomeViewModel {Project = project, User = (User) Session["User"]};
+
+            return View("Home", model);
         }
 
         #region Forgot Password
@@ -102,7 +106,7 @@ namespace Service.Controllers
         [HttpPost]
         public ActionResult Register(User info)
         {
-            var dic = _repo.Register(info);
+            var dic = _userRepo.Register(info);
             if (!(bool) dic["success"])
             {
                 var messages = (List<string>) dic["messages"];
@@ -125,9 +129,7 @@ namespace Service.Controllers
 
         public ActionResult Login()
         {
-            if (IsLoggedIn()) return View("Home", Session["User"]);
-
-            return View();
+            return IsLoggedIn() ? Index() : View();
         }
 
         /// <summary>
@@ -140,7 +142,7 @@ namespace Service.Controllers
         {
             if (string.IsNullOrEmpty(info.User.email) || string.IsNullOrEmpty(info.User.password)) return View();
 
-            var dic = _repo.Login(info.User);
+            var dic = _userRepo.Login(info.User);
             var user = (User) dic["user"];
 
             if (user == null)
@@ -157,10 +159,10 @@ namespace Service.Controllers
                 Response.Cookies.Add(cookie);
             }
 
-            Session["user"] = user;
-            Session["token"] = token;
+            Session["User"] = user;
+            Session["Token"] = token;
 
-            return View("Home", user);
+            return Index();
         }
 
         #endregion

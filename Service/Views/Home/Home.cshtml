@@ -1,16 +1,33 @@
-﻿@model DataTier.Project
-
+﻿@model Service.Models.HomeViewModel
 @{
     ViewBag.Title = "User Home";
-    string project_image;
+    string projectImage;
 
-    project_image = Model.image ?? "~/Images/default_project.png";
+    if (Model.Project == null)
+    {
+        projectImage = null;
+    }
+    else
+    {
+        projectImage = Model.Project.image ?? "~/Images/default_project.png";
+    }
 }
 
 <div class="home-view col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
-    <p>Featured Project</p>
-    <div class="project-image col-md-5">
-        <img src="@project_image" alt="" />
+    @if (Model.Project == null)
+    {
+        <p>You have no project!</p>
+    }
+    else
+    {
+        <p class="font-comfortaa-bold">Featured Project</p>
+        <div class="project-image col-md-5 col-sm-5 no-padding-left">
+            <img src="@Href(projectImage)" alt=""/>
+        </div>
+    <div class="project-detail col-md-3 col-sm-3 font-comfortaa-light">
+        <p class="font-comfortaa-bold">@Model.Project.title</p>
+        <p>@(string.Format("{0} {1}", Model.User.firstname, Model.User.lastname))</p>
+        <p>@Model.Project.description</p>
     </div>
-    <div class="project-detail col-md-5"></div>
+    }
 </div>

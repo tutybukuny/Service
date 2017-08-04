@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using BusinessTier.Core;
-using BusinessTier.Factory;
 using DataTier;
 using DataTier.Dao;
+using DataTier.Factory;
 
 namespace BusinessTier.Repository
 {
