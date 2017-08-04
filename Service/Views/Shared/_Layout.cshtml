@@ -63,7 +63,7 @@
                             <li><a href="#">Notifications</a></li>
                             <li><a href="#">Blocked Users</a></li>
                         </ul>
-                        <p class="text-center">@(((User)Session["User"]).firstname + " " + ((User)Session["User"]).lastname)</p>
+                        <p class="text-center"><a href="#">@(((User)Session["User"]).firstname + " " + ((User)Session["User"]).lastname)</a></p>
                         <p class="text-center"><a href="@Url.Action("Logout", "Home")">Log Out</a></p>
                     </div>
                 }
