@@ -20,6 +20,8 @@ namespace Service.Controllers
         /// </summary>
         /// <param name="user">user's info</param>
         /// <returns></returns>
+        [ActionName("GetUserProjects")]
+        [HttpPost]
         public Dictionary<string, object> GetUserProjects(User user)
         {
             return _repo.GetUserProjects(user.id);
@@ -30,6 +32,8 @@ namespace Service.Controllers
         /// </summary>
         /// <param name="user">user's info</param>
         /// <returns></returns>
+        [ActionName("GetUserFirstProject")]
+        [HttpPost]
         public Dictionary<string, object> GetUserFirstProject(User user)
         {
             return _repo.GetUserFirstProject(user.id);
@@ -39,6 +43,8 @@ namespace Service.Controllers
         /// Get all projects from database
         /// </summary>
         /// <returns></returns>
+        [ActionName("GetProjects")]
+        [HttpPost]
         public Dictionary<string, object> GetProjects()
         {
             return _repo.GetAll();

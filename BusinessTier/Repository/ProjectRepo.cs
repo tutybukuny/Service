@@ -21,7 +21,8 @@ namespace BusinessTier.Repository
             var projects = _dao.GetAll();
 
             if (projects == null) dic.Add("message", "There are no project!");
-            else dic.Add("projects", projects);
+
+            dic.Add("projects", projects);
 
             return dic;
         }
@@ -53,9 +54,8 @@ namespace BusinessTier.Repository
             var dic = new Dictionary<string, object>();
             var projects = _dao.GetUserProjects(user_id);
 
-            if (projects == null)
-                dic.Add("message", "User does'nt have project!");
-            else dic.Add("projects", projects);
+            if (projects == null) dic.Add("message", "User does'nt have project!");
+            dic.Add("projects", projects);
 
             return dic;
         }
