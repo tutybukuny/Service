@@ -160,7 +160,7 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="role1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="role" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
   <EntityType Name="State">
     <Key>

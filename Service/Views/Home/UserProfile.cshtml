@@ -6,37 +6,44 @@
 }
 
 <div class="user-profile col-md-12 no-padding">
-    <div class="profile col-md-8 col-md-offset-2">
+    <div class="profile col-md-8 col-md-offset-2 font-comfortaa-light">
         <img src="@Href(avatar)" alt="" class="col-md-3 no-padding" />
         <div class="col-md-8">
-            <p>@string.Format("{0} {1}", Model.firstname, Model.lastname)</p>
-            <div class="roles"></div>
+            <p class="font-comfortaa-bold">@string.Format("{0} {1}", Model.firstname, Model.lastname)</p>
+            <div id="roles"></div>
         </div>
     </div>
 </div>
 
 <script>
     $(document).ready(function () {
-        $.ajax({
-            //            url: "http://localhost:21790/api/ProjectApi/GetProjects",
-            //            url: 'Url.RouteUrl("GetProjects", "ProjectApi")',
-            url: '@(Request.Url.Scheme + Uri.SchemeDelimiter + Request.Url.Host +
-                (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port))' +
-                    '/api/@Url.Action("GetProjects", "ProjectApi")',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            dataType: "json",
-            type: "post",
-            data: {
-                id: 3
-            },
-            success: function (data) {
-                console.log(data);
-            },
-            error: function (err) {
-                console.log(err.responseText);
-            }
-        });
+        if (@Model.role1 != null) {
+            getRole(@Model.role1);
+        }
+
+        if (@Model.role2 != null) {
+            getRole(@Model.role2);
+        }
+
+        function getRole(role) {
+            $.ajax({
+                url: '@(Request.Url.Scheme + Uri.SchemeDelimiter + Request.Url.Host +
+                    (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port))' +
+                    '/api/@Url.Action("GetById", "RoleApi")',
+                type: "get",
+                data: {
+                    id: role
+                },
+                success: function (data) {
+                    console.log(data.role.role);
+                    var html = $('#roles').html();
+                    html += '<p>'+data.role.role+'</p>';
+                    $('#roles').html(html);
+                },
+                error: function (err) {
+                    console.log(err.responseText);
+                }
+            });
+        }
     });
 </script>

@@ -19,31 +19,24 @@
     font-family: 'BEBASNEUE BOLD';
 }
 
-@font-face {
+/*@font-face {
     font-family: 'Comfortaa-Bold';
     src: url('../fonts/Comfortaa-Bold.ttf') format('truetype');
-}
+}*/
 
 .font-comfortaa-bold {
-    font-family: Comfortaa-Bold;
-}
-
-@font-face {
-    font-family: 'Comfortaa-Light';
-    src: url('../fonts/Comfortaa-Light.ttf') format('truetype');
+    font-family: Comfortaa;
+    font-weight: bold;
 }
 
 .font-comfortaa-light {
-    font-family: Comfortaa-Light;
-}
-
-@font-face {
-    font-family: 'Comfortaa-Regular';
-    src: url('../fonts/Comfortaa-Regular.ttf') format('truetype');
+    font-family: Comfortaa;
+    font-weight: lighter;
 }
 
 .font-comfortaa-regular {
-    font-family: Comfortaa-Regular;
+    font-family: Comfortaa;
+    font-weight: normal;
 }
 
 @font-face {
@@ -377,6 +370,24 @@ ul {
     .profile {
         img {
             max-width: 100%;
+        }
+
+        > div {
+            > p {
+                color: @yellow;
+                font-size: 28px;
+            }
+
+            #roles {
+                p {
+                    float: left;
+                    font-size: 12px;
+                    background-color: #5870B6;
+                    margin-right: 20px;
+                    padding: 5px 10px;
+                    color: white;
+                }
+            }
         }
     }
 }

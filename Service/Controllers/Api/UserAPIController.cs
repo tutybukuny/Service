@@ -6,7 +6,7 @@ using DataTier;
 using Newtonsoft.Json.Linq;
 using Ninject;
 
-namespace Service.Controllers
+namespace Service.Controllers.Api
 {
     public class UserApiController : ApiController
     {

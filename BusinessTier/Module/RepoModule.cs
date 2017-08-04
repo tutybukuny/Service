@@ -9,6 +9,7 @@ namespace BusinessTier.Module
         {
             Bind<IRepo>().To<UserRepo>().Named("UserRepo");
             Bind<IRepo>().To<ProjectRepo>().Named("ProjectRepo");
+            Bind<IRepo>().To<RoleRepo>().Named("RoleRepo");
         }
     }
 }

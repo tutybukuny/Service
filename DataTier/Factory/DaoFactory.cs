@@ -27,6 +27,8 @@ namespace DataTier.Factory
                     return _kernel.Get<IDao<User>>(name);
                 case "ProjectDao":
                     return _kernel.Get<IDao<Project>>(name);
+                case "RoleDao":
+                    return _kernel.Get<IDao<Role>>(name);
             }
 
             return null;

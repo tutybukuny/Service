@@ -5,7 +5,7 @@ using DataTier;
 using DataTier.Dao;
 using DataTier.Factory;
 
-namespace Service.Controllers
+namespace Service.Controllers.Web
 {
     public class ProjectController : Controller
     {
@@ -49,7 +49,7 @@ namespace Service.Controllers
         public ActionResult Index()
         {
             if (!IsLoggedIn()) return RedirectToAction("Index", "Home");
-            var projects = _repo.GetUserProjects(((User)Session["User"]).id)["projects"];
+            var projects = _repo.GetUserProjects(((User) Session["User"]).id)["projects"];
             return View(projects);
         }
     }

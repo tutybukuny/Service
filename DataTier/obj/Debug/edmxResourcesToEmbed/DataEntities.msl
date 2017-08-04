@@ -176,7 +176,7 @@
       <EntityTypeMapping TypeName="TheProjectModel.Role">
         <MappingFragment StoreEntitySet="Role">
           <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="role1" ColumnName="role" />
+          <ScalarProperty Name="role" ColumnName="role" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -982,7 +982,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="role1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="role" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           </EntityType>
         <EntityType Name="State">
           <Key>
@@ -1817,7 +1817,7 @@
             <EntityTypeMapping TypeName="TheProjectModel.Role">
               <MappingFragment StoreEntitySet="Role">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="role1" ColumnName="role" />
+                <ScalarProperty Name="role" ColumnName="role" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
