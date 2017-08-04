@@ -7,7 +7,7 @@
 
 <div class="user-profile col-md-12 no-padding">
     <div class="profile col-md-8 col-md-offset-2 font-comfortaa-light">
-        <img src="@Href(avatar)" alt="" class="col-md-3 no-padding" />
+        <img src="@Href(avatar)" alt="" class="col-md-4 no-padding" />
         <div class="col-md-8 no-padding-right">
             <p>@string.Format("{0} {1}", Model.firstname, Model.lastname)</p>
             <div id="roles"></div>
@@ -15,9 +15,17 @@
             <div id="info"></div>
         </div>
     </div>
-    <div class="options col-md-8 col-md-offset-2 font-comfortaa-bold no-padding">
-        
+    <div class="options col-md-8 col-md-offset-2 font-comfortaa-bold">
+        <div class="option col-md-2 pull-left">Portfolio</div>
+        <div class="option col-md-2 pull-left">Projects</div>
+        <div class="option col-md-2 pull-right">Following</div>
+        <div class="option col-md-2 pull-right">Follower</div>
     </div>
+    <div class="col-md-12 clear" style="border-bottom: 1px solid #E6E6E6"></div>
+    <div id="option-content-1" class="option-content col-md-8 col-md-offset-2 display-none"></div>
+    <div id="option-content-2" class="option-content col-md-8 col-md-offset-2 display-none"></div>
+    <div id="option-content-3" class="option-content col-md-8 col-md-offset-2 display-none"></div>
+    <div id="option-content-4" class="option-content col-md-8 col-md-offset-2 display-none"></div>
 </div>
 
 <script>
@@ -85,5 +93,45 @@
                 }
             });
         }
+
+        function getProjects() {
+            $.ajax({
+                url: '@(Request.Url.Scheme + Uri.SchemeDelimiter + Request.Url.Host +
+                    (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port))' +
+                    '/api/@Url.Action("GetUserProjects", "ProjectApi")',
+                type: "post",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                dataType: 'json',
+                data: {
+                    id: '@Model.id'
+                },
+                success: function(data) {
+                    if (data.projects !== null) {
+                        data.projects.forEach(function(item, index) {
+                            console.log(item);
+                        });
+                    }
+                },
+                error: function(err) {
+                    console.log(err.message);
+                }
+            });
+        }
+
+        $('.option').click(function() {
+            $('.option').each(function() {
+                $(this).removeClass('selected');
+            });
+
+            $(this).addClass('selected');
+
+            var html = $(this).html();
+
+            if (html.indexOf('Projects') !== -1) {
+                getProjects();
+            }
+        });
     });
 </script>
