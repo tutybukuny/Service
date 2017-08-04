@@ -18,8 +18,8 @@ namespace Service.Controllers
 
         public HomeController()
         {
-            _userRepo = (UserRepo) RepoFactory.GetRepo("UserRepo");
-            _projectRepo = (ProjectRepo) RepoFactory.GetRepo("ProjectRepo");
+            _userRepo = (UserRepo)RepoFactory.GetRepo("UserRepo");
+            _projectRepo = (ProjectRepo)RepoFactory.GetRepo("ProjectRepo");
         }
 
         #region Check logged in
@@ -33,7 +33,7 @@ namespace Service.Controllers
             if (Session["User"] != null) return true;
 
             var cookie = Request.Cookies["TheProjectToken"];
-            var userDao = (UserDao) DaoFactory.GetDao("UserDao");
+            var userDao = (UserDao)DaoFactory.GetDao("UserDao");
 
             if (cookie != null)
             {
@@ -56,9 +56,9 @@ namespace Service.Controllers
         {
             if (!IsLoggedIn()) return View();
 
-            var dic = _projectRepo.GetUserFirstProject(((User) Session["User"]).id);
-            var project = (Project) dic["project"];
-            var model = new HomeViewModel {Project = project, User = (User) Session["User"]};
+            var dic = _projectRepo.GetUserFirstProject(((User)Session["User"]).id);
+            var project = (Project)dic["project"];
+            var model = new HomeViewModel { Project = project, User = (User)Session["User"] };
 
             return View("Home", model);
         }
@@ -80,7 +80,7 @@ namespace Service.Controllers
 
             if (Request.Cookies["TheProjectToken"] != null)
             {
-                var cookie = new HttpCookie("TheProjectToken") {Expires = DateTime.Now.AddDays(-1)};
+                var cookie = new HttpCookie("TheProjectToken") { Expires = DateTime.Now.AddDays(-1) };
                 Response.Cookies.Add(cookie);
             }
 
@@ -107,9 +107,9 @@ namespace Service.Controllers
         public ActionResult Register(User info)
         {
             var dic = _userRepo.Register(info);
-            if (!(bool) dic["success"])
+            if (!(bool)dic["success"])
             {
-                var messages = (List<string>) dic["messages"];
+                var messages = (List<string>)dic["messages"];
                 var html = "";
                 foreach (var message in messages)
                     html += "<p class=\"red-text\">" + message + "</p>";
@@ -143,7 +143,7 @@ namespace Service.Controllers
             if (string.IsNullOrEmpty(info.User.email) || string.IsNullOrEmpty(info.User.password)) return View();
 
             var dic = _userRepo.Login(info.User);
-            var user = (User) dic["user"];
+            var user = (User)dic["user"];
 
             if (user == null)
             {
@@ -151,11 +151,11 @@ namespace Service.Controllers
                 return View();
             }
 
-            var token = (string) dic["token"];
+            var token = (string)dic["token"];
 
             if (info.Remember)
             {
-                var cookie = new HttpCookie("TheProjectToken") {Value = token};
+                var cookie = new HttpCookie("TheProjectToken") { Value = token };
                 Response.Cookies.Add(cookie);
             }
 
@@ -163,6 +163,17 @@ namespace Service.Controllers
             Session["Token"] = token;
 
             return Index();
+        }
+
+        #endregion
+
+        #region User profile
+
+        public ActionResult UserProfile()
+        {
+            if (!IsLoggedIn()) return Login();
+
+            return View((User)Session["User"]);
         }
 
         #endregion

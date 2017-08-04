@@ -1,0 +1,42 @@
+﻿@model DataTier.User
+
+@{
+    ViewBag.Title = "User profile";
+    string avatar = Model.avatar ?? "~/Images/avatars/default_avatar.png";
+}
+
+<div class="user-profile col-md-12 no-padding">
+    <div class="profile col-md-8 col-md-offset-2">
+        <img src="@Href(avatar)" alt="" class="col-md-3 no-padding" />
+        <div class="col-md-8">
+            <p>@string.Format("{0} {1}", Model.firstname, Model.lastname)</p>
+            <div class="roles"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            //            url: "http://localhost:21790/api/ProjectApi/GetProjects",
+            //            url: 'Url.RouteUrl("GetProjects", "ProjectApi")',
+            url: '@(Request.Url.Scheme + Uri.SchemeDelimiter + Request.Url.Host +
+                (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port))' +
+                    '/api/@Url.Action("GetProjects", "ProjectApi")',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            dataType: "json",
+            type: "post",
+            data: {
+                id: 3
+            },
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (err) {
+                console.log(err.responseText);
+            }
+        });
+    });
+</script>

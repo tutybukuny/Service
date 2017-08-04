@@ -306,7 +306,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
-    <Content Include="Images\avartars\default_avatar.png" />
+    <Content Include="Images\avatars\default_avatar.png" />
     <Content Include="Images\Bell.png" />
     <Content Include="Images\default_project.png" />
     <Content Include="Images\fb-icon.png" />
@@ -369,6 +369,7 @@
     <Content Include="Views\Home\ForgotPassword.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Project\Index.cshtml" />
+    <Content Include="Views\Home\UserProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -284,6 +284,12 @@ ul {
   font-size: 14px;
 }
 /*
+    User profile
+*/
+.user-profile .profile img {
+  max-width: 100%;
+}
+/*
     footer
 */
 .footer {
