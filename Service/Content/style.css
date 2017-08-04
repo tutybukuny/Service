@@ -175,19 +175,60 @@ ul {
   width: 60px;
   height: 50px;
 }
-.header .support div a {
+.header .support > div a {
   color: black;
 }
-.header .support div a button {
+.header .support > div a button {
   font-family: Comfortaa-Bold;
 }
-.header .support div button {
+.header .support > div button {
   font-weight: bold;
   font-size: 16px;
   -moz-transition: background-color 0.2s ease !important;
   -o-transition: background-color 0.2s ease !important;
   -webkit-transition: background-color 0.2s ease !important;
   transition: background-color 0.2s ease !important;
+}
+.header .support > div .menu-control {
+  height: 40px;
+  line-height: 40px;
+  margin-left: 20px;
+}
+.header .support > div .menu {
+  display: none;
+  width: 550px;
+  padding-top: 20px;
+  background-color: white;
+  position: absolute;
+  z-index: 1;
+  top: 83px;
+  right: 0;
+  border: 1px #B9AE9E solid;
+  border-top: none;
+  border-right: none;
+  font-family: Comfortaa-Light;
+  -webkit-box-shadow: 2px 2px 13px -1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px 2px 13px -1px rgba(0, 0, 0, 0.75);
+  box-shadow: 2px 2px 13px -1px rgba(0, 0, 0, 0.75);
+}
+.header .support > div .menu ul {
+  width: 50%;
+  float: left;
+}
+.header .support > div .menu ul li {
+  height: 40px;
+  line-height: 40px;
+  padding-left: 20px;
+}
+.header .support > div .menu ul li:first-of-type {
+  font-family: Comfortaa-Bold;
+  font-size: 14px;
+}
+.header .support > div .menu a {
+  color: #5E73B8;
+}
+.header .support > div .menu p {
+  color: #5E73B8;
 }
 /*
     content

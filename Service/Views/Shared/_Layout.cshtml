@@ -36,7 +36,36 @@
                 {
                     <img src="~/Images/Bell.png" height="30" width="30" />
                     <img src="~/Images/folder2.png" height="30" width="40" />
-                    <a href="@Url.Action("Logout", "Home")"><button class="btn btn-light-gray">Logout</button></a>
+                    @*                    <a href="@Url.Action("Logout", "Home")"><button class="btn btn-light-gray">Logout</button></a>*@
+                    <button class="menu-control pull-right row btn btn-light-gray">@(((User)Session["User"]).firstname) <span class="glyphicon glyphicon-chevron-down"></span></button>
+                    <div class="menu">
+                        <ul>
+                            <li>My WTP</li>
+                            <li><a href="#">Profile</a></li>
+                            <li><a href="#">Find Facebook Friends</a></li>
+                            <li><a href="#">Follow</a></li>
+                            <li><a href="#">Recommand to You</a></li>
+                        </ul>
+                        @if (ViewBag.Project != null)
+                        {
+                            <ul>
+                                <li>@ViewBag.Project.title</li>
+                                <li><a href="#"></a></li>
+                                <li><a href="#"></a></li>
+                                <li><a href="#"></a></li>
+                                <li><a href="#"></a></li>
+                            </ul>
+                        }
+                        <ul>
+                            <li>Setting</li>
+                            <li><a href="#">Account Details</a></li>
+                            <li><a href="#">Edit Profile</a></li>
+                            <li><a href="#">Notifications</a></li>
+                            <li><a href="#">Blocked Users</a></li>
+                        </ul>
+                        <p class="text-center">@(((User)Session["User"]).firstname + " " + ((User)Session["User"]).lastname)</p>
+                        <p class="text-center"><a href="@Url.Action("Logout", "Home")">Log Out</a></p>
+                    </div>
                 }
             </div>
         </div>
