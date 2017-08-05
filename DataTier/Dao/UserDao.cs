@@ -144,8 +144,6 @@ namespace DataTier.Dao
                     user = new User
                     {
                         id = row.id,
-                        email = row.email,
-                        password = row.password,
                         firstname = row.firstname,
                         lastname = row.lastname,
                         about_me = row.about_me,

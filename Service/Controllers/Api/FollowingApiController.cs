@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Http;
 using BusinessTier.Factory;
 using BusinessTier.Repository;
@@ -19,6 +20,7 @@ namespace Service.Controllers.Api
         [HttpPost]
         public Dictionary<string, object> Follow(Following following)
         {
+            following.created_date = DateTime.Now;
             return _repo.Insert(following);
         }
 
