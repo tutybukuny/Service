@@ -64,8 +64,11 @@
     <Compile Include="Factory\RepoFactory.cs" />
     <Compile Include="Module\RepoModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\AddressRepo.cs" />
+    <Compile Include="Repository\FollowingRepo.cs" />
     <Compile Include="Repository\IRepo.cs" />
     <Compile Include="Repository\ProjectRepo.cs" />
+    <Compile Include="Repository\RoleRepo.cs" />
     <Compile Include="Repository\UserRepo.cs" />
   </ItemGroup>
   <ItemGroup>
