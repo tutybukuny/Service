@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using DataTier.Factory;
 
 namespace DataTier.Dao
 {
-    public class CountryDao : IDao<Country>
+    public class FollowingDao : IDao<Following>
     {
         #region Insert Update Delete
 
-        public bool Insert(Country obj)
+        public bool Insert(Following obj)
         {
             using (var entities = new TheProjectEntities())
             {
                 try
                 {
-                    entities.Countries.Add(obj);
+                    entities.Followings.Add(obj);
                     entities.SaveChanges();
                 }
                 catch (Exception e)
@@ -27,16 +28,15 @@ namespace DataTier.Dao
             return true;
         }
 
-        public bool Update(Country obj)
+        public bool Update(Following obj)
         {
             using (var entities = new TheProjectEntities())
             {
                 try
                 {
-                    entities.Countries.Attach(obj);
+                    entities.Followings.Attach(obj);
                     var entry = entities.Entry(obj);
                     entry.State = EntityState.Modified;
-
                     entities.SaveChanges();
                 }
                 catch (Exception e)
@@ -48,14 +48,13 @@ namespace DataTier.Dao
             return true;
         }
 
-        public bool Delete(Country obj)
+        public bool Delete(Following obj)
         {
             using (var entities = new TheProjectEntities())
             {
                 try
                 {
                     entities.Entry(obj).State = EntityState.Deleted;
-
                     entities.SaveChanges();
                 }
                 catch (Exception e)
@@ -71,45 +70,54 @@ namespace DataTier.Dao
 
         #region Get Item
 
-        public List<Country> GetAll()
+        public List<Following> GetAll()
         {
-            List<Country> list = null;
+            throw new NotImplementedException();
+        }
+
+        public Following GetById(int? id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<User> GetFollowers(int user_id)
+        {
+            List<User> list = null;
+
             using (var entities = new TheProjectEntities())
             {
-                var rows = from r in entities.Countries select r;
-                list = new List<Country>();
+                var rows = from f in entities.Followings where f.user_id == user_id select f;
+                var userDao = (UserDao) DaoFactory.GetDao("UserDao");
 
                 foreach (var row in rows)
                 {
-                    var c = new Country
-                    {
-                        id = row.id,
-                        name = row.name
-                    };
+                    if (list == null) list = new List<User>();
 
-                    list.Add(c);
+                    list.Add(userDao.GetById(row.follower_id));
                 }
             }
 
             return list;
         }
 
-        public Country GetById(int? id)
+        public List<User> GetFollowings(int follower_id)
         {
-            Country country = null;
+            List<User> list = null;
+
             using (var entities = new TheProjectEntities())
             {
-                var row = (from r in entities.Countries where r.id == id select r).FirstOrDefault();
+                var rows = from f in entities.Followings where f.follower_id == follower_id select f;
 
-                if (row != null)
-                    country = new Country
-                    {
-                        id = row.id,
-                        name = row.name
-                    };
+                foreach (var row in rows)
+                {
+                    if (list == null) list = new List<User>();
+                    var userDao = (UserDao) DaoFactory.GetDao("UserDao");
+
+                    list.Add(userDao.GetById(row.user_id));
+                }
             }
 
-            return country;
+            return list;
         }
 
         #endregion

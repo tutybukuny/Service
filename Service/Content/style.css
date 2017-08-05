@@ -15,26 +15,21 @@
 .font-bebasneue-bold {
   font-family: 'BEBASNEUE BOLD';
 }
-@font-face {
-  font-family: 'Comfortaa-Bold';
-  src: url('../fonts/Comfortaa-Bold.ttf') format('truetype');
-}
+/*@font-face {
+    font-family: 'Comfortaa-Bold';
+    src: url('../fonts/Comfortaa-Bold.ttf') format('truetype');
+}*/
 .font-comfortaa-bold {
-  font-family: Comfortaa-Bold;
-}
-@font-face {
-  font-family: 'Comfortaa-Light';
-  src: url('../fonts/Comfortaa-Light.ttf') format('truetype');
+  font-family: Comfortaa;
+  font-weight: bold;
 }
 .font-comfortaa-light {
-  font-family: Comfortaa-Light;
-}
-@font-face {
-  font-family: 'Comfortaa-Regular';
-  src: url('../fonts/Comfortaa-Regular.ttf') format('truetype');
+  font-family: Comfortaa;
+  font-weight: lighter;
 }
 .font-comfortaa-regular {
-  font-family: Comfortaa-Regular;
+  font-family: Comfortaa;
+  font-weight: normal;
 }
 @font-face {
   font-family: 'Lobster 1.4';
@@ -132,6 +127,12 @@ ul {
 .error-border {
   border: 1px solid red !important;
 }
+.display-none {
+  display: none;
+}
+.display-block {
+  display: block;
+}
 /*
     Header
 */
@@ -179,7 +180,7 @@ ul {
   color: black;
 }
 .header .support > div a button {
-  font-family: Comfortaa-Bold;
+  font-family: Comfortaa;
 }
 .header .support > div button {
   font-weight: bold;
@@ -193,9 +194,17 @@ ul {
   height: 40px;
   line-height: 40px;
   margin-left: 20px;
+  font-family: Comfortaa;
+  font-weight: bold;
 }
 .header .support > div .menu {
   display: none;
+  /*visibility: hidden;
+                opacity: 0;
+                -moz-transition: visibility 0s, opacity 0.5s linear;
+                -o-transition: visibility 0s, opacity 0.5s linear;
+                -webkit-transition: visibility 0s, opacity 0.5s linear;
+                transition: visibility 0s, opacity 0.5s linear;*/
   width: 550px;
   padding-top: 20px;
   background-color: white;
@@ -206,7 +215,8 @@ ul {
   border: 1px #B9AE9E solid;
   border-top: none;
   border-right: none;
-  font-family: Comfortaa-Light;
+  font-family: Comfortaa;
+  font-weight: lighter;
   -webkit-box-shadow: 2px 2px 13px -1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 2px 2px 13px -1px rgba(0, 0, 0, 0.75);
   box-shadow: 2px 2px 13px -1px rgba(0, 0, 0, 0.75);
@@ -221,7 +231,8 @@ ul {
   padding-left: 20px;
 }
 .header .support > div .menu ul li:first-of-type {
-  font-family: Comfortaa-Bold;
+  font-family: Comfortaa;
+  font-weight: bold;
   font-size: 14px;
 }
 .header .support > div .menu a {
@@ -251,13 +262,15 @@ ul {
   margin-top: 30px;
   margin-bottom: 15px;
   font-size: 18px;
-  font-family: Comfortaa-Bold;
+  font-family: Comfortaa;
+  font-weight: bold;
   padding-top: 20px;
   padding-bottom: 20px;
   border-bottom: 5px solid #F6BB44;
 }
 .my-form p {
-  font-family: Comfortaa-Bold;
+  font-family: Comfortaa;
+  font-weight: bold;
 }
 .my-form p:first-of-type {
   font-size: 24px;
@@ -286,8 +299,41 @@ ul {
 /*
     User profile
 */
+.user-profile .profile {
+  margin-bottom: 30px;
+}
 .user-profile .profile img {
   max-width: 100%;
+}
+.user-profile .profile > div > p {
+  color: #fdd055;
+  font-size: 28px;
+}
+.user-profile .profile > div #roles p {
+  float: left;
+  font-size: 12px;
+  background-color: #5870B6;
+  margin-right: 20px;
+  padding: 5px 10px;
+  color: white;
+}
+.user-profile .profile > div #info {
+  color: #5870B6;
+  font-weight: bold;
+}
+.user-profile .options .option {
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-weight: bold;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.user-profile .options .option:hover {
+  background-color: lightgray;
+}
+.user-profile .options .selected {
+  background-color: #f6bb44;
 }
 /*
     footer
@@ -319,7 +365,8 @@ ul {
 }
 .footer .left-footer ul li a {
   color: white;
-  font-family: Comfortaa-Bold;
+  font-family: Comfortaa;
+  font-weight: bold;
 }
 .footer .left-footer > div:nth-of-type(3) a {
   color: black;
@@ -341,7 +388,8 @@ ul {
 }
 .footer .right-footer p {
   color: white;
-  font-family: Comfortaa-Bold;
+  font-family: Comfortaa;
+  font-weight: bold;
   font-size: 18px;
   padding-top: 5px;
   padding-bottom: 10px;
@@ -355,10 +403,12 @@ ul {
   background-color: #414141;
   box-shadow: none;
   border: none;
-  font-family: Comfortaa-Regular;
+  font-family: Comfortaa;
+  font-weight: normal;
 }
 .footer .right-footer button {
-  font-family: Comfortaa-Bold;
+  font-family: Comfortaa;
+  font-weight: bold;
   font-size: 16px;
   padding-left: 20px;
   padding-right: 20px;
@@ -398,7 +448,8 @@ ul {
   margin-top: 25px;
   padding: 5px 5px;
   font-size: 12px;
-  font-family: Comfortaa-Light;
+  font-family: Comfortaa;
+  font-weight: lighter;
 }
 .footer .right-footer > div #footer-dropdown span {
   margin-left: 20px;

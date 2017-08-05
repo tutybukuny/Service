@@ -19,31 +19,24 @@
     font-family: 'BEBASNEUE BOLD';
 }
 
-@font-face {
+/*@font-face {
     font-family: 'Comfortaa-Bold';
     src: url('../fonts/Comfortaa-Bold.ttf') format('truetype');
-}
+}*/
 
 .font-comfortaa-bold {
-    font-family: Comfortaa-Bold;
-}
-
-@font-face {
-    font-family: 'Comfortaa-Light';
-    src: url('../fonts/Comfortaa-Light.ttf') format('truetype');
+    font-family: Comfortaa;
+    font-weight: bold;
 }
 
 .font-comfortaa-light {
-    font-family: Comfortaa-Light;
-}
-
-@font-face {
-    font-family: 'Comfortaa-Regular';
-    src: url('../fonts/Comfortaa-Regular.ttf') format('truetype');
+    font-family: Comfortaa;
+    font-weight: lighter;
 }
 
 .font-comfortaa-regular {
-    font-family: Comfortaa-Regular;
+    font-family: Comfortaa;
+    font-weight: normal;
 }
 
 @font-face {
@@ -171,6 +164,14 @@ ul {
     border: 1px solid red !important;
 }
 
+.display-none {
+    display: none;
+}
+
+.display-block {
+    display: block;
+}
+
 /*
     Header
 */
@@ -231,7 +232,7 @@ ul {
                 color: black;
 
                 button {
-                    font-family: Comfortaa-Bold;
+                    font-family: Comfortaa;
                 }
             }
 
@@ -248,10 +249,17 @@ ul {
                 height: 40px;
                 line-height: 40px;
                 margin-left: 20px;
+                .font-comfortaa-bold;
             }
 
             .menu {
                 display: none;
+                /*visibility: hidden;
+                opacity: 0;
+                -moz-transition: visibility 0s, opacity 0.5s linear;
+                -o-transition: visibility 0s, opacity 0.5s linear;
+                -webkit-transition: visibility 0s, opacity 0.5s linear;
+                transition: visibility 0s, opacity 0.5s linear;*/
                 width: 550px;
                 padding-top: 20px;
                 background-color: white;
@@ -375,8 +383,52 @@ ul {
 
 .user-profile {
     .profile {
+        margin-bottom: 30px;
+
         img {
             max-width: 100%;
+        }
+
+        > div {
+            > p {
+                color: @yellow;
+                font-size: 28px;
+            }
+
+            #roles {
+                p {
+                    float: left;
+                    font-size: 12px;
+                    background-color: #5870B6;
+                    margin-right: 20px;
+                    padding: 5px 10px;
+                    color: white;
+                }
+            }
+
+            #info {
+                color: #5870B6;
+                font-weight: bold;
+            }
+        }
+    }
+
+    .options {
+        .option {
+            text-align: center;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            font-weight: bold;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+
+            &:hover {
+                background-color: lightgray;
+            }
+        }
+
+        .selected {
+            background-color: @dark-yellow;
         }
     }
 }

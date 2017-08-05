@@ -15,6 +15,6 @@ namespace DataTier
     public partial class Role
     {
         public int id { get; set; }
-        public string role1 { get; set; }
+        public string role { get; set; }
     }
 }

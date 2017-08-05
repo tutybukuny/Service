@@ -6,36 +6,131 @@
 }
 
 <div class="user-profile col-md-12 no-padding">
-    <div class="profile col-md-8 col-md-offset-2">
-        <img src="@Href(avatar)" alt="" class="col-md-3 no-padding" />
-        <div class="col-md-8">
+    <div class="profile col-md-8 col-md-offset-2 font-comfortaa-light">
+        <img src="@Href(avatar)" alt="" class="col-md-4 no-padding" />
+        <div class="col-md-8 no-padding-right">
             <p>@string.Format("{0} {1}", Model.firstname, Model.lastname)</p>
-            <div class="roles"></div>
+            <div id="roles"></div>
+            <div style="clear: both;"></div>
+            <div id="info"></div>
         </div>
     </div>
+    <div class="options col-md-8 col-md-offset-2 font-comfortaa-bold">
+        <div class="option col-md-2 pull-left">Portfolio</div>
+        <div class="option col-md-2 pull-left">Projects</div>
+        <div class="option col-md-2 pull-right">Following</div>
+        <div class="option col-md-2 pull-right">Follower</div>
+    </div>
+    <div class="col-md-12 clear" style="border-bottom: 1px solid #E6E6E6"></div>
+    <div id="option-content-1" class="option-content col-md-8 col-md-offset-2 display-none"></div>
+    <div id="option-content-2" class="option-content col-md-8 col-md-offset-2 display-none"></div>
+    <div id="option-content-3" class="option-content col-md-8 col-md-offset-2 display-none"></div>
+    <div id="option-content-4" class="option-content col-md-8 col-md-offset-2 display-none"></div>
 </div>
 
 <script>
     $(document).ready(function () {
-        $.ajax({
-            //            url: "http://localhost:21790/api/ProjectApi/GetProjects",
-            //            url: 'Url.RouteUrl("GetProjects", "ProjectApi")',
-            url: '@(Request.Url.Scheme + Uri.SchemeDelimiter + Request.Url.Host +
-                (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port))' +
-                    '/api/@Url.Action("GetProjects", "ProjectApi")',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            dataType: "json",
-            type: "post",
-            data: {
-                id: 3
-            },
-            success: function (data) {
-                console.log(data);
-            },
-            error: function (err) {
-                console.log(err.responseText);
+        if (@Model.role1 != null) {
+            getRole(@Model.role1);
+        }
+
+        if (@Model.role2 != null) {
+            getRole(@Model.role2);
+        }
+
+        getAddress();
+
+        function getAddress() {
+            $.ajax({
+                url: '@(Request.Url.Scheme + Uri.SchemeDelimiter + Request.Url.Host +
+                    (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port))' +
+                    '/api/@Url.Action("GetAddress", "AddressApi")',
+                type: 'get',
+                data: {
+                    country_id: '@Model.country_id',
+                    state_id: '@Model.state_id',
+                    district_id: '@Model.district_id'
+                },
+                success: function(data) {
+                    var html = $('#info').html();
+                    if (data.district != null) {
+                        html += data.district.name;
+                    }
+
+                    if (data.state != null) {
+                        html += ' '+data.state.name;
+                    }
+
+                    if (data.country != null) {
+                        html += ' '+data.country.name;
+                    }
+
+                    $('#info').html(html+' - Joined @(Model.created_date.ToString("Y"))');
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        }
+
+        function getRole(role) {
+            $.ajax({
+                url: '@(Request.Url.Scheme + Uri.SchemeDelimiter + Request.Url.Host +
+                    (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port))' +
+                    '/api/@Url.Action("GetById", "RoleApi")',
+                type: "get",
+                data: {
+                    id: role
+                },
+                success: function (data) {
+                    //                    console.log(data.role.role);
+                    var html = $('#roles').html();
+                    html += '<p>'+data.role.role+'</p>';
+                    $('#roles').html(html);
+                },
+                error: function (err) {
+                    console.log(err.responseText);
+                }
+            });
+        }
+
+        function getProjects() {
+            $.ajax({
+                url: '@(Request.Url.Scheme + Uri.SchemeDelimiter + Request.Url.Host +
+                    (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port))' +
+                    '/api/@Url.Action("GetUserProjects", "ProjectApi")',
+                type: "post",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                dataType: 'json',
+                data: {
+                    id: '@Model.id'
+                },
+                success: function(data) {
+                    if (data.projects !== null) {
+                        data.projects.forEach(function(item, index) {
+                            console.log(item);
+                        });
+                    }
+                },
+                error: function(err) {
+                    console.log(err.message);
+                }
+            });
+        }
+
+        $('.option').click(function() {
+            $('.option').each(function() {
+                $(this).removeClass('selected');
+            });
+
+            $(this).addClass('selected');
+
+            var html = $(this).html();
+
+            if (html.indexOf('Projects') !== -1) {
+                getProjects();
             }
         });
     });

@@ -9,6 +9,6 @@ namespace DataTier.Dao
         bool Delete(T obj);
 
         List<T> GetAll();
-        T GetById(int id);
+        T GetById(int? id);
     }
 }

@@ -4,7 +4,7 @@ using BusinessTier.Factory;
 using BusinessTier.Repository;
 using DataTier;
 
-namespace Service.Controllers
+namespace Service.Controllers.Api
 {
     public class ProjectApiController : ApiController
     {
@@ -40,7 +40,7 @@ namespace Service.Controllers
         }
 
         /// <summary>
-        /// Get all projects from database
+        ///     Get all projects from database
         /// </summary>
         /// <returns></returns>
         [ActionName("GetProjects")]

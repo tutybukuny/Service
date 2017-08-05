@@ -159,6 +159,7 @@
     <EntitySetMapping Name="Projects">
       <EntityTypeMapping TypeName="TheProjectModel.Project">
         <MappingFragment StoreEntitySet="Project">
+          <ScalarProperty Name="completed" ColumnName="completed" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="title" ColumnName="title" />
           <ScalarProperty Name="image" ColumnName="image" />
@@ -176,7 +177,7 @@
       <EntityTypeMapping TypeName="TheProjectModel.Role">
         <MappingFragment StoreEntitySet="Role">
           <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="role1" ColumnName="role" />
+          <ScalarProperty Name="role" ColumnName="role" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

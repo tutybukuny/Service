@@ -84,7 +84,7 @@ namespace DataTier.Dao
             return list;
         }
 
-        public District GetById(int id)
+        public District GetById(int? id)
         {
             District district = null;
 
