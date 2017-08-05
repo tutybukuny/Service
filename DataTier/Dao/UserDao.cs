@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using DataTier.Factory;
-using DataTier.Module;
-using Ninject;
 
 namespace DataTier.Dao
 {
@@ -109,8 +107,6 @@ namespace DataTier.Dao
                     var user = new User
                     {
                         id = row.id,
-                        email = row.email,
-                        password = row.password,
                         firstname = row.firstname,
                         lastname = row.lastname,
                         about_me = row.about_me,
