@@ -342,10 +342,52 @@ ul {
   background-color: #f4a913;
 }
 .user-profile .options .selected {
-  background-color: #f6bb44;
+  background-color: #fdd055;
 }
 .user-profile .options .selected:hover {
-  background-color: #f6bb44;
+  background-color: #fdd055;
+}
+.user-profile .option-content {
+  font-family: Comfortaa;
+  padding-top: 50px;
+}
+.user-profile .option-content .follower-row {
+  border-bottom: 1px solid #fede87;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.user-profile .option-content .follower-row > img {
+  max-width: 100%;
+  border-radius: 50%;
+}
+.user-profile .option-content .follower-row div:first-of-type p:first-of-type {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+.user-profile .option-content .follower-row div:last-of-type img {
+  height: 30px;
+}
+.user-profile .option-content .follower-row div:last-of-type button {
+  border: none;
+  background-color: #5870B6;
+  color: white;
+  border-radius: 3px;
+  padding: 5px 10px;
+  outline: none;
+  -moz-transition: background-color 0.2s ease;
+  -o-transition: background-color 0.2s ease;
+  -webkit-transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease;
+}
+.user-profile .option-content .follower-row div:last-of-type button:hover {
+  background-color: #7b8ec6;
+}
+.user-profile .option-content .follower-row div:last-of-type button:active {
+  background-color: #435998;
+}
+.user-profile .option-content .follower-row div:last-of-type button:focus {
+  outline: none;
 }
 /*
     footer
