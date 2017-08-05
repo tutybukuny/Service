@@ -253,13 +253,13 @@ ul {
             }
 
             .menu {
-                display: none;
-                /*visibility: hidden;
+                //display: none;
+                visibility: hidden;
                 opacity: 0;
-                -moz-transition: visibility 0s, opacity 0.5s linear;
-                -o-transition: visibility 0s, opacity 0.5s linear;
-                -webkit-transition: visibility 0s, opacity 0.5s linear;
-                transition: visibility 0s, opacity 0.5s linear;*/
+                -moz-transition: visibility 0s, opacity 0.2s linear;
+                -o-transition: visibility 0s, opacity 0.2s linear;
+                -webkit-transition: visibility 0s, opacity 0.2s linear;
+                transition: visibility 0s, opacity 0.2s linear;
                 width: 550px;
                 padding-top: 20px;
                 background-color: white;
@@ -270,6 +270,7 @@ ul {
                 border: 1px #B9AE9E solid;
                 border-top: none;
                 border-right: none;
+                border-bottom-left-radius: 10px;
                 .font-comfortaa-light;
                 -webkit-box-shadow: 2px 2px 13px -1px rgba(0,0,0,0.75);
                 -moz-box-shadow: 2px 2px 13px -1px rgba(0,0,0,0.75);
@@ -387,6 +388,7 @@ ul {
 
         img {
             max-width: 100%;
+            border-radius: 20px;
         }
 
         > div {
@@ -403,6 +405,7 @@ ul {
                     margin-right: 20px;
                     padding: 5px 10px;
                     color: white;
+                    border-radius: 5px;
                 }
             }
 
@@ -421,14 +424,26 @@ ul {
             font-weight: bold;
             border-top-left-radius: 4px;
             border-top-right-radius: 4px;
+            -moz-transition: background-color 0.2s ease;
+            -o-transition: background-color 0.2s ease;
+            -webkit-transition: background-color 0.2s ease;
+            transition: background-color 0.2s ease;
 
             &:hover {
                 background-color: lightgray;
+            }
+
+            &:active {
+                background-color: darken(@dark-yellow, 10%);
             }
         }
 
         .selected {
             background-color: @dark-yellow;
+
+            &:hover {
+                background-color: @dark-yellow;
+            }
         }
     }
 }
