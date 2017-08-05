@@ -32,7 +32,7 @@
     $(document).ready(function() {
         getRoles(addRole);
         getFollowers(@Model.id, loadFollowers);
-        //        getUserProjects(@Model.id, loadProjects);
+        getUserProjects(@Model.id, loadProjects);
 
         //get address
         $.ajax({
@@ -96,7 +96,20 @@
         }
 
         function loadProjects(projects) {
+            var html = $('#option-content-2').html();
+            projects.forEach(function(item, key) {
+                html+='<div class="project-card col-md-4">'+
+                        '<div class="col-md-12 no-padding">'+
+                            '<img src="'+item.image+'" alt="" />'+
+                            '<p>'+item.title+'</p>'+
+                            '<p>@(Model.firstname+ " " + Model.lastname)</p>'+
+                            '<p>'+item.category_id+'</p>'+
+                            '<p>'+item.description+'</p>'+
+                        '</div>'+
+                      '</div>';
+            });
 
+            $('#option-content-2').html(html);
         }
 
         $('.option').click(function() {
