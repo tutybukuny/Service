@@ -38,7 +38,7 @@ namespace Service.Controllers.Api
             return _repo.GetFollwers(user_id);
         }
 
-        [ActionName("GetFollwings")]
+        [ActionName("GetFollowings")]
         [HttpGet]
         public Dictionary<string, object> GetFollowings(int follower_id)
         {

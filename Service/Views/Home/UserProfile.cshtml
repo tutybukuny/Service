@@ -32,6 +32,7 @@
     $(document).ready(function() {
         getRoles(addRole);
         getFollowers(@Model.id, loadFollowers);
+        getFollowings(@Model.id, loadFollowings);
         getUserProjects(@Model.id, loadProjects);
 
         //get address
@@ -93,6 +94,22 @@
             });
 
             $('#option-content-4').html(html);
+        }
+
+        function loadFollowings(followings) {
+            var html = $('#option-content-3').html();
+            followings.forEach(function(item, key) {
+                html += '<div class="follower-row col-md-6 col-md-offset-3 no-padding">'+
+                    '<img src="'+item.avatar+'" alt="" class="col-md-2 no-padding" />'+
+                    '<div class="col-md-6"><p>'+item.firstname+' '+item.lastname+'</p><p>'+(item.about_me!==null?item.about_me:'')+'</p></div>'+
+                    '<div class="col-md-4 text-left no-padding">'+
+                    '<img src="/Images/block-icon.png" alt="" class="pull-left" />'+
+                    '<button class="pull-right">Following</button>'+
+                    '</div>'+
+                    '</div>';
+            });
+
+            $('#option-content-3').html(html);
         }
 
         function loadProjects(projects) {

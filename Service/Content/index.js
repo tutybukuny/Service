@@ -68,3 +68,20 @@ function getFollowers(user_id, callback) {
         }
     });
 }
+
+function getFollowings(follower_id, callback) {
+    $.ajax({
+        url: 'http://localhost:21790/api/FollowingApi/GetFollowings',
+        type: "get",
+        dataType: 'json',
+        data: {
+            'follower_id': follower_id
+        },
+        success: function (data) {
+            callback(data.followings);
+        },
+        error: function (err) {
+            console.log(err.message);
+        }
+    });
+}
