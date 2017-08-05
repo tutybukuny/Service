@@ -311,6 +311,7 @@
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Images\avatars\default_avatar.png" />
     <Content Include="Images\Bell.png" />
+    <Content Include="Images\block-icon.png" />
     <Content Include="Images\default_project.png" />
     <Content Include="Images\fb-icon.png" />
     <Content Include="Images\folder.png" />

@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿var roles;
+
+$(document).ready(function () {
     var showMenu = false;
 
     $(".dropdown-menu li a").click(function () {
@@ -17,3 +19,52 @@
         showMenu = !showMenu;
     });
 });
+
+function getRoles(callback) {
+    $.ajax({
+        url: 'http://localhost:21790/api/RoleApi/GetRoles',
+        type: 'get',
+        dataType: 'json',
+        success: function (data) {
+            roles = data.roles;
+            callback(roles);
+        },
+        error: function (err) {
+            console.log(err.message);
+        }
+    });
+}
+
+function getUserProjects(user_id, callback) {
+    $.ajax({
+        url: 'http://localhost:21790/api/ProjectApi/GetUserProjects',
+        type: "get",
+        dataType: 'json',
+        data: {
+            'user_id': user_id
+        },
+        success: function (data) {
+            callback(data.projects);
+        },
+        error: function (err) {
+            console.log(err.message);
+        }
+    });
+}
+
+function getFollowers(user_id, callback) {
+    $.ajax({
+        url: 'http://localhost:21790/api/FollowingApi/GetFollowers',
+        type: "get",
+        dataType: 'json',
+        data: {
+            'user_id': user_id
+        },
+        success: function (data) {
+            callback(data.followers);
+        },
+        error: function (err) {
+            console.log(err.message);
+        }
+    });
+}

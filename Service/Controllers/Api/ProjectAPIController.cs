@@ -21,10 +21,10 @@ namespace Service.Controllers.Api
         /// <param name="user">user's info</param>
         /// <returns></returns>
         [ActionName("GetUserProjects")]
-        [HttpPost]
-        public Dictionary<string, object> GetUserProjects(User user)
+        [HttpGet]
+        public Dictionary<string, object> GetUserProjects(int user_id)
         {
-            return _repo.GetUserProjects(user.id);
+            return _repo.GetUserProjects(user_id);
         }
 
         /// <summary>

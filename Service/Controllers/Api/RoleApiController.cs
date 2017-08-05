@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Web.Http;
 using BusinessTier.Factory;
 using BusinessTier.Repository;
@@ -18,9 +14,9 @@ namespace Service.Controllers.Api
             _repo = (RoleRepo) RepoFactory.GetRepo("RoleRepo");
         }
 
-        [ActionName("GetAll")]
-        [HttpPost]
-        public Dictionary<string, object> GetAll()
+        [ActionName("GetRoles")]
+        [HttpGet]
+        public Dictionary<string, object> GetRoles()
         {
             return _repo.GetAll();
         }
