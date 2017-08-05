@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using DataTier.Factory;
 
 namespace DataTier.Dao
 {
@@ -79,34 +80,29 @@ namespace DataTier.Dao
             throw new NotImplementedException();
         }
 
-        public List<Following> GetFollowers(int user_id)
+        public List<User> GetFollowers(int user_id)
         {
-            List<Following> list = null;
+            List<User> list = null;
 
             using (var entities = new TheProjectEntities())
             {
                 var rows = from f in entities.Followings where f.user_id == user_id select f;
+                var userDao = (UserDao) DaoFactory.GetDao("UserDao");
 
                 foreach (var row in rows)
                 {
-                    if (list == null) list = new List<Following>();
+                    if (list == null) list = new List<User>();
 
-                    list.Add(new Following
-                    {
-                        created_date = row.created_date,
-                        follower_id = row.follower_id,
-                        id = row.id,
-                        user_id = row.user_id
-                    });
+                    list.Add(userDao.GetById(row.follower_id));
                 }
             }
 
             return list;
         }
 
-        public List<Following> GetFollowings(int follower_id)
+        public List<User> GetFollowings(int follower_id)
         {
-            List<Following> list = null;
+            List<User> list = null;
 
             using (var entities = new TheProjectEntities())
             {
@@ -114,15 +110,10 @@ namespace DataTier.Dao
 
                 foreach (var row in rows)
                 {
-                    if (list == null) list = new List<Following>();
+                    if (list == null) list = new List<User>();
+                    var userDao = (UserDao) DaoFactory.GetDao("UserDao");
 
-                    list.Add(new Following
-                    {
-                        created_date = row.created_date,
-                        follower_id = row.follower_id,
-                        id = row.id,
-                        user_id = row.user_id
-                    });
+                    list.Add(userDao.GetById(row.user_id));
                 }
             }
 

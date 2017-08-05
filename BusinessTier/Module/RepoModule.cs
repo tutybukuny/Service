@@ -11,6 +11,7 @@ namespace BusinessTier.Module
             Bind<IRepo>().To<ProjectRepo>().Named("ProjectRepo");
             Bind<IRepo>().To<RoleRepo>().Named("RoleRepo");
             Bind<IRepo>().To<AddressRepo>().Named("AddressRepo");
+            Bind<IRepo>().To<FollowingRepo>().Named("FollowingRepo");
         }
     }
 }
