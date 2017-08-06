@@ -129,6 +129,51 @@ ul {
 .display-block {
   display: block;
 }
+.project-card > div {
+  border: 1px solid #C0C2C4;
+  border-radius: 10px;
+  padding-bottom: 30px;
+}
+.project-card > div img {
+  max-width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.project-card > div p {
+  margin-left: 10px;
+  font-weight: bold;
+  font-size: 12px;
+}
+.project-card > div p:first-of-type {
+  margin-top: 15px;
+  margin-bottom: 0;
+  font-size: 18px;
+}
+.project-card > div p:nth-of-type(2) {
+  margin-bottom: 0;
+  font-size: 16px;
+  font-weight: normal;
+}
+.project-card > div p:nth-of-type(3) {
+  font-size: 14px;
+}
+.project-card > div .progress {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  height: 15px;
+  background-image: none;
+  box-shadow: none;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid #f6bb44;
+}
+.project-card > div .progress .progress-bar {
+  background-image: none;
+  border: none;
+  box-shadow: none;
+  background-color: #fdd055;
+}
 /*
     Header
 */
@@ -357,51 +402,6 @@ ul {
 .user-profile .option-content {
   font-family: Comfortaa;
   padding-top: 50px;
-}
-.user-profile .option-content .project-card > div {
-  border: 1px solid #C0C2C4;
-  border-radius: 10px;
-  padding-bottom: 30px;
-}
-.user-profile .option-content .project-card > div img {
-  max-width: 100%;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-.user-profile .option-content .project-card > div p {
-  margin-left: 10px;
-  font-weight: bold;
-  font-size: 12px;
-}
-.user-profile .option-content .project-card > div p:first-of-type {
-  margin-top: 15px;
-  margin-bottom: 0;
-  font-size: 18px;
-}
-.user-profile .option-content .project-card > div p:nth-of-type(2) {
-  margin-bottom: 0;
-  font-size: 16px;
-  font-weight: normal;
-}
-.user-profile .option-content .project-card > div p:nth-of-type(3) {
-  font-size: 14px;
-}
-.user-profile .option-content .project-card > div .progress {
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 5px;
-  height: 15px;
-  background-image: none;
-  box-shadow: none;
-  background-color: white;
-  border-radius: 10px;
-  border: 1px solid #f6bb44;
-}
-.user-profile .option-content .project-card > div .progress .progress-bar {
-  background-image: none;
-  border: none;
-  box-shadow: none;
-  background-color: #fdd055;
 }
 .user-profile .option-content .follower-row {
   border-bottom: 1px solid #fede87;

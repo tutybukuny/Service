@@ -167,6 +167,62 @@ ul {
     display: block;
 }
 
+.project-card {
+    > div {
+        border: 1px solid #C0C2C4;
+        border-radius: 10px;
+        padding-bottom: 30px;
+
+        img {
+            max-width: 100%;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        p {
+            margin-left: 10px;
+            font-weight: bold;
+            font-size: 12px;
+
+
+            &:first-of-type {
+                margin-top: 15px;
+                margin-bottom: 0;
+                font-size: 18px;
+            }
+
+            &:nth-of-type(2) {
+                margin-bottom: 0;
+                font-size: 16px;
+                font-weight: normal;
+            }
+
+            &:nth-of-type(3) {
+                font-size: 14px;
+            }
+        }
+
+        .progress {
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-bottom: 5px;
+            height: 15px;
+            background-image: none;
+            box-shadow: none;
+            background-color: white;
+            border-radius: 10px;
+            border: 1px solid @dark-yellow;
+
+            .progress-bar {
+                background-image: none;
+                border: none;
+                box-shadow: none;
+                background-color: @yellow;
+            }
+        }
+    }
+}
+
 /*
     Header
 */
@@ -432,7 +488,7 @@ ul {
                 background-color: darken(@dark-yellow, 10%);
             }
 
-            p{
+            p {
                 background-color: #5870B6;
                 color: white;
                 font-size: 10px;
@@ -457,62 +513,6 @@ ul {
     .option-content {
         font-family: Comfortaa;
         padding-top: 50px;
-
-        .project-card {
-            > div {
-                border: 1px solid #C0C2C4;
-                border-radius: 10px;
-                padding-bottom: 30px;
-
-                img {
-                    max-width: 100%;
-                    border-top-left-radius: 10px;
-                    border-top-right-radius: 10px;
-                }
-
-                p {
-                    margin-left: 10px;
-                    font-weight: bold;
-                    font-size: 12px;
-
-
-                    &:first-of-type {
-                        margin-top: 15px;
-                        margin-bottom: 0;
-                        font-size: 18px;
-                    }
-
-                    &:nth-of-type(2) {
-                        margin-bottom: 0;
-                        font-size: 16px;
-                        font-weight: normal;
-                    }
-
-                    &:nth-of-type(3) {
-                        font-size: 14px;
-                    }
-                }
-
-                .progress {
-                    margin-left: 10px;
-                    margin-right: 10px;
-                    margin-bottom: 5px;
-                    height: 15px;
-                    background-image: none;
-                    box-shadow: none;
-                    background-color: white;
-                    border-radius: 10px;
-                    border: 1px solid @dark-yellow;
-
-                    .progress-bar {
-                        background-image: none;
-                        border: none;
-                        box-shadow: none;
-                        background-color: @yellow;
-                    }
-                }
-            }
-        }
 
         .follower-row {
             border-bottom: 1px solid lighten(@yellow, 10%);
