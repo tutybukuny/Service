@@ -90,11 +90,13 @@ namespace Service.Controllers.Web
         #endregion
 
         #region User profile
+
         [HttpGet]
         public ActionResult UserProfile(int user_id)
         {
+            IsLoggedIn();
             var dic = _userRepo.UserProfile(user_id);
-            User user = (User) dic["user"];
+            var user = (User) dic["user"];
 
             if (user == null) return Index();
 
