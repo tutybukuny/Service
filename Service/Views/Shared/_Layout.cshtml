@@ -18,9 +18,9 @@
 <body>
     <header class="header container-fluid row">
         <div class="action col-md-3 col-sm-3 font-comfortaa-bold">
-            <button class="btn btn-yellow">Create</button>
-            <button class="btn btn-light-gray">Discover</button>
-        </div>
+            <a href="@Url.Action("CreateProject", "Project")"><button class="btn btn-yellow">Create</button></a>
+            <a href="@Url.Action("Discover", "Project")"><button class="btn btn-light-gray">Discover</button></a>
+</div>
         <div class="logo col-md-6 col-sm-6 col-xs-12 text-center font-bebasneue-bold">
             <a href="@Url.Action("Index", "Home")"><img src="~/Images/logo.png" /> The Project</a>
         </div>

@@ -188,7 +188,10 @@ ul {
   height: 100%;
   padding-top: 10px;
 }
-.header .action button {
+.header .action a {
+  color: black;
+}
+.header .action a button {
   font-weight: bold;
   font-size: 16px;
   -moz-transition: background-color 0.2s ease;
@@ -196,14 +199,14 @@ ul {
   -webkit-transition: background-color 0.2s ease;
   transition: background-color 0.2s ease;
 }
-.header .action button:first-of-type {
+.header .action a:first-of-type button {
   padding-left: 30px;
   padding-right: 30px;
 }
-.header .action button:first-of-type:hover {
+.header .action a:first-of-type button:hover {
   background-color: #fede87;
 }
-.header .action button:first-of-type:active {
+.header .action a:first-of-type button:active {
   background-color: #f6bb44;
 }
 .header .logo a {

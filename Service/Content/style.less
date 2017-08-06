@@ -238,24 +238,30 @@ ul {
         height: 100%;
         padding-top: 10px;
 
-        button {
-            font-weight: bold;
-            font-size: 16px;
-            -moz-transition: background-color 0.2s ease;
-            -o-transition: background-color 0.2s ease;
-            -webkit-transition: background-color 0.2s ease;
-            transition: background-color 0.2s ease;
+        a {
+            color: black;
+
+            button {
+                font-weight: bold;
+                font-size: 16px;
+                -moz-transition: background-color 0.2s ease;
+                -o-transition: background-color 0.2s ease;
+                -webkit-transition: background-color 0.2s ease;
+                transition: background-color 0.2s ease;
+            }
 
             &:first-of-type {
-                padding-left: 30px;
-                padding-right: 30px;
+                button {
+                    padding-left: 30px;
+                    padding-right: 30px;
 
-                &:hover {
-                    background-color: lighten(@yellow, 10%);
-                }
+                    &:hover {
+                        background-color: lighten(@yellow, 10%);
+                    }
 
-                &:active {
-                    background-color: @dark-yellow;
+                    &:active {
+                        background-color: @dark-yellow;
+                    }
                 }
             }
         }

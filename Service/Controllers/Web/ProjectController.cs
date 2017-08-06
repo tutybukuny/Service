@@ -52,5 +52,26 @@ namespace Service.Controllers.Web
             var projects = _repo.GetUserProjects(((User) Session["User"]).id)["projects"];
             return View(projects);
         }
+
+        #region Create Project
+
+        public ActionResult CreateProject()
+        {
+            if (!IsLoggedIn()) return RedirectToAction("Login", "Home");
+
+            return View();
+        }
+
+        #endregion
+
+        #region Discover
+
+        public ActionResult Discover()
+        {
+            IsLoggedIn();
+            return View();
+        }
+
+        #endregion
     }
 }
