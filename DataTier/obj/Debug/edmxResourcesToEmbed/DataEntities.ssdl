@@ -158,6 +158,15 @@
     <Property Name="people" Type="int" Nullable="false" />
     <Property Name="joined_people" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="ProjectRole">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="role_id" Type="int" Nullable="false" />
+    <Property Name="project_id" Type="int" Nullable="false" />
+    <Property Name="numb" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="Role">
     <Key>
       <PropertyRef Name="id" />
@@ -562,6 +571,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ProjectRole_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="1" />
+    <End Role="ProjectRole" Type="Self.ProjectRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ProjectRole">
+        <PropertyRef Name="project_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectRole_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="ProjectRole" Type="Self.ProjectRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ProjectRole">
+        <PropertyRef Name="role_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_State_Country">
     <End Role="Country" Type="Self.Country" Multiplicity="1" />
     <End Role="State" Type="Self.State" Multiplicity="*" />
@@ -663,6 +696,7 @@
     <EntitySet Name="Like" EntityType="Self.Like" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Notification" EntityType="Self.Notification" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectRole" EntityType="Self.ProjectRole" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Token" EntityType="Self.Token" Schema="dbo" store:Type="Tables" />
@@ -786,6 +820,14 @@
     <AssociationSet Name="FK_Project_User" Association="Self.FK_Project_User">
       <End Role="User" EntitySet="User" />
       <End Role="Project" EntitySet="Project" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectRole_Project" Association="Self.FK_ProjectRole_Project">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="ProjectRole" EntitySet="ProjectRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectRole_Role" Association="Self.FK_ProjectRole_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="ProjectRole" EntitySet="ProjectRole" />
     </AssociationSet>
     <AssociationSet Name="FK_State_Country" Association="Self.FK_State_Country">
       <End Role="Country" EntitySet="Country" />

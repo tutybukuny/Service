@@ -91,11 +91,14 @@ namespace Service.Controllers.Web
 
         #region User profile
 
-        public ActionResult UserProfile()
+        public ActionResult UserProfile(int user_id)
         {
-            if (!IsLoggedIn()) return Login();
+            var dic = _userRepo.UserProfile(user_id);
+            User user = (User) dic["user"];
 
-            return View((User) Session["User"]);
+            if (user == null) return Index();
+
+            return View(user);
         }
 
         #endregion

@@ -171,5 +171,18 @@ namespace BusinessTier.Repository
         }
 
         #endregion
+
+        #region User Profile
+
+        public Dictionary<string, object> UserProfile(int user_id)
+        {
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            User user = _userDao.GetById(user_id);
+            if(user == null) dic.Add("message", "No user likes this");
+            dic.Add("user", user);
+            return dic;
+        }
+
+        #endregion
     }
 }

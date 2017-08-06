@@ -223,5 +223,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ProjectRoles">
+      <EntityTypeMapping TypeName="TheProjectModel.ProjectRole">
+        <MappingFragment StoreEntitySet="ProjectRole">
+          <ScalarProperty Name="numb" ColumnName="numb" />
+          <ScalarProperty Name="project_id" ColumnName="project_id" />
+          <ScalarProperty Name="role_id" ColumnName="role_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
