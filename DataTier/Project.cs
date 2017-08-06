@@ -14,6 +14,12 @@ namespace DataTier
     
     public partial class Project
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Project()
+        {
+            this.ProjectRoles = new HashSet<ProjectRole>();
+        }
+    
         public int id { get; set; }
         public string title { get; set; }
         public string image { get; set; }
@@ -27,5 +33,8 @@ namespace DataTier
         public bool completed { get; set; }
         public int people { get; set; }
         public int joined_people { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProjectRole> ProjectRoles { get; set; }
     }
 }

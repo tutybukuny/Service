@@ -163,6 +163,15 @@
           <Property Name="people" Type="int" Nullable="false" />
           <Property Name="joined_people" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="ProjectRole">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="role_id" Type="int" Nullable="false" />
+          <Property Name="project_id" Type="int" Nullable="false" />
+          <Property Name="numb" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="id" />
@@ -567,6 +576,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProjectRole_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="ProjectRole" Type="Self.ProjectRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProjectRole">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectRole_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="ProjectRole" Type="Self.ProjectRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProjectRole">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_State_Country">
           <End Role="Country" Type="Self.Country" Multiplicity="1" />
           <End Role="State" Type="Self.State" Multiplicity="*" />
@@ -668,6 +701,7 @@
           <EntitySet Name="Like" EntityType="Self.Like" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Notification" EntityType="Self.Notification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectRole" EntityType="Self.ProjectRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Token" EntityType="Self.Token" Schema="dbo" store:Type="Tables" />
@@ -791,6 +825,14 @@
           <AssociationSet Name="FK_Project_User" Association="Self.FK_Project_User">
             <End Role="User" EntitySet="User" />
             <End Role="Project" EntitySet="Project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectRole_Project" Association="Self.FK_ProjectRole_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectRole" EntitySet="ProjectRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectRole_Role" Association="Self.FK_ProjectRole_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="ProjectRole" EntitySet="ProjectRole" />
           </AssociationSet>
           <AssociationSet Name="FK_State_Country" Association="Self.FK_State_Country">
             <End Role="Country" EntitySet="Country" />
@@ -982,6 +1024,7 @@
           <Property Name="completed" Type="Boolean" Nullable="false" />
           <Property Name="people" Type="Int32" Nullable="false" />
           <Property Name="joined_people" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ProjectRoles" Relationship="TheProjectModel.FK_ProjectRole_Project" FromRole="Project" ToRole="ProjectRole" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -989,6 +1032,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="role" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ProjectRoles" Relationship="TheProjectModel.FK_ProjectRole_Role" FromRole="Role" ToRole="ProjectRole" />
           </EntityType>
         <EntityType Name="State">
           <Key>
@@ -1641,7 +1685,49 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Token" EntitySet="Tokens" />
           </AssociationSet>
+          <EntitySet Name="ProjectRoles" EntityType="TheProjectModel.ProjectRole" />
+          <AssociationSet Name="FK_ProjectRole_Project" Association="TheProjectModel.FK_ProjectRole_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="ProjectRole" EntitySet="ProjectRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectRole_Role" Association="TheProjectModel.FK_ProjectRole_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="ProjectRole" EntitySet="ProjectRoles" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="ProjectRole">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="role_id" Type="Int32" Nullable="false" />
+          <Property Name="project_id" Type="Int32" Nullable="false" />
+          <Property Name="numb" Type="Int32" Nullable="false" />
+          </EntityType>
+        <Association Name="FK_ProjectRole_Project">
+          <End Type="TheProjectModel.Project" Role="Project" Multiplicity="1" />
+          <End Type="TheProjectModel.ProjectRole" Role="ProjectRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProjectRole">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectRole_Role">
+          <End Type="TheProjectModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="TheProjectModel.ProjectRole" Role="ProjectRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProjectRole">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1867,6 +1953,16 @@
                 <ScalarProperty Name="role1" ColumnName="role1" />
                 <ScalarProperty Name="role2" ColumnName="role2" />
                 <ScalarProperty Name="created_date" ColumnName="created_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectRoles">
+            <EntityTypeMapping TypeName="TheProjectModel.ProjectRole">
+              <MappingFragment StoreEntitySet="ProjectRole">
+                <ScalarProperty Name="numb" ColumnName="numb" />
+                <ScalarProperty Name="project_id" ColumnName="project_id" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -62,6 +62,9 @@
         <AssociationConnector Association="TheProjectModel.FK_User_Role1" ManuallyRouted="false" />
         <AssociationConnector Association="TheProjectModel.FK_User_State" ManuallyRouted="false" />
         <AssociationConnector Association="TheProjectModel.FK_Token_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TheProjectModel.ProjectRole" Width="1.5" PointX="19.5" PointY="16.125" />
+        <AssociationConnector Association="TheProjectModel.FK_ProjectRole_Project" />
+        <AssociationConnector Association="TheProjectModel.FK_ProjectRole_Role" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
