@@ -53,6 +53,20 @@ namespace Service.Controllers.Web
             return View(projects);
         }
 
+        #region View Project
+
+        public ActionResult ViewProject(int project_id)
+        {
+            var dic = _repo.GetById(project_id);
+            var project = (Project) dic["project"];
+
+            if (project == null) return RedirectToAction("Index", "Home");
+
+            return View(project);
+        }
+
+        #endregion
+
         #region Create Project
 
         public ActionResult CreateProject()

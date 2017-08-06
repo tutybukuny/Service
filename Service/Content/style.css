@@ -330,7 +330,8 @@ ul {
   height: 100%;
   width: 100%;
 }
-.home-view .project-detail p:first-of-type {
+.home-view .project-detail p a {
+  color: black;
   font-size: 16px;
 }
 .home-view .project-detail p:nth-of-type(2) {

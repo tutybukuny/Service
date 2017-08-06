@@ -13,6 +13,21 @@ namespace BusinessTier.Repository
             _dao = (ProjectDao) DaoFactory.GetDao("ProjectDao");
         }
 
+        #region Get By Id
+
+        public Dictionary<string, object> GetById(int project_id)
+        {
+            var dic = new Dictionary<string, object>();
+            var project = _dao.GetById(project_id);
+
+            if (project == null) dic.Add("message", "No project likes this!");
+            dic.Add("project", project);
+
+            return dic;
+        }
+
+        #endregion
+
         #region Get All
 
         public Dictionary<string, object> GetAll()

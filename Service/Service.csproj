@@ -376,6 +376,7 @@
     <Content Include="Views\Home\UserProfile.cshtml" />
     <Content Include="Views\Project\CreateProject.cshtml" />
     <Content Include="Views\Project\Discover.cshtml" />
+    <Content Include="Views\Project\ViewProject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

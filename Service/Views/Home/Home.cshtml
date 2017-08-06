@@ -22,12 +22,14 @@
     {
         <p class="font-comfortaa-bold">Featured Project</p>
         <div class="project-image col-md-5 col-sm-5 no-padding-left">
-            <img src="@Href(projectImage)" alt=""/>
+            <a href="@Url.Action("ViewProject", "Project")?project_id=@Model.Project.id"><img src="@Href(projectImage)" alt="" /></a>
         </div>
-    <div class="project-detail col-md-3 col-sm-3 font-comfortaa-light">
-        <p class="font-comfortaa-bold">@Model.Project.title</p>
-        <p>@(string.Format("{0} {1}", Model.User.firstname, Model.User.lastname))</p>
-        <p>@Model.Project.description</p>
-    </div>
+        <div class="project-detail col-md-3 col-sm-3 font-comfortaa-light">
+            <p class="font-comfortaa-bold">
+                <a href="@Url.Action("ViewProject", "Project")?project_id=@Model.Project.id">@Model.Project.title</a>
+            </p>
+            <p>@(string.Format("{0} {1}", Model.User.firstname, Model.User.lastname))</p>
+            <p>@Model.Project.description</p>
+        </div>
     }
 </div>

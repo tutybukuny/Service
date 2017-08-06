@@ -121,8 +121,8 @@
             projects.forEach(function(item, key) {
                 html+='<div class="project-card col-md-4">'+
                         '<div class="col-md-12 no-padding">'+
-                            '<img src="'+item.image+'" alt="" />'+
-                            '<p>'+item.title+'</p>'+
+                            '<a href="@Url.Action("ViewProject", "Project")?project_id='+item.id+'"><img src="'+item.image+'" alt="" /></a>'+
+                            '<p><a href="@Url.Action("ViewProject", "Project")?project_id='+item.id+'">'+item.title+'</a></p>'+
                             '<p>@(Model.firstname+ " " + Model.lastname)</p>'+
                             '<p>'+item.category_id+'</p>'+
                             '<p>'+item.description+'</p>'+
