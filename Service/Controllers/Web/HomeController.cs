@@ -90,7 +90,7 @@ namespace Service.Controllers.Web
         #endregion
 
         #region User profile
-
+        [HttpGet]
         public ActionResult UserProfile(int user_id)
         {
             var dic = _userRepo.UserProfile(user_id);

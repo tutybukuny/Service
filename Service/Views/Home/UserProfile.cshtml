@@ -48,19 +48,21 @@
             },
             success: function(data) {
                 var html = $('#info').html();
-                if (data.district != null) {
+                if (data.district !== null) {
                     html += data.district.name;
                 }
 
-                if (data.state != null) {
+                if (data.state !== null) {
                     html += ' ' + data.state.name;
                 }
 
-                if (data.country != null) {
+                if (data.country !== null) {
                     html += ' ' + data.country.name;
                 }
 
-                $('#info').html(html + ' - Joined @(Model.created_date.ToString("Y"))');
+                if (html !== '') html += ' - ';
+
+                $('#info').html(html + 'Joined @(Model.created_date.ToString("Y"))');
             },
             error: function(err) {
                 console.log(err);
@@ -69,12 +71,12 @@
 
         function addRole(roles) {
             var html = $('#roles').html();
-            if (@Model.role1 != null) {
-                html += '<p>' + roles[@(Model.role1-1)].role + '</p>';
+            if ('@Model.role1' !== '') {
+                html += '<p>' + roles['@(Model.role1-1)'].role + '</p>';
             }
 
-            if (@Model.role2 != null) {
-                html += '<p>' + roles[@(Model.role2-1)].role + '</p>';
+            if ('@Model.role2' !== '') {
+                html += '<p>' + roles['@(Model.role2-1)'].role + '</p>';
             }
 
             $('#roles').html(html);
