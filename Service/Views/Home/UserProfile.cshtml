@@ -18,8 +18,8 @@
     <div class="options col-md-8 col-md-offset-2 font-comfortaa-bold">
         <div class="option col-md-2 pull-left">Portfolio</div>
         <div class="option col-md-2 pull-left">Projects</div>
-        <div class="option col-md-2 pull-right">Follower</div>
-        <div class="option col-md-2 pull-right">Following</div>
+        <div class="option col-md-2 pull-right">Follower <p id="count-follower" class="pull-right"></p></div>
+        <div class="option col-md-2 pull-right">Following <p id="count-following" class="pull-right"></p></div>
     </div>
     <div class="col-md-12 clear" style="border-bottom: 1px solid #E6E6E6"></div>
     <div id="option-content-1" class="option-content col-md-8 col-md-offset-2 display-none"></div>
@@ -94,6 +94,7 @@
             });
 
             $('#option-content-4').html(html);
+            $('#count-follower').text(followers.length);
         }
 
         function loadFollowings(followings) {
@@ -110,6 +111,7 @@
             });
 
             $('#option-content-3').html(html);
+            $('#count-following').text(followings.length);
         }
 
         function loadProjects(projects) {

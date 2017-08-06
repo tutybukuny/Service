@@ -337,6 +337,17 @@ ul {
 .user-profile .options .option:active {
   background-color: #f4a913;
 }
+.user-profile .options .option p {
+  background-color: #5870B6;
+  color: white;
+  font-size: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin: 0;
+  border-radius: 4px;
+}
 .user-profile .options .selected {
   background-color: #fdd055;
 }
