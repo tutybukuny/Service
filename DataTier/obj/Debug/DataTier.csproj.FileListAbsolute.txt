@@ -45,3 +45,4 @@ D:\Learning\CSharp\Service\DataTier\bin\Debug\Ninject.xml
 D:\Learning\CSharp\Service\DataTier\bin\Debug\Ninject.Extensions.Factory.xml
 D:\Learning\CSharp\Service\DataTier\obj\Debug\DataTier.dll
 D:\Learning\CSharp\Service\DataTier\obj\Debug\DataTier.pdb
+D:\Learning\CSharp\Service\DataTier\obj\Debug\DataTier.csprojResolveAssemblyReference.cache

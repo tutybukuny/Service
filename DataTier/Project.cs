@@ -25,5 +25,7 @@ namespace DataTier
         public Nullable<int> district_id { get; set; }
         public Nullable<System.DateTime> created_date { get; set; }
         public bool completed { get; set; }
+        public int people { get; set; }
+        public int joined_people { get; set; }
     }
 }

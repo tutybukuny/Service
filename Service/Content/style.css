@@ -347,34 +347,50 @@ ul {
   font-family: Comfortaa;
   padding-top: 50px;
 }
-.user-profile .option-content .project-card div {
+.user-profile .option-content .project-card > div {
   border: 1px solid #C0C2C4;
   border-radius: 10px;
   padding-bottom: 30px;
 }
-.user-profile .option-content .project-card div img {
+.user-profile .option-content .project-card > div img {
   max-width: 100%;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
-.user-profile .option-content .project-card div p {
+.user-profile .option-content .project-card > div p {
   margin-left: 10px;
+  font-weight: bold;
+  font-size: 12px;
 }
-.user-profile .option-content .project-card div p:first-of-type {
+.user-profile .option-content .project-card > div p:first-of-type {
   margin-top: 15px;
   margin-bottom: 0;
   font-size: 18px;
-  font-weight: bold;
 }
-.user-profile .option-content .project-card div p:nth-of-type(2) {
+.user-profile .option-content .project-card > div p:nth-of-type(2) {
   margin-bottom: 0;
   font-size: 16px;
+  font-weight: normal;
 }
-.user-profile .option-content .project-card div p:nth-of-type(3) {
+.user-profile .option-content .project-card > div p:nth-of-type(3) {
   font-size: 14px;
 }
-.user-profile .option-content .project-card div p:nth-of-type(4) {
-  font-size: 12px;
+.user-profile .option-content .project-card > div .progress {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  height: 15px;
+  background-image: none;
+  box-shadow: none;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid #f6bb44;
+}
+.user-profile .option-content .project-card > div .progress .progress-bar {
+  background-image: none;
+  border: none;
+  box-shadow: none;
+  background-color: #fdd055;
 }
 .user-profile .option-content .follower-row {
   border-bottom: 1px solid #fede87;

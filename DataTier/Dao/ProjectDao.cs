@@ -94,7 +94,10 @@ namespace DataTier.Dao
                         image = row.image,
                         state_id = row.state_id,
                         title = row.title,
-                        user_id = row.user_id
+                        user_id = row.user_id,
+                        completed = row.completed,
+                        joined_people = row.joined_people,
+                        people = row.people
                     });
                 }
             }
@@ -122,7 +125,10 @@ namespace DataTier.Dao
                         image = row.image,
                         state_id = row.state_id,
                         title = row.title,
-                        user_id = row.user_id
+                        user_id = row.user_id,
+                        completed = row.completed,
+                        joined_people = row.joined_people,
+                        people = row.people
                     };
             }
 
@@ -152,7 +158,10 @@ namespace DataTier.Dao
                         image = row.image,
                         state_id = row.state_id,
                         title = row.title,
-                        user_id = row.user_id
+                        user_id = row.user_id,
+                        completed = row.completed,
+                        joined_people = row.joined_people,
+                        people = row.people
                     });
                 }
             }
@@ -180,7 +189,10 @@ namespace DataTier.Dao
                         image = row.image,
                         state_id = row.state_id,
                         title = row.title,
-                        user_id = row.user_id
+                        user_id = row.user_id,
+                        completed = row.completed,
+                        joined_people = row.joined_people,
+                        people = row.people
                     };
             }
 

@@ -84,13 +84,13 @@
             var html = $('#option-content-4').html();
             followers.forEach(function(item, key) {
                 html += '<div class="follower-row col-md-6 col-md-offset-3 no-padding">'+
-                    '<img src="'+item.avatar+'" alt="" class="col-md-2 no-padding" />'+
-                    '<div class="col-md-6"><p>'+item.firstname+' '+item.lastname+'</p><p>'+(item.about_me!==null?item.about_me:'')+'</p></div>'+
-                    '<div class="col-md-4 text-left no-padding">'+
-                    '<img src="/Images/block-icon.png" alt="" class="pull-left" />'+
-                    '<button class="pull-right">Following</button>'+
-                    '</div>'+
-                    '</div>';
+                            '<img src="'+item.avatar+'" alt="" class="col-md-2 no-padding" />'+
+                            '<div class="col-md-6"><p>'+item.firstname+' '+item.lastname+'</p><p>'+(item.about_me!==null?item.about_me:'')+'</p></div>'+
+                            '<div class="col-md-4 text-left no-padding">'+
+                                '<img src="/Images/block-icon.png" alt="" class="pull-left" />'+
+                                '<button class="pull-right">Following</button>'+
+                            '</div>'+
+                        '</div>';
             });
 
             $('#option-content-4').html(html);
@@ -100,13 +100,13 @@
             var html = $('#option-content-3').html();
             followings.forEach(function(item, key) {
                 html += '<div class="follower-row col-md-6 col-md-offset-3 no-padding">'+
-                    '<img src="'+item.avatar+'" alt="" class="col-md-2 no-padding" />'+
-                    '<div class="col-md-6"><p>'+item.firstname+' '+item.lastname+'</p><p>'+(item.about_me!==null?item.about_me:'')+'</p></div>'+
-                    '<div class="col-md-4 text-left no-padding">'+
-                    '<img src="/Images/block-icon.png" alt="" class="pull-left" />'+
-                    '<button class="pull-right">Following</button>'+
-                    '</div>'+
-                    '</div>';
+                            '<img src="'+item.avatar+'" alt="" class="col-md-2 no-padding" />'+
+                            '<div class="col-md-6"><p>'+item.firstname+' '+item.lastname+'</p><p>'+(item.about_me!==null?item.about_me:'')+'</p></div>'+
+                            '<div class="col-md-4 text-left no-padding">'+
+                                '<img src="/Images/block-icon.png" alt="" class="pull-left" />'+
+                                '<button class="pull-right">Following</button>'+
+                            '</div>'+
+                        '</div>';
             });
 
             $('#option-content-3').html(html);
@@ -122,6 +122,12 @@
                             '<p>@(Model.firstname+ " " + Model.lastname)</p>'+
                             '<p>'+item.category_id+'</p>'+
                             '<p>'+item.description+'</p>'+
+                            '<div class="progress">'+
+                                '<div class="progress-bar" role="progressbar" aria-valuenow="'+(item.joined_people/item.people*100)+'"'+
+                                    'aria-valuemin="0" aria-valuemax="100" style="width:'+(item.joined_people/item.people*100)+'%">'+
+                                '</div>'+
+                            '</div>'+
+                            '<p>'+item.joined_people+' of '+item.people+' joined</p>'+
                         '</div>'+
                       '</div>';
             });

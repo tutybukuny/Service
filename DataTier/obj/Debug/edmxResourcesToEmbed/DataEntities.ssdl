@@ -146,7 +146,7 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="title" Type="nvarchar" MaxLength="250" Nullable="false" />
-    <Property Name="image" Type="varchar" MaxLength="250" />
+    <Property Name="image" Type="varchar" MaxLength="250" Nullable="false" />
     <Property Name="category_id" Type="int" Nullable="false" />
     <Property Name="description" Type="nvarchar" MaxLength="400" />
     <Property Name="user_id" Type="int" Nullable="false" />
@@ -155,6 +155,8 @@
     <Property Name="district_id" Type="int" />
     <Property Name="completed" Type="bit" Nullable="false" />
     <Property Name="created_date" Type="datetime" />
+    <Property Name="people" Type="int" Nullable="false" />
+    <Property Name="joined_people" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Role">
     <Key>
@@ -191,7 +193,7 @@
     <Property Name="lastname" Type="nvarchar" MaxLength="150" Nullable="false" />
     <Property Name="about_me" Type="nvarchar" MaxLength="450" />
     <Property Name="postal_code" Type="varchar" MaxLength="50" />
-    <Property Name="avatar" Type="nvarchar" MaxLength="250" />
+    <Property Name="avatar" Type="nvarchar" MaxLength="250" Nullable="false" />
     <Property Name="birthday" Type="date" />
     <Property Name="country_id" Type="int" />
     <Property Name="state_id" Type="int" />
