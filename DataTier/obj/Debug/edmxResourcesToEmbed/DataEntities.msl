@@ -35,7 +35,7 @@
       <EntityTypeMapping TypeName="TheProjectModel.Category">
         <MappingFragment StoreEntitySet="Category">
           <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="category1" ColumnName="category" />
+          <ScalarProperty Name="category" ColumnName="category" />
           <ScalarProperty Name="description" ColumnName="description" />
         </MappingFragment>
       </EntityTypeMapping>

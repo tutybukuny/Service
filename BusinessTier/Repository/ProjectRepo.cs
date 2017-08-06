@@ -6,11 +6,13 @@ namespace BusinessTier.Repository
 {
     public class ProjectRepo : IRepo
     {
-        private readonly ProjectDao _dao;
+        private readonly ProjectDao _projectDao;
+        private readonly CategoryDao _categoryDao;
 
         public ProjectRepo()
         {
-            _dao = (ProjectDao) DaoFactory.GetDao("ProjectDao");
+            _projectDao = (ProjectDao) DaoFactory.GetDao("ProjectDao");
+            _categoryDao = (CategoryDao) DaoFactory.GetDao("CategoryDao");
         }
 
         #region Get By Id
@@ -18,7 +20,7 @@ namespace BusinessTier.Repository
         public Dictionary<string, object> GetById(int project_id)
         {
             var dic = new Dictionary<string, object>();
-            var project = _dao.GetById(project_id);
+            var project = _projectDao.GetById(project_id);
 
             if (project == null) dic.Add("message", "No project likes this!");
             dic.Add("project", project);
@@ -33,7 +35,7 @@ namespace BusinessTier.Repository
         public Dictionary<string, object> GetAll()
         {
             var dic = new Dictionary<string, object>();
-            var projects = _dao.GetAll();
+            var projects = _projectDao.GetAll();
 
             if (projects == null) dic.Add("message", "There are no project!");
 
@@ -50,7 +52,7 @@ namespace BusinessTier.Repository
         {
             var dic = new Dictionary<string, object>();
 
-            var project = _dao.GetUserFirstProject(user_id);
+            var project = _projectDao.GetUserFirstProject(user_id);
 
             if (project == null) dic.Add("message", "User doesn't have project!");
 
@@ -66,10 +68,25 @@ namespace BusinessTier.Repository
         public Dictionary<string, object> GetUserProjects(int user_id)
         {
             var dic = new Dictionary<string, object>();
-            var projects = _dao.GetUserProjects(user_id);
+            var projects = _projectDao.GetUserProjects(user_id);
 
             if (projects == null) dic.Add("message", "User does'nt have project!");
             dic.Add("projects", projects);
+
+            return dic;
+        }
+
+        #endregion
+
+        #region Get Categories
+
+        public Dictionary<string, object> GetCategories()
+        {
+            var dic = new Dictionary<string, object>();
+            var list = _categoryDao.GetAll();
+
+            dic.Add("message", list == null ? "There is no category!" : "Successful!");
+            dic.Add("categories", list);
 
             return dic;
         }

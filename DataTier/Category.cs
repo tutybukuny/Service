@@ -15,7 +15,7 @@ namespace DataTier
     public partial class Category
     {
         public int id { get; set; }
-        public string category1 { get; set; }
+        public string category { get; set; }
         public string description { get; set; }
     }
 }

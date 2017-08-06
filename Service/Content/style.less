@@ -401,6 +401,65 @@ ul {
 }
 
 /*
+    Discover
+*/
+
+.discover-view {
+    .discover-filter {
+        > div {
+            margin-bottom: 30px;
+
+            button {
+                padding-left: 10px !important;
+                padding-right: 10px !important;
+                text-align: left;
+                background-color: white;
+                border-bottom: 1px solid black;
+                border-radius: 10px;
+
+                span {
+                    color: @yellow;
+                    float: right;
+                }
+            }
+
+            ul {
+                width: 100%;
+                padding: 0;
+
+                li {
+                    a {
+                        padding-left: 10px;
+                        padding-right: 10px;
+
+                        &:first-of-type{
+                            border-top-left-radius: 2px;
+                            border-top-right-radius: 2px;
+                        }
+
+                        &:last-of-type{
+                            border-bottom-left-radius: 2px;
+                            border-bottom-right-radius: 2px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .open {
+            a {
+                background-image: none;
+
+                &:hover {
+                    background-color: #4D9CFB;
+                    color: white;
+                }
+            }
+        }
+    }
+}
+
+/*
     Home
 */
 

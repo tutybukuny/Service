@@ -86,6 +86,7 @@
     <Compile Include="Country.cs">
       <DependentUpon>DataEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Dao\CategoryDao.cs" />
     <Compile Include="Dao\CountryDao.cs" />
     <Compile Include="Dao\DistrictDao.cs" />
     <Compile Include="Dao\FollowingDao.cs" />

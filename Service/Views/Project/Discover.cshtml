@@ -1,7 +1,79 @@
 ﻿@model DataTier.Project
 
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Discovery";
 }
 
-<h2>title</h2>
+<div class="discover-view col-md-12 col-sm-12 no-padding">
+    <div class="discover-filter col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2 no-padding">
+        <div class="category-filter col-md-6 col-sm-6 no-padding-left">
+            <button class="btn dropdown-toggle col-md-12 col-sm-12 no-padding" type="button" data-toggle="dropdown" value="0">
+                Everything <span class="glyphicon glyphicon-chevron-down"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li value="0"><a>Everything</a></li>
+            </ul>
+        </div>
+        <div class="sort col-md-6 col-sm-6 no-padding">
+            <button class="btn dropdown-toggle col-md-12 col-sm-12 no-padding" type="button" data-toggle="dropdown">
+                Popularity (viewed) <span class="glyphicon glyphicon-chevron-down"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li value="0"><a>Popularity (viewed)</a></li>
+                <li value="1"><a>Most Applied</a></li>
+                <li value="2"><a>Newest</a></li>
+                <li value="3"><a>Ending Soonest</a></li>
+                <li value="4"><a>Primary Role</a></li>
+                <li value="5"><a>Secondary Role</a></li>
+            </ul>
+        </div>
+        <div class="role-filter col-md-6 col-sm-6 no-padding-left">
+            <button class="btn dropdown-toggle col-md-12 col-sm-12 no-padding" value="0" type="button" data-toggle="dropdown">
+                Role Available <span class="glyphicon glyphicon-chevron-down"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li value="0">
+                    <a>Role Available</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    var span = '<span class="glyphicon glyphicon-chevron-down"></span>';
+    $(document).ready(function () {
+
+        getCategories(loadCategories);
+        getRoles(loadRoles);
+
+        function loadCategories(categories) {
+            categories.forEach(function (item, index) {
+                var li = $('<li></li>').val(item.id).html('<a>' + item.category + '</a>');
+                $('.category-filter ul').first().append(li);
+            });
+
+            $('.category-filter li a').click(function () {
+                $('.category-filter button').first().html($(this).text() + span);
+                $('.category-filter button').val($(this).parent().val());
+            });
+        }
+
+        function loadRoles(roles) {
+            roles.forEach(function (item, index) {
+                var li = $('<li></li>').val(item.id).html('<a>' + item.role + '</a>');
+                $('.role-filter ul').first().append(li);
+            });
+
+            $('.role-filter li a').click(function () {
+                $('.role-filter button').first().html($(this).text() + span);
+                $('.role-filter button').val($(this).parent().val());
+            });
+        }
+    });
+
+    $('.sort li a').click(function () {
+        $('.sort button').first().html($(this).text() + span);
+        $('.sort button').val($(this).parent().val());
+    });
+</script>

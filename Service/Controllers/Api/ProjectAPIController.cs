@@ -12,7 +12,7 @@ namespace Service.Controllers.Api
 
         public ProjectApiController()
         {
-            _repo = (ProjectRepo) RepoFactory.GetRepo("ProjectRepo");
+            _repo = (ProjectRepo)RepoFactory.GetRepo("ProjectRepo");
         }
 
         /// <summary>
@@ -48,6 +48,17 @@ namespace Service.Controllers.Api
         public Dictionary<string, object> GetProjects()
         {
             return _repo.GetAll();
+        }
+        
+        /// <summary>
+        /// Get all categories
+        /// </summary>
+        /// <returns></returns>
+        [ActionName("GetCategories")]
+        [HttpGet]
+        public Dictionary<string, object> GetCategories()
+        {
+            return _repo.GetCategories();
         }
     }
 }
