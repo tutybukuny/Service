@@ -94,7 +94,25 @@ function getCategories(callback) {
             callback(data.categories);
         },
         error: function(err) {
-            console.log(err)
+            console.log(err);
+        }
+    });
+}
+
+function getUserInfo(user_id, callback) {
+    $.ajax({
+        async: false,
+        url: 'http://localhost:21790/api/ProjectApi/GetCategories',
+        type: 'get',
+        dataType: 'json',
+        data: {
+            'user_id': user_id
+        },
+        success: function (data) {
+            callback(data.user);
+        },
+        error: function (err) {
+            console.log(err);
         }
     });
 }

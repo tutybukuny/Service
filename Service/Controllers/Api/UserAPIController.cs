@@ -71,5 +71,17 @@ namespace Service.Controllers.Api
         {
             return _repo.Register(profile);
         }
+
+        /// <summary>
+        /// Get user's info
+        /// </summary>
+        /// <param name="user_id"></param>
+        /// <returns></returns>
+        [ActionName("GetUserInfo")]
+        [HttpGet]
+        public Dictionary<string, object> GetUserInfo(int? user_id)
+        {
+            return _repo.GetUserInfo(user_id);
+        }
     }
 }

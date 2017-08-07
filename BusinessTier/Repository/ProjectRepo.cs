@@ -6,8 +6,8 @@ namespace BusinessTier.Repository
 {
     public class ProjectRepo : IRepo
     {
-        private readonly ProjectDao _projectDao;
         private readonly CategoryDao _categoryDao;
+        private readonly ProjectDao _projectDao;
 
         public ProjectRepo()
         {
@@ -87,6 +87,21 @@ namespace BusinessTier.Repository
 
             dic.Add("message", list == null ? "There is no category!" : "Successful!");
             dic.Add("categories", list);
+
+            return dic;
+        }
+
+        #endregion
+
+        #region Get Filtered Projects
+
+        public Dictionary<string, object> GetFilteredProject(int category_id, int sort_id, int role_id)
+        {
+            var dic = new Dictionary<string, object>();
+            var list = _projectDao.GetFilteredProjects(category_id, sort_id, role_id);
+
+            if (list == null) dic.Add("message", "No project likes this!");
+            dic.Add("projects", list);
 
             return dic;
         }

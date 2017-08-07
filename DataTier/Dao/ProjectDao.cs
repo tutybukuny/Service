@@ -199,6 +199,50 @@ namespace DataTier.Dao
             return project;
         }
 
+        public List<Project> GetFilteredProjects(int category_id, int sort_id, int role_id)
+        {
+            List<Project> list = null;
+
+            using (var entities = new TheProjectEntities())
+            {
+                var projects = from p in entities.Projects
+                    join pr in entities.ProjectRoles on p.id equals pr.project_id
+                    join r in entities.Roles on pr.role_id equals r.id
+                    where p.category_id == (category_id == 0 ? p.category_id : category_id)
+                          && r.id == (role_id == 0 ? r.id : role_id)
+                    group p by p.id
+                    into prj
+                    select prj;
+
+                foreach (var rows in projects)
+                foreach (var row in rows)
+                {
+                    if (list == null) list = new List<Project>();
+
+                    list.Add(new Project
+                    {
+                        id = row.id,
+                        category_id = row.category_id,
+                        country_id = row.country_id,
+                        created_date = row.created_date,
+                        description = row.description,
+                        district_id = row.district_id,
+                        image = row.image,
+                        state_id = row.state_id,
+                        title = row.title,
+                        user_id = row.user_id,
+                        completed = row.completed,
+                        joined_people = row.joined_people,
+                        people = row.people
+                    });
+
+                    break;
+                }
+            }
+
+            return list;
+        }
+
         #endregion
     }
 }

@@ -176,10 +176,25 @@ namespace BusinessTier.Repository
 
         public Dictionary<string, object> UserProfile(int user_id)
         {
-            Dictionary<string, object> dic = new Dictionary<string, object>();
-            User user = _userDao.GetById(user_id);
-            if(user == null) dic.Add("message", "No user likes this");
+            var dic = new Dictionary<string, object>();
+            var user = _userDao.GetById(user_id);
+            if (user == null) dic.Add("message", "No user likes this");
             dic.Add("user", user);
+            return dic;
+        }
+
+        #endregion
+
+        #region User Info
+
+        public Dictionary<string, object> GetUserInfo(int? user_id)
+        {
+            var dic = new Dictionary<string, object>();
+            var user = _userDao.GetById(user_id);
+
+            if (user == null) dic.Add("message", "No user likes this!");
+            dic.Add("user", user);
+
             return dic;
         }
 

@@ -12,7 +12,7 @@ namespace Service.Controllers.Api
 
         public ProjectApiController()
         {
-            _repo = (ProjectRepo)RepoFactory.GetRepo("ProjectRepo");
+            _repo = (ProjectRepo) RepoFactory.GetRepo("ProjectRepo");
         }
 
         /// <summary>
@@ -49,9 +49,9 @@ namespace Service.Controllers.Api
         {
             return _repo.GetAll();
         }
-        
+
         /// <summary>
-        /// Get all categories
+        ///     Get all categories
         /// </summary>
         /// <returns></returns>
         [ActionName("GetCategories")]
@@ -59,6 +59,20 @@ namespace Service.Controllers.Api
         public Dictionary<string, object> GetCategories()
         {
             return _repo.GetCategories();
+        }
+
+        /// <summary>
+        ///     Get all projects that match filter
+        /// </summary>
+        /// <param name="category_id">category's id</param>
+        /// <param name="sort_id">sort order</param>
+        /// <param name="role_id">role's id</param>
+        /// <returns></returns>
+        [ActionName("GetFilteredProjects")]
+        [HttpGet]
+        public Dictionary<string, object> GetFilteredProjects(int category_id, int sort_id, int role_id)
+        {
+            return _repo.GetFilteredProject(category_id, sort_id, role_id);
         }
     }
 }

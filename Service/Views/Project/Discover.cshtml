@@ -15,7 +15,7 @@
             </ul>
         </div>
         <div class="sort col-md-6 col-sm-6 no-padding">
-            <button class="btn dropdown-toggle col-md-12 col-sm-12 no-padding" type="button" data-toggle="dropdown">
+            <button class="btn dropdown-toggle col-md-12 col-sm-12 no-padding" type="button" data-toggle="dropdown" value="0">
                 Popularity (viewed) <span class="glyphicon glyphicon-chevron-down"></span>
             </button>
             <ul class="dropdown-menu">
@@ -38,16 +38,28 @@
             </ul>
         </div>
     </div>
+    <div class="projects col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2 no-padding"></div>
 </div>
 
 <script>
     var span = '<span class="glyphicon glyphicon-chevron-down"></span>';
+    var cats;
+
     $(document).ready(function () {
 
         getCategories(loadCategories);
         getRoles(loadRoles);
 
+        $('.sort li a').click(function () {
+            $('.sort button').first().html($(this).text() + span);
+            $('.sort button').val($(this).parent().val());
+
+            searchProjects();
+        });
+
         function loadCategories(categories) {
+            cats = categories;
+
             categories.forEach(function (item, index) {
                 var li = $('<li></li>').val(item.id).html('<a>' + item.category + '</a>');
                 $('.category-filter ul').first().append(li);
@@ -56,6 +68,8 @@
             $('.category-filter li a').click(function () {
                 $('.category-filter button').first().html($(this).text() + span);
                 $('.category-filter button').val($(this).parent().val());
+
+                searchProjects();
             });
         }
 
@@ -68,12 +82,60 @@
             $('.role-filter li a').click(function () {
                 $('.role-filter button').first().html($(this).text() + span);
                 $('.role-filter button').val($(this).parent().val());
+
+                searchProjects();
             });
         }
     });
 
-    $('.sort li a').click(function () {
-        $('.sort button').first().html($(this).text() + span);
-        $('.sort button').val($(this).parent().val());
-    });
+    function searchProjects() {
+        var category_id = $('.category-filter button').first().val();
+        var sort_id = $('.sort button').first().val();
+        var role_id = $('.role-filter button').first().val();
+
+        $.ajax({
+            url: '@(Request.Url.Scheme + Uri.SchemeDelimiter + Request.Url.Host +
+                        (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port))/' + 'api' + '@Url.Action("GetFilteredProjects", "ProjectApi")',
+            type: "get",
+            dataType: 'json',
+            data: {
+                'category_id': category_id,
+                'sort_id': sort_id,
+                'role_id': role_id
+            },
+            success: function (data) {
+                var projects = data.projects;
+                if (projects === null) {
+                    $('.discover-view .projects').first().html('');
+                } else
+                    projects.forEach(function (item, index) {
+                        var html = $('.discover-view .projects').first().html();
+                        html += '<div class="project-card col-md-4">' +
+                            '<div class="col-md-12 no-padding">' +
+                            '<a href="@Url.Action("ViewProject", "Project")?project_id=' + item.id + '"><img src="' + item.image + '" alt="" /></a>' +
+                            '<p><a href="@Url.Action("ViewProject", "Project")?project_id=' + item.id + '">' + item.title + '</a></p>' +
+                            '<p id="project-' + item.id + '"></p>' +
+                            '<p>' + item.category_id + '</p>' +
+                            '<p>' + item.description + '</p>' +
+                            '<div class="progress">' +
+                            '<div class="progress-bar" role="progressbar" aria-valuenow="' + (item.joined_people / item.people * 100) + '"' +
+                            'aria-valuemin="0" aria-valuemax="100" style="width:' + (item.joined_people / item.people * 100) + '%">' +
+                            '</div>' +
+                            '</div>' +
+                            '<p>' + item.joined_people + ' of ' + item.people + ' joined</p>' +
+                            '</div>' +
+                            '</div>';
+                        $('.discover-view .projects').first().html(html);
+                        getUserInfo(item.user_id,
+                            function (user) {
+                                console.log(user);
+                                $('#project-' + item.id).text(user.firstname + ' ' + user.lastname);
+                            });
+                    });
+            },
+            error: function (err) {
+                console.log(err.message);
+            }
+        });
+    }
 </script>

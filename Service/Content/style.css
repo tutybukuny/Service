@@ -129,6 +129,9 @@ ul {
 .display-block {
   display: block;
 }
+.project-card {
+  margin-bottom: 30px;
+}
 .project-card > div {
   border: 1px solid #C0C2C4;
   border-radius: 10px;
