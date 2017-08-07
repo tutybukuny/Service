@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 using BusinessTier.Factory;
 using BusinessTier.Repository;
@@ -91,7 +92,7 @@ namespace Service.Controllers.Web
 
         #region User profile
 
-        [HttpGet]
+        [System.Web.Mvc.HttpGet]
         public ActionResult UserProfile(int user_id)
         {
             IsLoggedIn();
@@ -119,7 +120,7 @@ namespace Service.Controllers.Web
         /// </summary>
         /// <param name="info">user's info</param>
         /// <returns></returns>
-        [HttpPost]
+        [System.Web.Mvc.HttpPost]
         public ActionResult Register(User info)
         {
             var dic = _userRepo.Register(info);
@@ -153,7 +154,7 @@ namespace Service.Controllers.Web
         /// </summary>
         /// <param name="info"></param>
         /// <returns></returns>
-        [HttpPost]
+        [System.Web.Mvc.HttpPost]
         public ActionResult Login(LoginViewModel info)
         {
             if (string.IsNullOrEmpty(info.User.email) || string.IsNullOrEmpty(info.User.password)) return View();
@@ -179,6 +180,37 @@ namespace Service.Controllers.Web
             Session["Token"] = token;
 
             return Index();
+        }
+
+        #endregion
+
+        #region Setting
+
+        public ActionResult Setting()
+        {
+            int? action = Convert.ToInt32(Request.QueryString["action"]);
+            if (!IsLoggedIn()) return Index();
+
+            switch (action)
+            {
+                case 1:
+                    ViewBag.AccountDetails = true;
+                    break;
+                case 2:
+                    ViewBag.EditProfile = true;
+                    break;
+                case 3:
+                    ViewBag.Notifications = true;
+                    break;
+                case 4:
+                    ViewBag.BlockedUsers = true;
+                    break;
+                default:
+                    ViewBag.EditProfile = true;
+                    break;
+            }
+
+            return View();
         }
 
         #endregion

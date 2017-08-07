@@ -51,8 +51,7 @@
   margin-right: 0 !important;
 }
 .no-margin {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
+  margin: 0 !important;
 }
 .no-padding-left {
   padding-left: 0 !important;
@@ -61,8 +60,7 @@
   padding-right: 0 !important;
 }
 .no-padding {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+  padding: 0 !important;
 }
 a {
   text-decoration: none;
@@ -77,8 +75,7 @@ a:visited {
   text-decoration: none;
 }
 ul {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+  padding: 0 !important;
   list-style-type: none;
 }
 .btn:focus {
@@ -367,6 +364,49 @@ ul {
 .discover-view .discover-filter .open a:hover {
   background-color: #4D9CFB;
   color: white;
+}
+/*
+    Setting
+*/
+.setting-view {
+  font-family: Comfortaa;
+}
+.setting-view .above {
+  padding-left: 30px !important;
+  border-bottom: 2px solid #D7D7D7;
+}
+.setting-view .above h1 {
+  margin-bottom: 50px;
+}
+.setting-view .above .option {
+  float: left;
+  padding: 20px;
+  -moz-transition: background-color 0.2s linear;
+  -o-transition: background-color 0.2s linear;
+  -webkit-transition: background-color 0.2s linear;
+  transition: background-color 0.2s linear;
+}
+.setting-view .above .option:hover {
+  background-color: #fdd055;
+}
+.setting-view .above .option:active {
+  background-color: #fcbb09;
+}
+.setting-view .above .option p {
+  margin: 0 !important;
+  font-weight: 900;
+}
+.setting-view .above .selected {
+  border: 1px solid #D7D7D7;
+  border-bottom: none;
+  color: #5870B6;
+  padding-bottom: 17px;
+}
+.setting-view .above .selected:hover {
+  background-color: white;
+}
+.setting-view .above .selected p {
+  border-bottom: 2px solid #5870B6;
 }
 /*
     Home
