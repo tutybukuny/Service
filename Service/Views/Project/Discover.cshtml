@@ -105,9 +105,8 @@
             },
             success: function (data) {
                 var projects = data.projects;
-                if (projects === null) {
-                    $('.discover-view .projects').first().html('');
-                } else
+                $('.discover-view .projects').first().html('');
+                if (projects !== null)
                     projects.forEach(function (item, index) {
                         var html = $('.discover-view .projects').first().html();
                         html += '<div class="project-card col-md-4">' +
@@ -128,7 +127,6 @@
                         $('.discover-view .projects').first().html(html);
                         getUserInfo(item.user_id,
                             function (user) {
-                                console.log(user);
                                 $('#project-' + item.id).text(user.firstname + ' ' + user.lastname);
                             });
                     });
