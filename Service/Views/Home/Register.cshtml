@@ -4,6 +4,8 @@
     ViewBag.Title = "title";
 }
 
+<script src="~/Scripts/jquery.validate.min.js"></script>
+
 <div class="my-form col-md-4 col-sm-4 col-xs-6 col-md-offset-4 col-sm-offset-4 col-xs-offset-3">
     @if (ViewBag.Success != null)
     {
@@ -16,19 +18,19 @@
         using (Html.BeginForm())
         {
             <p>Log In</p>
-            @Html.TextBoxFor(m => m.firstname, new {@class = "form-control", placeholder = "First name"})
-            @Html.TextBoxFor(m => m.lastname, new {@class = "form-control", placeholder = "Last name"})
-            @Html.TextBoxFor(m => m.email, new {@class = "form-control", placeholder = "Email"})
-            <input type="text" id="re-email" class="form-control" placeholder="Re-enter email"/>
-            @Html.TextBoxFor(m => m.password, new {@class = "form-control", type = "password", placeholder = "Password"})
-            <input type="password" id="re-password" class="form-control" placeholder="Re-enter password"/>
+            @Html.TextBoxFor(m => m.firstname, new { @class = "form-control", placeholder = "First name" })
+            @Html.TextBoxFor(m => m.lastname, new { @class = "form-control", placeholder = "Last name" })
+            @Html.TextBoxFor(m => m.email, new { @class = "form-control", placeholder = "Email" })
+            <input type="text" name="re_email" id="re_email" class="form-control" placeholder="Re-enter email" />
+            @Html.TextBoxFor(m => m.password, new { @class = "form-control", type = "password", placeholder = "Password" })
+            <input type="password" name="re_password" id="re_password" class="form-control" placeholder="Re-enter password" />
             <p class="red-text">Red border is the properties cannot be empty!</p>
-            <input type="submit" class="btn btn-yellow" value="Become a member"/>
+            <input type="submit" class="btn btn-yellow" value="Become a member" />
             if (ViewBag.Message != null)
             {
                 <p class="red-text">@ViewBag.Message</p>
             }
-            
+
             if (ViewBag.Html != null)
             {
                 @ViewBag.Html
@@ -38,34 +40,40 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-        $(':input[type="submit"]').prop("disabled", true);
-        $('#firstname').focusout(checkEmpty);
-        $('#lastname').focusout(checkEmpty);
-        $('#email').focusout(checkEmpty);
-        $('#password').focusout(checkEmpty);
-        $('#re-email').focusout(checkEmpty);
-        $('#re-password').focusout(checkEmpty);
-
-        function checkEmpty() {
-            if ($(this).val() === '') {
-                $(this).addClass('error-border');
-            } else {
-                $(this).removeClass('error-border');
+    $(document).ready(function () {
+        $('form').validate({
+            rules: {
+                firstname: 'required',
+                lastname: 'required',
+                email: 'required',
+                password: {
+                    required: true,
+                    minlength: 8
+                },
+                re_email: {
+                    equalTo: '#email'
+                },
+                re_password: {
+                    equalTo: '#password'
+                }
+            },
+            messages: {
+                firstname: "Please enter your firstname",
+                lastname: "Please enter your lastname",
+                password: {
+                    required: "Please provide a password",
+                    minlength: "Your password must be at least 8 characters long"
+                },
+                re_email: {
+                    equalTo: 'Not match email'
+                },
+                re_password: {
+                    equalTo: "Not match password"
+                }
+            },
+            submitHandler: function (form) {
+                form.submit();
             }
-
-            checkValid();
-        }
-
-        function checkValid() {
-            if ($('#firstname').val() !== '' &&
-                $('#lastname').val() !== '' &&
-                $('#email').val() !== '' &&
-                $('#password').val() !== '' &&
-                $('#email').val() === $('#re-email').val() &&
-                $('#password').val() === $('#re-password').val()) {
-                $(':input[type="submit"]').prop("disabled", false);
-            } else $(':input[type="submit"]').prop("disabled", true);
-        }
+        });
     });
 </script>

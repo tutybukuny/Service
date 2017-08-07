@@ -297,6 +297,10 @@ ul {
   border-radius: 10px;
   padding-top: 20px;
   padding-bottom: 40px;
+  font-family: Comfortaa;
+}
+.my-form .error {
+  color: red;
 }
 .my-form .form-control {
   margin-bottom: 15px;
