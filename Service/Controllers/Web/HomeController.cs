@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web;
-using System.Web.Http;
 using System.Web.Mvc;
 using BusinessTier.Factory;
 using BusinessTier.Repository;
@@ -92,7 +91,7 @@ namespace Service.Controllers.Web
 
         #region User profile
 
-        [System.Web.Mvc.HttpGet]
+        [HttpGet]
         public ActionResult UserProfile(int user_id)
         {
             IsLoggedIn();
@@ -120,7 +119,7 @@ namespace Service.Controllers.Web
         /// </summary>
         /// <param name="info">user's info</param>
         /// <returns></returns>
-        [System.Web.Mvc.HttpPost]
+        [HttpPost]
         public ActionResult Register(User info)
         {
             var dic = _userRepo.Register(info);
@@ -154,7 +153,7 @@ namespace Service.Controllers.Web
         /// </summary>
         /// <param name="info"></param>
         /// <returns></returns>
-        [System.Web.Mvc.HttpPost]
+        [HttpPost]
         public ActionResult Login(LoginViewModel info)
         {
             if (string.IsNullOrEmpty(info.User.email) || string.IsNullOrEmpty(info.User.password)) return View();
@@ -191,6 +190,9 @@ namespace Service.Controllers.Web
             int? action = Convert.ToInt32(Request.QueryString["action"]);
             if (!IsLoggedIn()) return Index();
 
+            var user = (User) Session["User"];
+            var m = new SettingViewModel {User = user};
+
             switch (action)
             {
                 case 1:
@@ -210,7 +212,20 @@ namespace Service.Controllers.Web
                     break;
             }
 
-            return View();
+            return View(m);
+        }
+
+        [HttpPost]
+        public ActionResult EditProfile(SettingViewModel m)
+        {
+            var user = m.User;
+            if (IsLoggedIn()) return Index();
+            var token = Request.Cookies["TheProjectToken"].Value;
+            var dic = _userRepo.EditProfile(user, token);
+            var success = (bool) dic["success"];
+            ViewBag.EditProfileSuccess = success;
+
+            return View("Setting");
         }
 
         #endregion

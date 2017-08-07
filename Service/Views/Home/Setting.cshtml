@@ -1,8 +1,10 @@
-﻿@model dynamic
+﻿@model Service.Models.SettingViewModel
 
 @{
     ViewBag.Title = "Setting";
 }
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
 
 <div class="setting-view col-md-12 col-sm-12 no-padding">
     <div class="above col-md-12 col-sm-12 no-padding">
@@ -20,6 +22,17 @@
             <p>Blocked Users</p>
         </div>
     </div>
+    <div class="edit-profile col-md-12 col-sm-12 no-padding">
+        <form id="edit-profile" action="#">
+            <label for="firstname">First Name</label>
+            @Html.TextBoxFor(u => u.User.firstname, new { @class = "form-control", placeholder = "First name", value = Model.User.firstname })
+            <label for="lastname">Last Name</label>
+            @Html.TextBoxFor(u => u.User.lastname, new { @class = "form-control", placeholder = "Last name", value = Model.User.lastname })
+            <label for="about_me">Enter mood message</label>
+            @Html.TextBoxFor(u => u.User.about_me, new { @class = "form-control", placeholder = "Something about you", value = Model.User.about_me })
+            <button>click</button>
+        </form>
+    </div>
 </div>
 
 <script>
@@ -29,6 +42,23 @@
                 $(this).removeClass('selected');
             });
             $(this).addClass('selected');
+        });
+
+        $('#edit-profile').validate({
+            rules: {
+                'User.firstname': "required"
+            },
+            messages: {
+                'User.firstname': "cannot be empty"
+            }
+        });
+
+        $('.edit-profile button').click(function() {
+            if ($("#edit-profile").valid()) {
+                alert('passed');
+            } else {
+                alert('failed');
+            };
         });
     });
 </script>
