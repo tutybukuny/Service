@@ -102,7 +102,7 @@ function getCategories(callback) {
 function getUserInfo(user_id, callback) {
     $.ajax({
         async: false,
-        url: 'http://localhost:21790/api/ProjectApi/GetCategories',
+        url: 'http://localhost:21790/api/UserApi/GetUserInfo',
         type: 'get',
         dataType: 'json',
         data: {
