@@ -120,14 +120,11 @@ namespace UnitTest.DAO
         {
             var user = new User
             {
-                email = "admin6@gmail.com",
+                email = "diepvanphu",
                 password = "12345",
-                firstname = "admin",
-                lastname = "6",
-                country_id = 1,
-                state_id = 1,
-                district_id = 1,
-                avatar = "default"
+                firstname = "Điệp",
+                lastname = "Văn Phú",
+                created_date = DateTime.Now
             };
             Assert.AreEqual(true, _dao.Insert(user));
         }

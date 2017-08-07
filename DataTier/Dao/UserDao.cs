@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using DataTier.Factory;
 
@@ -29,17 +31,30 @@ namespace DataTier.Dao
 
         public bool Insert(User obj)
         {
-            using (var entities = new TheProjectEntities())
+            try
             {
-                try
+                var conn = new SqlConnection(DaoLib.ConnectionString);
+                conn.Open();
+                var paramNames = new List<string> {"@firstname", "@lastname", "@email", "@password", "@created_date"};
+                var dbTypes = new List<DbType>
                 {
-                    entities.Users.Add(obj);
-                    entities.SaveChanges();
-                }
-                catch (Exception e)
-                {
-                    return false;
-                }
+                    DbType.String,
+                    DbType.String,
+                    DbType.String,
+                    DbType.String,
+                    DbType.DateTime
+                };
+                var values = new List<object> {obj.firstname, obj.lastname, obj.email, obj.password, obj.created_date};
+                var sql = "INSERT INTO dbo.[User](firstname, lastname, email, password, created_date) " +
+                          "VALUES(@firstname, @lastname, @email, @password, @created_date)";
+                var cmd = DaoLib.CreateCommand(conn, sql, paramNames, dbTypes, values);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                conn.Dispose();
+            }
+            catch (Exception e)
+            {
+                return false;
             }
 
             return true;
@@ -62,8 +77,8 @@ namespace DataTier.Dao
                 }
                 catch (Exception e)
                 {
-                    throw;
-                    //return false;
+                    //                    throw;
+                    return false;
                 }
             }
 
