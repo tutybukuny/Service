@@ -191,7 +191,6 @@ namespace Service.Controllers.Web
             if (!IsLoggedIn()) return Index();
 
             var user = (User) Session["User"];
-            var m = new SettingViewModel {User = user};
 
             switch (action)
             {
@@ -212,7 +211,7 @@ namespace Service.Controllers.Web
                     break;
             }
 
-            return View(m);
+            return View(user);
         }
 
         [HttpPost]

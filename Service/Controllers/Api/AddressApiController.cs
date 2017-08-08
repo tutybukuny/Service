@@ -20,5 +20,26 @@ namespace Service.Controllers.Api
         {
             return _repo.GetAddress(country_id, state_id, district_id);
         }
+
+        [ActionName("GetCountries")]
+        [HttpGet]
+        public Dictionary<string, object> GetCountries()
+        {
+            return _repo.GetCountries();
+        }
+
+        [ActionName("GetStates")]
+        [HttpGet]
+        public Dictionary<string, object> GetStates(int? country_id)
+        {
+            return _repo.GetStates(country_id);
+        }
+
+        [ActionName("GetDistricts")]
+        [HttpGet]
+        public Dictionary<string, object> GetDistricts(int? state_id)
+        {
+            return _repo.GetDistricts(state_id);
+        }
     }
 }

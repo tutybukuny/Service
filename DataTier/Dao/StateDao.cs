@@ -115,6 +115,30 @@ namespace DataTier.Dao
             return state;
         }
 
+        public List<State> GetByCountry(int? country_id)
+        {
+            List<State> list = null;
+
+            using (var entities = new TheProjectEntities())
+            {
+                var rows = from s in entities.States where s.country_id == country_id select s;
+
+                foreach (var row in rows)
+                {
+                    if (list == null) list = new List<State>();
+
+                    list.Add(new State
+                    {
+                        id = row.id,
+                        country_id = row.country_id,
+                        name = row.name
+                    });
+                }
+            }
+
+            return list;
+        }
+
         #endregion
     }
 }

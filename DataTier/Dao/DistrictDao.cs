@@ -105,6 +105,32 @@ namespace DataTier.Dao
             return district;
         }
 
+        public List<District> GetByState(int? state_id)
+        {
+            List<District> list = null;
+
+            using (var entities = new TheProjectEntities())
+            {
+                var rows = from d in entities.Districts where d.state_id == state_id select d;
+
+                foreach (var row in rows)
+                {
+                    if (list == null) list = new List<District>();
+
+                    var district = new District
+                    {
+                        id = row.id,
+                        name = row.name,
+                        state_id = row.state_id,
+                        postal_code = row.postal_code
+                    };
+                    list.Add(district);
+                }
+            }
+
+            return list;
+        }
+
         #endregion
     }
 }

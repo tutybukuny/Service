@@ -165,6 +165,10 @@ ul {
     display: block;
 }
 
+.error {
+    color: red;
+}
+
 .project-card {
     margin-bottom: 30px;
     font-family: Comfortaa;
@@ -374,10 +378,6 @@ ul {
     padding-bottom: 40px;
     font-family: Comfortaa;
 
-    .error {
-        color: red;
-    }
-
     .form-control {
         margin-bottom: 15px;
         background-color: #E7E8E9;
@@ -522,14 +522,45 @@ ul {
         padding-top: 50px !important;
         padding-left: 50px !important;
 
-        > label {
+        .form-label {
+            margin-top: 30px;
             font-size: 18px;
             font-weight: bold;
+
+            &:first-of-type {
+                margin-top: 0;
+            }
         }
 
         .form-control {
-            margin-bottom: 50px;
             width: 70%;
+        }
+
+        .option {
+            margin-bottom: 20px;
+
+            &:nth-of-type(2) {
+                ul {
+                    margin-left: 15px;
+                }
+            }
+
+            button {
+                text-align: left;
+                padding: 5px !important;
+                background-color: white;
+                border: 1px solid #D4D4D4;
+
+                span {
+                    float: right;
+                }
+            }
+
+            ul {
+                width: 365px;
+                height: 200px;
+                overflow-x: auto;
+            }
         }
     }
 }
@@ -633,10 +664,11 @@ ul {
                 background-color: #5870B6;
                 color: white;
                 font-size: 10px;
-                padding-left: 5px;
+                padding: 2px 5px;
+                /*padding-left: 5px;
                 padding-right: 5px;
                 padding-top: 2px;
-                padding-bottom: 2px;
+                padding-bottom: 2px;*/
                 margin: 0;
                 border-radius: 4px;
             }

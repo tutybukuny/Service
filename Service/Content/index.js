@@ -99,6 +99,57 @@ function getCategories(callback) {
     });
 }
 
+function getCountries(callback) {
+    $.ajax({
+        async: false,
+        url: 'http://localhost:21790/api/AddressApi/GetCountries',
+        type: 'get',
+        dataType: 'json',
+        success: function (data) {
+            callback(data.countries);
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
+}
+
+function getStates(country_id, callback) {
+    $.ajax({
+        async: false,
+        url: 'http://localhost:21790/api/AddressApi/GetStates',
+        type: 'get',
+        dataType: 'json',
+        data: {
+            'country_id': country_id
+        },
+        success: function (data) {
+            callback(data.states);
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
+}
+
+function getDistricts(state_id, callback) {
+    $.ajax({
+        async: false,
+        url: 'http://localhost:21790/api/AddressApi/GetDistricts',
+        type: 'get',
+        dataType: 'json',
+        data: {
+            'state_id': state_id
+        },
+        success: function (data) {
+            callback(data.districts);
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
+}
+
 function getUserInfo(user_id, callback) {
     $.ajax({
         async: false,

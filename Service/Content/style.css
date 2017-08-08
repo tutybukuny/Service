@@ -126,6 +126,9 @@ ul {
 .display-block {
   display: block;
 }
+.error {
+  color: red;
+}
 .project-card {
   margin-bottom: 30px;
   font-family: Comfortaa;
@@ -296,9 +299,6 @@ ul {
   padding-bottom: 40px;
   font-family: Comfortaa;
 }
-.my-form .error {
-  color: red;
-}
 .my-form .form-control {
   margin-bottom: 15px;
   background-color: #E7E8E9;
@@ -412,13 +412,36 @@ ul {
   padding-top: 50px !important;
   padding-left: 50px !important;
 }
-.setting-view .edit-profile > label {
+.setting-view .edit-profile .form-label {
+  margin-top: 30px;
   font-size: 18px;
   font-weight: bold;
 }
+.setting-view .edit-profile .form-label:first-of-type {
+  margin-top: 0;
+}
 .setting-view .edit-profile .form-control {
-  margin-bottom: 50px;
   width: 70%;
+}
+.setting-view .edit-profile .option {
+  margin-bottom: 20px;
+}
+.setting-view .edit-profile .option:nth-of-type(2) ul {
+  margin-left: 15px;
+}
+.setting-view .edit-profile .option button {
+  text-align: left;
+  padding: 5px !important;
+  background-color: white;
+  border: 1px solid #D4D4D4;
+}
+.setting-view .edit-profile .option button span {
+  float: right;
+}
+.setting-view .edit-profile .option ul {
+  width: 365px;
+  height: 200px;
+  overflow-x: auto;
 }
 /*
     Home
@@ -491,10 +514,11 @@ ul {
   background-color: #5870B6;
   color: white;
   font-size: 10px;
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-top: 2px;
-  padding-bottom: 2px;
+  padding: 2px 5px;
+  /*padding-left: 5px;
+                padding-right: 5px;
+                padding-top: 2px;
+                padding-bottom: 2px;*/
   margin: 0;
   border-radius: 4px;
 }

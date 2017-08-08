@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DataTier;
 using DataTier.Dao;
 using DataTier.Factory;
 
@@ -17,6 +18,15 @@ namespace BusinessTier.Repository
             _districtDao = (DistrictDao) DaoFactory.GetDao("DistrictDao");
         }
 
+        #region Get Address
+
+        /// <summary>
+        ///     Get Address
+        /// </summary>
+        /// <param name="country_id"></param>
+        /// <param name="state_id"></param>
+        /// <param name="district_id"></param>
+        /// <returns></returns>
         public Dictionary<string, object> GetAddress(int? country_id, int? state_id, int? district_id)
         {
             var dic = new Dictionary<string, object>();
@@ -42,5 +52,52 @@ namespace BusinessTier.Repository
 
             return dic;
         }
+
+        #endregion
+
+        #region Get Countries
+
+        public Dictionary<string, object> GetCountries()
+        {
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            List<Country> list = _countryDao.GetAll();
+            
+            if(list==null) dic.Add("message", "There is no country in the world!");
+            dic.Add("countries", list);
+
+            return dic;
+        }
+
+        #endregion
+
+        #region Get States
+
+        public Dictionary<string, object> GetStates(int? country_id)
+        {
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            List<State> list = _stateDao.GetByCountry(country_id);
+
+            if (list == null) dic.Add("message", "There is no state!");
+            dic.Add("states", list);
+
+            return dic;
+        }
+
+        #endregion
+
+        #region Get Districts
+
+        public Dictionary<string, object> GetDistricts(int? state_id)
+        {
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            List<District> list = _districtDao.GetByState(state_id);
+
+            if (list == null) dic.Add("message", "There is no district!");
+            dic.Add("districts", list);
+
+            return dic;
+        }
+
+        #endregion
     }
 }
