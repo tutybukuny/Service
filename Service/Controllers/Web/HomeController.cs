@@ -42,6 +42,7 @@ namespace Service.Controllers.Web
                 if (user != null)
                 {
                     Session["User"] = user;
+                    Session["Token"] = cookie.Value;
 
                     return true;
                 }

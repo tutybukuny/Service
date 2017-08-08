@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using System.Linq;
 using DataTier.Factory;
@@ -66,19 +67,27 @@ namespace DataTier.Dao
             {
                 try
                 {
-                    entities.Users.Attach(obj);
-                    var entry = entities.Entry(obj);
-                    entry.State = EntityState.Modified;
-                    entry.Property(e => e.email).IsModified = false;
-                    entry.Property(e => e.password).IsModified = false;
-                    entry.Property(e => e.created_date).IsModified = false;
+                    var row = entities.Users.SingleOrDefault(u => u.id == obj.id);
+
+                    if (row != null)
+                    {
+                        row.firstname = obj.firstname;
+                        row.lastname = obj.lastname;
+                        row.country_id = obj.country_id;
+                        row.state_id = obj.state_id;
+                        row.district_id = obj.district_id;
+                        row.role1 = obj.role1;
+                        row.role2 = obj.role2;
+                    }
 
                     entities.SaveChanges();
                 }
-                catch (Exception e)
+                catch (DbEntityValidationException ex)
                 {
-                    //                    throw;
-                    return false;
+                    foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                        Console.WriteLine("Property: " + validationError.PropertyName + " Error: " +
+                                          validationError.ErrorMessage);
                 }
             }
 

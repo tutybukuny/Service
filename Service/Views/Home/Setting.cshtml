@@ -54,13 +54,13 @@
             <p class="form-label">Choose your roles</p>
             <div class="roles row">
                 <div class="select-option col-md-8 col-sm-6 row no-padding-left">
-                    <button class="btn dropdown-toggle col-md-12 col-sm-12 no-padding" type="button" data-toggle="dropdown" value="0">
+                    <button id="role1" class="btn dropdown-toggle col-md-12 col-sm-12 no-padding" type="button" data-toggle="dropdown" value="0">
                         Primary role <span class="glyphicon glyphicon-chevron-down"></span>
                     </button>
                     <ul class="dropdown-menu col-md-12 col-sm-12"></ul>
                 </div>
                 <div class="select-option col-md-8 col-sm-6 row no-padding-left">
-                    <button class="btn dropdown-toggle col-md-12 col-sm-12 no-padding" type="button" data-toggle="dropdown" value="0">
+                    <button id="role2" class="btn dropdown-toggle col-md-12 col-sm-12 no-padding" type="button" data-toggle="dropdown" value="0">
                         Secondary role <span class="glyphicon glyphicon-chevron-down"></span>
                     </button>
                     <ul class="dropdown-menu col-md-12 col-sm-12"></ul>
@@ -213,7 +213,32 @@
 
         $('#edit-profile input:last-of-type').click(function () {
             if ($("#edit-profile").valid()) {
-                alert('passed');
+                $.ajax({
+                    url: 'http://localhost:21790/api/UserApi/EditProfile',
+                    type: 'post',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    dataType: 'json',
+                    data: {
+                        firstname: $('#firstname').val(),
+                        lastname: $('#lastname').val(),
+                        country_id: $('#country').val() == 0 ? null : $('#country').val(),
+                        state_id: $('#state').val() == 0 ? null : $('#state').val(),
+                        district_id: $('#district').val() == 0 ? null : $('#district').val(),
+                        role1: $('#role1').val() == 0 ? null : $('#role1').val(),
+                        role2: $('#role2').val() == 0 ? null : $('#role2').val(),
+                        token: '@Session["Token"]'
+                    },
+                    success: function (data) {
+                        alert('Profile has been Updated!');
+                        console.log(data);
+                    },
+                    error: function (err) {
+                        alert('Something went wrong!');
+                        console.log(err.message);
+                    }
+                });
             } else {
                 alert('failed');
             };

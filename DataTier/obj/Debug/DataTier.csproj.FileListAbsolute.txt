@@ -45,3 +45,5 @@ D:\Learning\CSharp\Service\DataTier\bin\Debug\Ninject.Extensions.Factory.xml
 D:\Learning\CSharp\Service\DataTier\obj\Debug\DataTier.dll
 D:\Learning\CSharp\Service\DataTier\obj\Debug\DataTier.pdb
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\DataTier\obj\Debug\DataTier.csprojResolveAssemblyReference.cache
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\DataTier\bin\Debug\log4net.dll
+C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\DataTier\bin\Debug\log4net.xml
