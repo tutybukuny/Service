@@ -66,7 +66,7 @@
                     <ul class="dropdown-menu col-md-12 col-sm-12"></ul>
                 </div>
             </div>
-            <button class="btn btn-yellow pull-right">Save changes</button>
+            <input class="btn btn-yellow pull-right" type="button" value="Save changes">
         </form>
     </div>
     <div class="account-detail col-md-12 col-sm-12 no-padding"></div>
@@ -211,7 +211,7 @@
             }
         }
 
-        $('#edit-profile > button').click(function () {
+        $('#edit-profile input:last-of-type').click(function () {
             if ($("#edit-profile").valid()) {
                 alert('passed');
             } else {
