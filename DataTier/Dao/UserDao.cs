@@ -88,6 +88,7 @@ namespace DataTier.Dao
                     foreach (var validationError in entityValidationErrors.ValidationErrors)
                         Console.WriteLine("Property: " + validationError.PropertyName + " Error: " +
                                           validationError.ErrorMessage);
+                    return false;
                 }
             }
 
