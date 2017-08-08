@@ -97,8 +97,8 @@
         });
 
 
-        function addLocationClickEvent() {
-            $('.select-option li a').click(function () {
+        function addSelectClickEvent(specific) {
+            $(specific + ' .select-option li a').click(function () {
                 var button = $(this).parent().parent().parent().children('button').first();
                 button.html($(this).text() + ' <span class="glyphicon glyphicon-chevron-down"></span>');
                 button.val($(this).parent().val());
@@ -129,7 +129,7 @@
             if (!notNull) {
                 $('.select-option:nth-of-type(3) button').first().html('Choose your district <span class="glyphicon glyphicon-chevron-down"></span>');
                 $('.select-option:nth-of-type(3) button').first().val(0);
-                addLocationClickEvent();
+                addSelectClickEvent('.location');
             }
         }
 
@@ -162,7 +162,7 @@
                 $('.select-option:nth-of-type(3) button').first().html('Choose your district <span class="glyphicon glyphicon-chevron-down"></span>');
                 $('.select-option:nth-of-type(3) button').first().val(0);
                 $('.select-option:last-of-type ul').html('');
-                addLocationClickEvent();
+                addSelectClickEvent('.location');
             }
         }
 
@@ -184,12 +184,12 @@
                     }
                 });
 
-            addLocationClickEvent();
+            addSelectClickEvent('.location');
         }
 
         function loadRoles(roles) {
             if (roles != null) {
-                roles.forEach(function(item, index) {
+                roles.forEach(function (item, index) {
                     var li = $('<li></li>');
                     li.val(item.id);
                     li.html('<a>' + item.role + '</a>');
@@ -199,6 +199,8 @@
                         $('')
                     }
                 });
+
+                addSelectClickEvent('.roles');
             }
         }
 
