@@ -88,6 +88,7 @@
         }
 
         function loadCountries(countries) {
+            var notNull = false;
             countries.forEach(function (item, index) {
                 var li = $('<li></li>');
                 li.val(item.id);
@@ -98,18 +99,26 @@
                     $('.option:first-of-type button').first().val(item.id);
                     $('.option:first-of-type button').first()
                         .html(item.name + ' <span class="glyphicon glyphicon-chevron-down"></span>');
+                    notNull = true;
                     getStates(item.id, loadStates);
-                } else {
-                    addLocationClickEvent();
                 }
-
-                $('.option:first-of-type li a').click(function () {
-                    getStates($(this).parent().val(), loadStates);
-                });
             });
+
+            $('.option:first-of-type li a').click(function () {
+                getStates($(this).parent().val(), loadStates);
+            });
+
+            if (!notNull) {
+                $('.option:nth-of-type(3) button').first().html('Choose your district <span class="glyphicon glyphicon-chevron-down"></span>');
+                $('.option:nth-of-type(3) button').first().val(0);
+                addLocationClickEvent();
+            }
         }
 
         function loadStates(states) {
+            var notNull = false;
+            $('.option:nth-of-type(2) button').first().html('Choose your state <span class="glyphicon glyphicon-chevron-down"></span>');
+            $('.option:nth-of-type(2) button').first().val(0);
             $('.option:nth-of-type(2) ul').first().html('');
             states.forEach(function (item, index) {
                 var li = $('<li></li>');
@@ -122,18 +131,25 @@
                     $('.option:nth-of-type(2) button').first()
                         .html(item.name + ' <span class="glyphicon glyphicon-chevron-down"></span>');
                     getDistricts(item.id, loadDistricts);
-                } else {
-                    $('.option:last-of-type ul').html('');
-                    addLocationClickEvent();
+                    notNull = true;
                 }
-
-                $('.option:nth-of-type(2) li a').click(function () {
-                    getDistricts($(this).parent().val(), loadDistricts);
-                });
             });
+
+            $('.option:nth-of-type(2) li a').click(function () {
+                getDistricts($(this).parent().val(), loadDistricts);
+            });
+
+            if (!notNull) {
+                $('.option:nth-of-type(3) button').first().html('Choose your district <span class="glyphicon glyphicon-chevron-down"></span>');
+                $('.option:nth-of-type(3) button').first().val(0);
+                $('.option:last-of-type ul').html('');
+                addLocationClickEvent();
+            }
         }
 
         function loadDistricts(districts) {
+            $('.option:nth-of-type(3) button').first().html('Choose your district <span class="glyphicon glyphicon-chevron-down"></span>');
+            $('.option:nth-of-type(3) button').first().val(0);
             $('.option:last-of-type ul').html('');
             districts.forEach(function (item, index) {
                 var li = $('<li></li>');
@@ -146,9 +162,9 @@
                     $('.option:last-of-type button').first()
                         .html(item.name + ' <span class="glyphicon glyphicon-chevron-down"></span>');
                 }
-
-                addLocationClickEvent();
             });
+
+            addLocationClickEvent();
         }
 
         //        $('.edit-profile button').click(function () {
