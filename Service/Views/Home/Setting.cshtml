@@ -196,7 +196,13 @@
                     $('.roles ul').append(li);
 
                     if (item.id == '@Model.role1') {
-                        $('')
+                        $('.roles .select-option:first-of-type button').first().val(item.id);
+                        $('.roles .select-option:first-of-type button').first().html(item.role + ' <span class="glyphicon glyphicon-chevron-down"></span>');
+                    }
+
+                    if (item.id == '@Model.role2') {
+                        $('.roles .select-option:nth-of-type(2) button').first().val(item.id);
+                        $('.roles .select-option:nth-of-type(2) button').first().html(item.role + ' <span class="glyphicon glyphicon-chevron-down"></span>');
                     }
                 });
 
