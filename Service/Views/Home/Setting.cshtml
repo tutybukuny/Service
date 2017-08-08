@@ -102,10 +102,15 @@
                 } else {
                     addLocationClickEvent();
                 }
+
+                $('.option:first-of-type li a').click(function () {
+                    getStates($(this).parent().val(), loadStates);
+                });
             });
         }
 
         function loadStates(states) {
+            $('.option:nth-of-type(2) ul').first().html('');
             states.forEach(function (item, index) {
                 var li = $('<li></li>');
                 li.val(item.id);
@@ -118,12 +123,18 @@
                         .html(item.name + ' <span class="glyphicon glyphicon-chevron-down"></span>');
                     getDistricts(item.id, loadDistricts);
                 } else {
+                    $('.option:last-of-type ul').html('');
                     addLocationClickEvent();
                 }
+
+                $('.option:nth-of-type(2) li a').click(function () {
+                    getDistricts($(this).parent().val(), loadDistricts);
+                });
             });
         }
 
         function loadDistricts(districts) {
+            $('.option:last-of-type ul').html('');
             districts.forEach(function (item, index) {
                 var li = $('<li></li>');
                 li.val(item.id);
