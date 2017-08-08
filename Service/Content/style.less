@@ -547,7 +547,7 @@ ul {
 
             button {
                 text-align: left;
-                padding: 5px !important;
+                padding: 6px 12px !important;
                 background-color: white;
                 border: 1px solid #D4D4D4;
 
@@ -557,9 +557,23 @@ ul {
             }
 
             ul {
-                width: 365px;
-                height: 200px;
-                overflow-x: auto;
+                width: 440px;
+                max-height: 200px;
+                overflow: auto;
+            }
+        }
+
+        .location {
+            width: 70% !important;
+        }
+
+        .roles {
+            ul {
+                width: 866px;
+
+                &:last-of-type {
+                    margin: 0;
+                }
             }
         }
     }

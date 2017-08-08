@@ -431,7 +431,7 @@ ul {
 }
 .setting-view .edit-profile .select-option button {
   text-align: left;
-  padding: 5px !important;
+  padding: 6px 12px !important;
   background-color: white;
   border: 1px solid #D4D4D4;
 }
@@ -439,9 +439,18 @@ ul {
   float: right;
 }
 .setting-view .edit-profile .select-option ul {
-  width: 365px;
-  height: 200px;
-  overflow-x: auto;
+  width: 440px;
+  max-height: 200px;
+  overflow: auto;
+}
+.setting-view .edit-profile .location {
+  width: 70% !important;
+}
+.setting-view .edit-profile .roles ul {
+  width: 866px;
+}
+.setting-view .edit-profile .roles ul:last-of-type {
+  margin: 0;
 }
 /*
     Home

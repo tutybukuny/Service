@@ -31,7 +31,7 @@
             <p class="form-label">Enter mood message</p>
             @Html.TextBoxFor(u => u.about_me, new { @class = "form-control", placeholder = "Something about you", value = Model.about_me })
             <p class="form-label">Location</p>
-            <div class="location col-md-7 col-sm-7 no-padding row">
+            <div class="location no-padding row">
                 <div class="select-option col-md-6 col-sm-6 no-padding-left">
                     <button id="country" class="btn dropdown-toggle col-md-12 col-sm-12 no-padding" type="button" data-toggle="dropdown" value="0">
                         Choose your country <span class="glyphicon glyphicon-chevron-down"></span>
@@ -47,6 +47,21 @@
                 <div class="select-option col-md-6 col-sm-6 no-padding-left">
                     <button id="district" class="btn dropdown-toggle col-md-12 col-sm-12 no-padding" type="button" data-toggle="dropdown" value="0">
                         Choose your district <span class="glyphicon glyphicon-chevron-down"></span>
+                    </button>
+                    <ul class="dropdown-menu col-md-12 col-sm-12"></ul>
+                </div>
+            </div>
+            <p class="form-label">Choose your roles</p>
+            <div class="roles row">
+                <div class="select-option col-md-8 col-sm-6 row no-padding-left">
+                    <button class="btn dropdown-toggle col-md-12 col-sm-12 no-padding" type="button" data-toggle="dropdown" value="0">
+                        Primary role <span class="glyphicon glyphicon-chevron-down"></span>
+                    </button>
+                    <ul class="dropdown-menu col-md-12 col-sm-12"></ul>
+                </div>
+                <div class="select-option col-md-8 col-sm-6 row no-padding-left">
+                    <button class="btn dropdown-toggle col-md-12 col-sm-12 no-padding" type="button" data-toggle="dropdown" value="0">
+                        Secondary role <span class="glyphicon glyphicon-chevron-down"></span>
                     </button>
                     <ul class="dropdown-menu col-md-12 col-sm-12"></ul>
                 </div>
@@ -68,13 +83,16 @@
         });
 
         getCountries(loadCountries);
+        getRoles(loadRoles);
 
         $('#edit-profile').validate({
             rules: {
-                'firstname': "required"
+                'firstname': "required",
+                'lastname': 'required'
             },
             messages: {
-                'firstname': "cannot be empty"
+                'firstname': "cannot be empty",
+                'lastname': "cannot be empty"
             }
         });
 
@@ -167,6 +185,21 @@
                 });
 
             addLocationClickEvent();
+        }
+
+        function loadRoles(roles) {
+            if (roles != null) {
+                roles.forEach(function(item, index) {
+                    var li = $('<li></li>');
+                    li.val(item.id);
+                    li.html('<a>' + item.role + '</a>');
+                    $('.roles ul').append(li);
+
+                    if (item.id == '@Model.role1') {
+                        $('')
+                    }
+                });
+            }
         }
 
         //        $('.edit-profile button').click(function () {
