@@ -33,10 +33,19 @@ namespace DataTier.Dao
             {
                 try
                 {
-                    entities.Projects.Attach(obj);
-                    var entry = entities.Entry(obj);
-                    entry.State = EntityState.Modified;
-                    entry.Property(e => e.created_date).IsModified = false;
+                    var row = entities.Projects.FirstOrDefault(p => p.id == obj.id);
+
+                    if (row != null)
+                    {
+                        row.category_id = obj.category_id;
+                        row.completed = obj.completed;
+                        row.country_id = obj.country_id;
+                        row.description = obj.description;
+                        row.district_id = obj.district_id;
+                        row.image = obj.image;
+                        row.joined_people = obj.joined_people;
+                        row.people = obj.people;
+                    }
 
                     entities.SaveChanges();
                 }
