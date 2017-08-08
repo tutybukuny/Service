@@ -88,6 +88,16 @@ ul {
 .btn-yellow {
   background-color: #fdd055;
   border-bottom: 2px solid #f6bb44;
+  -moz-transition: background-color 0.2s ease;
+  -o-transition: background-color 0.2s ease;
+  -webkit-transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease;
+}
+.btn-yellow:hover {
+  background-color: #fede87;
+}
+.btn-yellow:active {
+  background-color: #fcc223;
 }
 .btn-light-gray {
   background-color: #f8f9f8;
@@ -451,6 +461,9 @@ ul {
 }
 .setting-view .edit-profile .roles ul:last-of-type {
   margin: 0;
+}
+.setting-view .edit-profile #edit-profile > button {
+  margin-right: 50px;
 }
 /*
     Home

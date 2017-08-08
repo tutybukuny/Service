@@ -116,6 +116,18 @@ ul {
 .btn-yellow {
     background-color: @yellow;
     border-bottom: 2px solid @dark-yellow;
+    -moz-transition: background-color 0.2s ease;
+    -o-transition: background-color 0.2s ease;
+    -webkit-transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+        background-color: lighten(@yellow, 10%);
+    }
+
+    &:active {
+        background-color: darken(@yellow, 10%);
+    }
 }
 
 .btn-light-gray {
@@ -575,6 +587,10 @@ ul {
                     margin: 0;
                 }
             }
+        }
+
+        #edit-profile > button {
+            margin-right: 50px;
         }
     }
 }
