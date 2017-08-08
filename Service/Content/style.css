@@ -423,22 +423,22 @@ ul {
 .setting-view .edit-profile .form-control {
   width: 70%;
 }
-.setting-view .edit-profile .option {
+.setting-view .edit-profile .location-option {
   margin-bottom: 20px;
 }
-.setting-view .edit-profile .option:nth-of-type(2) ul {
+.setting-view .edit-profile .location-option:nth-of-type(2) ul {
   margin-left: 15px;
 }
-.setting-view .edit-profile .option button {
+.setting-view .edit-profile .location-option button {
   text-align: left;
   padding: 5px !important;
   background-color: white;
   border: 1px solid #D4D4D4;
 }
-.setting-view .edit-profile .option button span {
+.setting-view .edit-profile .location-option button span {
   float: right;
 }
-.setting-view .edit-profile .option ul {
+.setting-view .edit-profile .location-option ul {
   width: 365px;
   height: 200px;
   overflow-x: auto;

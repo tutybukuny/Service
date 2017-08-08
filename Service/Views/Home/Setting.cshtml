@@ -32,19 +32,19 @@
             @Html.TextBoxFor(u => u.about_me, new { @class = "form-control", placeholder = "Something about you", value = Model.about_me })
             <p class="form-label">Location</p>
             <div class="location col-md-7 col-sm-7 no-padding row">
-                <div class="option col-md-6 col-sm-6 no-padding-left">
+                <div class="location-option col-md-6 col-sm-6 no-padding-left">
                     <button id="country" class="btn dropdown-toggle col-md-12 col-sm-12 no-padding" type="button" data-toggle="dropdown" value="0">
                         Choose your country <span class="glyphicon glyphicon-chevron-down"></span>
                     </button>
                     <ul class="dropdown-menu col-md-12 col-sm-12"></ul>
                 </div>
-                <div class="option col-md-6 col-sm-6 no-padding-right">
+                <div class="location-option col-md-6 col-sm-6 no-padding-right">
                     <button id="state" class="btn dropdown-toggle col-md-12 col-sm-12 no-padding" type="button" data-toggle="dropdown" value="0">
                         Choose your state <span class="glyphicon glyphicon-chevron-down"></span>
                     </button>
                     <ul class="dropdown-menu col-md-12 col-sm-12"></ul>
                 </div>
-                <div class="option col-md-6 col-sm-6 no-padding-left">
+                <div class="location-option col-md-6 col-sm-6 no-padding-left">
                     <button id="district" class="btn dropdown-toggle col-md-12 col-sm-12 no-padding" type="button" data-toggle="dropdown" value="0">
                         Choose your district <span class="glyphicon glyphicon-chevron-down"></span>
                     </button>
@@ -80,7 +80,7 @@
 
 
         function addLocationClickEvent() {
-            $('.option li a').click(function () {
+            $('.location-option li a').click(function () {
                 var button = $(this).parent().parent().parent().children('button').first();
                 button.html($(this).text() + ' <span class="glyphicon glyphicon-chevron-down"></span>');
                 button.val($(this).parent().val());
@@ -93,75 +93,75 @@
                 var li = $('<li></li>');
                 li.val(item.id);
                 li.html('<a>' + item.name + '</a>');
-                $('.option:first-of-type ul').first().append(li);
+                $('.location-option:first-of-type ul').first().append(li);
 
                 if (item.id == '@Model.country_id') {
-                    $('.option:first-of-type button').first().val(item.id);
-                    $('.option:first-of-type button').first()
+                    $('.location-option:first-of-type button').first().val(item.id);
+                    $('.location-option:first-of-type button').first()
                         .html(item.name + ' <span class="glyphicon glyphicon-chevron-down"></span>');
                     notNull = true;
                     getStates(item.id, loadStates);
                 }
             });
 
-            $('.option:first-of-type li a').click(function () {
+            $('.location-option:first-of-type li a').click(function () {
                 getStates($(this).parent().val(), loadStates);
             });
 
             if (!notNull) {
-                $('.option:nth-of-type(3) button').first().html('Choose your district <span class="glyphicon glyphicon-chevron-down"></span>');
-                $('.option:nth-of-type(3) button').first().val(0);
+                $('.location-option:nth-of-type(3) button').first().html('Choose your district <span class="glyphicon glyphicon-chevron-down"></span>');
+                $('.location-option:nth-of-type(3) button').first().val(0);
                 addLocationClickEvent();
             }
         }
 
         function loadStates(states) {
             var notNull = false;
-            $('.option:nth-of-type(2) button').first().html('Choose your state <span class="glyphicon glyphicon-chevron-down"></span>');
-            $('.option:nth-of-type(2) button').first().val(0);
-            $('.option:nth-of-type(2) ul').first().html('');
+            $('.location-option:nth-of-type(2) button').first().html('Choose your state <span class="glyphicon glyphicon-chevron-down"></span>');
+            $('.location-option:nth-of-type(2) button').first().val(0);
+            $('.location-option:nth-of-type(2) ul').first().html('');
             if (states != null)
                 states.forEach(function (item, index) {
                     var li = $('<li></li>');
                     li.val(item.id);
                     li.html('<a>' + item.name + '</a>');
-                    $('.option:nth-of-type(2) ul').first().append(li);
+                    $('.location-option:nth-of-type(2) ul').first().append(li);
 
                     if (item.id == '@Model.state_id') {
-                        $('.option:nth-of-type(2) button').first().val(item.id);
-                        $('.option:nth-of-type(2) button').first()
+                        $('.location-option:nth-of-type(2) button').first().val(item.id);
+                        $('.location-option:nth-of-type(2) button').first()
                             .html(item.name + ' <span class="glyphicon glyphicon-chevron-down"></span>');
                         getDistricts(item.id, loadDistricts);
                         notNull = true;
                     }
                 });
 
-            $('.option:nth-of-type(2) li a').click(function () {
+            $('.location-option:nth-of-type(2) li a').click(function () {
                 getDistricts($(this).parent().val(), loadDistricts);
             });
 
             if (!notNull) {
-                $('.option:nth-of-type(3) button').first().html('Choose your district <span class="glyphicon glyphicon-chevron-down"></span>');
-                $('.option:nth-of-type(3) button').first().val(0);
-                $('.option:last-of-type ul').html('');
+                $('.location-option:nth-of-type(3) button').first().html('Choose your district <span class="glyphicon glyphicon-chevron-down"></span>');
+                $('.location-option:nth-of-type(3) button').first().val(0);
+                $('.location-option:last-of-type ul').html('');
                 addLocationClickEvent();
             }
         }
 
         function loadDistricts(districts) {
-            $('.option:nth-of-type(3) button').first().html('Choose your district <span class="glyphicon glyphicon-chevron-down"></span>');
-            $('.option:nth-of-type(3) button').first().val(0);
-            $('.option:last-of-type ul').html('');
+            $('.location-option:nth-of-type(3) button').first().html('Choose your district <span class="glyphicon glyphicon-chevron-down"></span>');
+            $('.location-option:nth-of-type(3) button').first().val(0);
+            $('.location-option:last-of-type ul').html('');
             if (districts != null)
                 districts.forEach(function (item, index) {
                     var li = $('<li></li>');
                     li.val(item.id);
                     li.html('<a>' + item.name + '</a>');
-                    $('.option:last-of-type ul').first().append(li);
+                    $('.location-option:last-of-type ul').first().append(li);
 
                     if (item.id == '@Model.district_id') {
-                        $('.option:last-of-type button').first().val(item.id);
-                        $('.option:last-of-type button').first()
+                        $('.location-option:last-of-type button').first().val(item.id);
+                        $('.location-option:last-of-type button').first()
                             .html(item.name + ' <span class="glyphicon glyphicon-chevron-down"></span>');
                     }
                 });
