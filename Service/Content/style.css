@@ -556,8 +556,8 @@ ul {
 }
 .user-profile .option-content .follower-row {
   border-bottom: 1px solid #fede87;
-  padding-bottom: 10px;
-  padding-top: 10px;
+  padding-bottom: 10px !important;
+  padding-top: 10px !important;
 }
 .user-profile .option-content .follower-row > img {
   max-width: 100%;
