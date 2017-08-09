@@ -54,3 +54,5 @@ D:\Learning\CSharp\Service\BusinessTier\obj\Debug\BusinessTier.dll
 D:\Learning\CSharp\Service\BusinessTier\obj\Debug\BusinessTier.pdb
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\BusinessTier\bin\Debug\log4net.dll
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\BusinessTier\bin\Debug\log4net.xml
+D:\Learning\CSharp\Service\BusinessTier\bin\Debug\log4net.dll
+D:\Learning\CSharp\Service\BusinessTier\bin\Debug\log4net.xml

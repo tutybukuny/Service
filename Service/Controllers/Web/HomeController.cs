@@ -7,6 +7,7 @@ using BusinessTier.Repository;
 using DataTier;
 using DataTier.Dao;
 using DataTier.Factory;
+using log4net;
 using Service.Models;
 
 namespace Service.Controllers.Web
@@ -15,6 +16,7 @@ namespace Service.Controllers.Web
     {
         private readonly ProjectRepo _projectRepo;
         private readonly UserRepo _userRepo;
+//        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public HomeController()
         {
@@ -30,6 +32,7 @@ namespace Service.Controllers.Web
         /// <returns></returns>
         private bool IsLoggedIn()
         {
+//            Log.InfoFormat("Check logged in {0}", 1);
             if (Session["User"] != null) return true;
 
             var cookie = Request.Cookies["TheProjectToken"];
