@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web.Http;
 using BusinessTier.Repository;
 using DataTier;
+using log4net;
 using Newtonsoft.Json.Linq;
 using Ninject;
 

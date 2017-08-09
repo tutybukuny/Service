@@ -612,3 +612,5 @@ D:\Learning\CSharp\Service\Service\obj\Debug\Service.dll
 D:\Learning\CSharp\Service\Service\obj\Debug\Service.pdb
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\Service\bin\log4net.dll
 C:\Users\thien.tranhangoc.sv\Desktop\Training\2017-07-31\Service\Service\bin\log4net.xml
+D:\Learning\CSharp\Service\Service\bin\log4net.dll
+D:\Learning\CSharp\Service\Service\bin\log4net.xml
