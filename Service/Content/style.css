@@ -418,6 +418,12 @@ ul {
 .setting-view .above .selected p {
   border-bottom: 2px solid #5870B6;
 }
+.setting-view > div:not(:first-of-type) {
+  display: none;
+}
+.setting-view .selected {
+  display: block !important;
+}
 .setting-view .edit-profile {
   padding-top: 50px !important;
   padding-left: 50px !important;

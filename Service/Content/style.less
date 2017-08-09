@@ -530,6 +530,16 @@ ul {
         }
     }
 
+    > div {
+        &:not(:first-of-type) {
+            display: none;
+        }
+    }
+
+    .selected {
+        display: block !important;
+    }
+
     .edit-profile {
         padding-top: 50px !important;
         padding-left: 50px !important;

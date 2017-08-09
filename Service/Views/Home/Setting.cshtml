@@ -23,7 +23,7 @@
             <p>Blocked Users</p>
         </div>
     </div>
-    <div class="edit-profile col-md-12 col-sm-12 no-padding">
+    <div class="edit-profile col-md-12 col-sm-12 no-padding selected">
         <form id="edit-profile" action="#">
             <p class="form-label">First Name</p>
             @Html.TextBoxFor(u => u.firstname, new { @class = "form-control", placeholder = "First name", value = Model.firstname })
@@ -91,7 +91,7 @@
 
             reader.onload = function (e) {
                 $('#avatar').attr('src', e.target.result);
-                $('#avatar').css({'max-width': '100%', 'max-height': '100%'});
+                $('#avatar').css({ 'max-width': '100%', 'max-height': '100%' });
             }
 
             reader.readAsDataURL(input.files[0]);
@@ -103,7 +103,15 @@
             $('.option').each(function () {
                 $(this).removeClass('selected');
             });
+            $('.edit-profile').removeClass('selected');
+            $('.account-detail').removeClass('selected');
+            $('.notifications').removeClass('selected');
+            $('.blocked-users').removeClass('selected');
             $(this).addClass('selected');
+            if ($(this).html().indexOf('Edit Profile') !== -1) $('.edit-profile').addClass('selected');
+            if ($(this).html().indexOf('Account Details') !== -1) $('.account-detail').addClass('selected');
+            if ($(this).html().indexOf('Notifications') !== -1) $('.notifications').addClass('selected');
+            if ($(this).html().indexOf('Blocked Users') !== -1) $('.blocked-users').addClass('selected');
         });
 
         getCountries(loadCountries);
