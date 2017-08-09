@@ -214,17 +214,35 @@ namespace DataTier.Dao
 
             using (var entities = new TheProjectEntities())
             {
-                var projects = from p in entities.Projects
+                var projects = category_id == 0
+                    ? entities.Projects
+                    : from p in entities.Projects where p.category_id == category_id select p;
+
+                projects = role_id == 0
+                    ? projects
+                    : from p in projects
                     join pr in entities.ProjectRoles on p.id equals pr.project_id
                     join r in entities.Roles on pr.role_id equals r.id
-                    where p.category_id == (category_id == 0 ? p.category_id : category_id)
-                          && r.id == (role_id == 0 ? r.id : role_id)
-                    group p by p.id
-                    into prj
-                    select prj;
+                    where r.id == role_id
+                    select p;
 
-                foreach (var rows in projects)
-                foreach (var row in rows)
+                switch (sort_id)
+                {
+                    case 1:
+                        projects = projects.OrderByDescending(p => p.joined_people);
+                        break;
+                    case 2:
+                        projects = projects.OrderByDescending(p => p.created_date);
+                        break;
+                    case 3:
+                        projects = projects.OrderByDescending(p => p.people);
+                        break;
+                    default:
+                        projects = projects.OrderBy(p => p.title);
+                        break;
+                }
+
+                foreach (var row in projects)
                 {
                     if (list == null) list = new List<Project>();
 
@@ -244,8 +262,6 @@ namespace DataTier.Dao
                         joined_people = row.joined_people,
                         people = row.people
                     });
-
-                    break;
                 }
             }
 
