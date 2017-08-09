@@ -453,6 +453,23 @@ ul {
   max-height: 200px;
   overflow: auto;
 }
+.setting-view .edit-profile .profile-picture {
+  border: 3px dashed #888888;
+  height: 400px;
+  text-align: center;
+}
+.setting-view .edit-profile .profile-picture img {
+  position: relative;
+  height: 100%;
+}
+.setting-view .edit-profile .profile-picture label {
+  position: absolute;
+  bottom: 30px;
+  left: 195px;
+}
+.setting-view .edit-profile .profile-picture label input {
+  display: none !important;
+}
 .setting-view .edit-profile .location {
   width: 70% !important;
 }

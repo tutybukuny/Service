@@ -59,10 +59,10 @@ namespace Service.Controllers.Api
             };
 
             user.country_id = user.country_id == 0 ? null : user.country_id;
-            user.state_id = user.state_id == 0 ? null : user.country_id;
-            user.district_id = user.district_id == 0 ? null : user.country_id;
-            user.role1 = user.role1 == 0 ? null : user.country_id;
-            user.role2 = user.role2 == 0 ? null : user.country_id;
+            user.state_id = user.state_id == 0 ? null : user.state_id;
+            user.district_id = user.district_id == 0 ? null : user.district_id;
+            user.role1 = user.role1 == 0 ? null : user.role1;
+            user.role2 = user.role2 == 0 ? null : user.role2;
 
             return _repo.EditProfile(user, (string) data["token"]);
         }

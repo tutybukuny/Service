@@ -5,6 +5,7 @@
 }
 
 <script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery-3.1.1.intellisense.js"></script>
 
 <div class="setting-view col-md-12 col-sm-12 no-padding">
     <div class="above col-md-12 col-sm-12 no-padding">
@@ -30,6 +31,14 @@
             @Html.TextBoxFor(u => u.lastname, new { @class = "form-control", placeholder = "Last name", value = Model.lastname })
             <p class="form-label">Enter mood message</p>
             @Html.TextBoxFor(u => u.about_me, new { @class = "form-control", placeholder = "Something about you", value = Model.about_me })
+            <p class="form-label">Profile Picture</p>
+            <div class="profile-picture col-md-5 col-sm-5 no-padding">
+                <img id="avatar" src="@Model.avatar" alt="" />
+                <label class="btn btn-yellow">
+                    Choose an image <input id="FileUpload" type="file" hidden onchange="readURL(this);">
+                </label>
+            </div>
+            <div style="clear: both;"></div>
             <p class="form-label">Location</p>
             <div class="location no-padding row">
                 <div class="select-option col-md-6 col-sm-6 no-padding-left">
@@ -75,6 +84,20 @@
 </div>
 
 <script>
+    function readURL(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#avatar').attr('src', e.target.result);
+                $('#avatar').css({'max-width': '100%', 'max-height': '100%'});
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
     $(document).ready(function () {
         $('.option').click(function () {
             $('.option').each(function () {
@@ -211,7 +234,19 @@
             }
         }
 
-        $('#edit-profile input:last-of-type').click(function () {
+        $('#test_image').click(function () {
+            var formData = new FormData();
+            var totalFiles = document.getElementById("FileUpload").files.length;
+            for (var i = 0; i < totalFiles; i++) {
+                var file = document.getElementById("FileUpload").files[i];
+
+                formData.append("FileUpload", file);
+            }
+
+            console.log(formData);
+        });
+
+        $('#edit-profile > input:last-of-type').click(function () {
             if ($("#edit-profile").valid()) {
                 var d = {
                     firstname: $('#firstname').val(),
