@@ -381,6 +381,14 @@ ul {
 .setting-view {
   font-family: Comfortaa;
 }
+.setting-view .form-label {
+  margin-top: 30px;
+  font-size: 18px;
+  font-weight: bold;
+}
+.setting-view .form-label:first-of-type {
+  margin-top: 0;
+}
 .setting-view .above {
   padding-left: 30px !important;
   border-bottom: 2px solid #D7D7D7;
@@ -427,14 +435,6 @@ ul {
 .setting-view .edit-profile {
   padding-top: 50px !important;
   padding-left: 50px !important;
-}
-.setting-view .edit-profile .form-label {
-  margin-top: 30px;
-  font-size: 18px;
-  font-weight: bold;
-}
-.setting-view .edit-profile .form-label:first-of-type {
-  margin-top: 0;
 }
 .setting-view .edit-profile .form-control {
   width: 70%;
@@ -488,6 +488,17 @@ ul {
 .setting-view .edit-profile #edit-profile input:last-of-type {
   margin-top: 20px;
   margin-right: 50px;
+}
+.setting-view .account-detail > div {
+  padding-left: 50px;
+}
+.setting-view .account-detail > div .clear {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #EEEEEE;
+}
+.setting-view .account-detail > div button {
+  margin-top: 30px;
 }
 /*
     Home

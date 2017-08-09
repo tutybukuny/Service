@@ -484,6 +484,16 @@ ul {
 .setting-view {
     font-family: Comfortaa;
 
+    .form-label {
+        margin-top: 30px;
+        font-size: 18px;
+        font-weight: bold;
+
+        &:first-of-type {
+            margin-top: 0;
+        }
+    }
+
     .above {
         padding-left: 30px !important;
         border-bottom: 2px solid #D7D7D7;
@@ -543,16 +553,6 @@ ul {
     .edit-profile {
         padding-top: 50px !important;
         padding-left: 50px !important;
-
-        .form-label {
-            margin-top: 30px;
-            font-size: 18px;
-            font-weight: bold;
-
-            &:first-of-type {
-                margin-top: 0;
-            }
-        }
 
         .form-control {
             width: 70%;
@@ -623,6 +623,22 @@ ul {
         #edit-profile input:last-of-type {
             margin-top: 20px;
             margin-right: 50px;
+        }
+    }
+
+    .account-detail {
+        > div {
+            padding-left: 50px;
+
+            .clear {
+                margin-top: 20px;
+                margin-bottom: 20px;
+                border-bottom: 1px solid #EEEEEE;
+            }
+
+            button {
+                margin-top: 30px;
+            }
         }
     }
 }
