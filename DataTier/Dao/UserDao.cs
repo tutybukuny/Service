@@ -95,6 +95,33 @@ namespace DataTier.Dao
             return true;
         }
 
+        public bool UpdateAvatar(int? id, string avatar)
+        {
+            using (var entities = new TheProjectEntities())
+            {
+                try
+                {
+                    var row = entities.Users.SingleOrDefault(u => u.id == id);
+
+                    if (row != null)
+                    {
+                        row.avatar = avatar;
+                    }
+
+                    entities.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                        Console.WriteLine("Property: " + validationError.PropertyName + " Error: " +
+                                          validationError.ErrorMessage);
+                    return false;
+                }
+                return true;
+            }
+        }
+
         public bool Delete(User obj)
         {
             using (var entities = new TheProjectEntities())

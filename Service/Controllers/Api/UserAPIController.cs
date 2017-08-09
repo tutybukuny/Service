@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Web.Http;
 using BusinessTier.Repository;
 using DataTier;
-using log4net;
 using Newtonsoft.Json.Linq;
 using Ninject;
 
@@ -20,6 +19,8 @@ namespace Service.Controllers.Api
             _repo = (UserRepo) kernel.Get<IRepo>();
         }
 
+        #region Login
+
         /// <summary>
         ///     Login service
         /// </summary>
@@ -32,6 +33,10 @@ namespace Service.Controllers.Api
             return _repo.Login(info);
         }
 
+        #endregion
+
+        #region Edit profile
+
         /// <summary>
         ///     edit profile of user service
         /// </summary>
@@ -41,6 +46,8 @@ namespace Service.Controllers.Api
         [HttpPost]
         public Dictionary<string, object> EditProfile(JObject data)
         {
+            #region prepare
+
             var user = new User
             {
                 email = (string) data["email"],
@@ -64,8 +71,14 @@ namespace Service.Controllers.Api
             user.role1 = user.role1 == 0 ? null : user.role1;
             user.role2 = user.role2 == 0 ? null : user.role2;
 
+            #endregion
+
             return _repo.EditProfile(user, (string) data["token"]);
         }
+
+        #endregion
+
+        #region Register
 
         /// <summary>
         ///     register service
@@ -79,8 +92,12 @@ namespace Service.Controllers.Api
             return _repo.Register(profile);
         }
 
+        #endregion
+
+        #region User info
+
         /// <summary>
-        /// Get user's info
+        ///     Get user's info
         /// </summary>
         /// <param name="user_id"></param>
         /// <returns></returns>
@@ -90,5 +107,7 @@ namespace Service.Controllers.Api
         {
             return _repo.GetUserInfo(user_id);
         }
+
+        #endregion
     }
 }

@@ -172,19 +172,6 @@ namespace BusinessTier.Repository
 
         #endregion
 
-        #region User Profile
-
-        public Dictionary<string, object> UserProfile(int user_id)
-        {
-            var dic = new Dictionary<string, object>();
-            var user = _userDao.GetById(user_id);
-            if (user == null) dic.Add("message", "No user likes this");
-            dic.Add("user", user);
-            return dic;
-        }
-
-        #endregion
-
         #region User Info
 
         public Dictionary<string, object> GetUserInfo(int? user_id)
@@ -196,6 +183,39 @@ namespace BusinessTier.Repository
             dic.Add("user", user);
 
             return dic;
+        }
+
+        #endregion
+
+        #region Get By Token
+
+        public Dictionary<string, object> GetByToken(string token)
+        {
+            var dic = new Dictionary<string, object>();
+            var user = _userDao.GetByToken(token);
+
+            if (user == null) dic.Add("message", "No user likes this!");
+            dic.Add("user", user);
+
+            return dic;
+        }
+
+        #endregion
+
+        #region User Profile
+
+        public Dictionary<string, object> UserProfile(int user_id)
+        {
+            var dic = new Dictionary<string, object>();
+            var user = _userDao.GetById(user_id);
+            if (user == null) dic.Add("message", "No user likes this");
+            dic.Add("user", user);
+            return dic;
+        }
+
+        public void ChangeAvatar(int? user_id, string avatar)
+        {
+            _userDao.UpdateAvatar(user_id, avatar);
         }
 
         #endregion

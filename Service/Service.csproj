@@ -318,6 +318,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Images\avatars\4884293-rockman+x.png" />
     <Content Include="Images\avatars\default_avatar.png" />
     <Content Include="Images\Bell.png" />
     <Content Include="Images\block-icon.png" />

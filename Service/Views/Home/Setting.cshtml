@@ -33,7 +33,7 @@
             @Html.TextBoxFor(u => u.about_me, new { @class = "form-control", placeholder = "Something about you", value = Model.about_me })
             <p class="form-label">Profile Picture</p>
             <div class="profile-picture col-md-5 col-sm-5 no-padding">
-                <img id="avatar" src="@Model.avatar" alt="" />
+                <img id="avatar" src="@("http://localhost:21790"+Model.avatar)" alt="" />
                 <label class="btn btn-yellow">
                     Choose an image <input id="FileUpload" type="file" hidden onchange="readURL(this);">
                 </label>
@@ -234,7 +234,7 @@
             }
         }
 
-        $('#test_image').click(function () {
+        $('.profile-picture input:file').change(function () {
             var formData = new FormData();
             var totalFiles = document.getElementById("FileUpload").files.length;
             for (var i = 0; i < totalFiles; i++) {
@@ -243,7 +243,20 @@
                 formData.append("FileUpload", file);
             }
 
-            console.log(formData);
+            $.ajax({
+                type: "POST",
+                url: 'http://localhost:21790/Home/ChangeAvatar',
+                data: formData,
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    alert('success!!');
+                },
+                error: function (error) {
+                    console.log(error.message);
+                }
+            });
         });
 
         $('#edit-profile > input:last-of-type').click(function () {

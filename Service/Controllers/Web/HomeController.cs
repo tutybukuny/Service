@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Web;
 using System.Web.Mvc;
 using BusinessTier.Factory;
@@ -7,7 +8,6 @@ using BusinessTier.Repository;
 using DataTier;
 using DataTier.Dao;
 using DataTier.Factory;
-using log4net;
 using Service.Models;
 
 namespace Service.Controllers.Web
@@ -15,8 +15,9 @@ namespace Service.Controllers.Web
     public class HomeController : Controller
     {
         private readonly ProjectRepo _projectRepo;
+
         private readonly UserRepo _userRepo;
-//        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        //        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public HomeController()
         {
@@ -32,7 +33,7 @@ namespace Service.Controllers.Web
         /// <returns></returns>
         private bool IsLoggedIn()
         {
-//            Log.InfoFormat("Check logged in {0}", 1);
+            //            Log.InfoFormat("Check logged in {0}", 1);
             if (Session["User"] != null) return true;
 
             var cookie = Request.Cookies["TheProjectToken"];
@@ -219,16 +220,26 @@ namespace Service.Controllers.Web
         }
 
         [HttpPost]
-        public ActionResult EditProfile(SettingViewModel m)
+        public void ChangeAvatar()
         {
-            var user = m.User;
-            if (IsLoggedIn()) return Index();
-            var token = Request.Cookies["TheProjectToken"].Value;
-            var dic = _userRepo.EditProfile(user, token);
-            var success = (bool) dic["success"];
-            ViewBag.EditProfileSuccess = success;
+            if (!IsLoggedIn()) return;
 
-            return View("Setting");
+            if (Request.Files.Count > 0)
+            {
+                var file = Request.Files[0];
+
+                var fileName = Path.GetFileName(file.FileName);
+
+                var path = Path.Combine(Server.MapPath("~/Images/avatars/"), fileName);
+                file.SaveAs(path);
+
+                var user = (User) Session["User"];
+
+                _userRepo.ChangeAvatar(user.id, "/Images/avatars/" + fileName);
+
+                user = (User) _userRepo.GetByToken(Request.Cookies["TheProjectToken"].Value)["user"];
+                Session["User"] = user;
+            }
         }
 
         #endregion
