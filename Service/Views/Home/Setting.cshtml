@@ -234,31 +234,6 @@
             }
         }
 
-        $('.profile-picture input:file').change(function () {
-            var formData = new FormData();
-            var totalFiles = document.getElementById("FileUpload").files.length;
-            for (var i = 0; i < totalFiles; i++) {
-                var file = document.getElementById("FileUpload").files[i];
-
-                formData.append("FileUpload", file);
-            }
-
-            $.ajax({
-                type: "POST",
-                url: 'http://localhost:21790/Home/ChangeAvatar',
-                data: formData,
-                dataType: 'json',
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    alert('success!!');
-                },
-                error: function (error) {
-                    console.log(error.message);
-                }
-            });
-        });
-
         $('#edit-profile > input:last-of-type').click(function () {
             if ($("#edit-profile").valid()) {
                 var d = {
@@ -288,6 +263,29 @@
                     error: function (err) {
                         alert('Something went wrong!');
                         console.log(err.message);
+                    }
+                });
+
+                var formData = new FormData();
+                var totalFiles = document.getElementById("FileUpload").files.length;
+                for (var i = 0; i < totalFiles; i++) {
+                    var file = document.getElementById("FileUpload").files[i];
+
+                    formData.append("FileUpload", file);
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: 'http://localhost:21790/Home/ChangeAvatar',
+                    data: formData,
+                    dataType: 'json',
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        alert('success!!');
+                    },
+                    error: function (error) {
+                        console.log(error.message);
                     }
                 });
             } else {
