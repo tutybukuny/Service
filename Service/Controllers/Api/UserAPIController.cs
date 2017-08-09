@@ -58,6 +58,12 @@ namespace Service.Controllers.Api
                 role2 = (int?) data["role2"]
             };
 
+            user.country_id = user.country_id == 0 ? null : user.country_id;
+            user.state_id = user.state_id == 0 ? null : user.country_id;
+            user.district_id = user.district_id == 0 ? null : user.country_id;
+            user.role1 = user.role1 == 0 ? null : user.country_id;
+            user.role2 = user.role2 == 0 ? null : user.country_id;
+
             return _repo.EditProfile(user, (string) data["token"]);
         }
 

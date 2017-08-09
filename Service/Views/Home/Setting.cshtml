@@ -213,6 +213,18 @@
 
         $('#edit-profile input:last-of-type').click(function () {
             if ($("#edit-profile").valid()) {
+                var d = {
+                    firstname: $('#firstname').val(),
+                    lastname: $('#lastname').val(),
+                    country_id: $('#country').val() === 0 ? null : $('#country').val(),
+                    state_id: $('#state').val() === 0 ? null : $('#state').val(),
+                    district_id: $('#district').val() === 0 ? null : $('#district').val(),
+                    role1: $('#role1').val() === 0 ? null : $('#role1').val(),
+                    role2: $('#role2').val() === 0 ? null : $('#role2').val(),
+                    token: '@Session["Token"]'
+                };
+
+                console.log(d);
                 $.ajax({
                     url: 'http://localhost:21790/api/UserApi/EditProfile',
                     type: 'post',
@@ -220,16 +232,7 @@
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },
                     dataType: 'json',
-                    data: {
-                        firstname: $('#firstname').val(),
-                        lastname: $('#lastname').val(),
-                        country_id: $('#country').val() == 0 ? null : $('#country').val(),
-                        state_id: $('#state').val() == 0 ? null : $('#state').val(),
-                        district_id: $('#district').val() == 0 ? null : $('#district').val(),
-                        role1: $('#role1').val() == 0 ? null : $('#role1').val(),
-                        role2: $('#role2').val() == 0 ? null : $('#role2').val(),
-                        token: '@Session["Token"]'
-                    },
+                    data: d,
                     success: function (data) {
                         alert('Profile has been Updated!');
                         console.log(data);
