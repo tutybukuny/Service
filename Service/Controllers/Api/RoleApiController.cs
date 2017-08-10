@@ -27,5 +27,12 @@ namespace Service.Controllers.Api
         {
             return _repo.GetById(id);
         }
+
+        [ActionName("GetProjectRoles")]
+        [HttpGet]
+        public Dictionary<string, object> GetProjectRoles(int? project_id, int limit = 3)
+        {
+            return _repo.GetProjectRoles(project_id, limit);
+        }
     }
 }

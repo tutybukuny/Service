@@ -1,6 +1,4 @@
-﻿var roles;
-
-$(document).ready(function () {
+﻿$(document).ready(function () {
     var showMenu = false;
 
     $("footer .dropdown-menu li a").click(function () {
@@ -24,8 +22,7 @@ function getRoles(callback) {
         type: 'get',
         dataType: 'json',
         success: function (data) {
-            roles = data.roles;
-            callback(roles);
+            callback(data.roles);
         },
         error: function (err) {
             console.log(err.message);
@@ -161,6 +158,25 @@ function getUserInfo(user_id, callback) {
         },
         success: function (data) {
             callback(data.user);
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
+}
+
+function GetProjectRoles(project_id, limit, callback) {
+    $.ajax({
+        async: false,
+        url: 'http://localhost:21790/api/RoleApi/GetProjectRoles',
+        type: 'get',
+        dataType: 'json',
+        data: {
+            'project_id': project_id,
+            'limit': limit
+        },
+        success: function (data) {
+            callback(data.roles);
         },
         error: function (err) {
             console.log(err);

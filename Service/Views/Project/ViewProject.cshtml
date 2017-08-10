@@ -1,7 +1,8 @@
-﻿@model DataTier.Project
+﻿@using DataTier
+@model Project
 
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = Model.title;
 }
 
 <div class="project-view col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2 no-padding">
@@ -10,9 +11,18 @@
         <p id="project_category" class="pull-left"></p>
         <div class="progress pull-right col-md-5 col-sm-5 no-padding">
             <div class="progress-bar" role="progressbar"
-                 aria-valuenow="@((float)Model.joined_people*100/(float)Model.people)" aria-valuemin="0" aria-valuemax="100"
-                 style="width:@((float)Model.joined_people * 100 / (float)Model.people)%">
+                 aria-valuenow="@((float)Model.joined_people*100/(float)Model.people)" a aria-valuemin="0" aria-valuemax="100"
+                 style="width:@((float)Model.joined_people * 100/(float)Model.people)%">
             </div>
+        </div>
+    </div>
+    <div class="details col-md-4 col-sm-4 no-padding-right">
+        <div class="creator row no-padding">
+            <img src="" alt="" class="col-md-4 col-sm-4 no-padding" />
+            <p class="col-md-8 col-sm-8 no-padding-right"></p>
+        </div>
+        <div class="roles row no-padding">
+            <p>Open Roles</p>
         </div>
     </div>
 </div>
@@ -22,6 +32,8 @@
 
     $(document).ready(function () {
         getCategories(loadCategory);
+        getUserInfo(@(((User)Session["User"]).id), loadCreator);
+        GetProjectRoles(@Model.id, 3, loadProjectCategories);
     });
 
     function loadCategory(categories) {
@@ -32,5 +44,20 @@
                 $("#project_category").text(item.category);
             }
         });
+    }
+
+    function loadCreator(user) {
+        $('.creator img').attr('src', user.avatar);
+        $('.creator p').html('Creator <span>'+user.firstname + ' '+ user.lastname+'</span>');
+    }
+
+    function loadProjectCategories(roles) {
+        var html = $('.details .roles').first().html();
+
+        roles.forEach(function(item, index) {
+            html += '<div class="role-row"><p>' + item.role + '</p></div>';
+        });
+
+        $('.details .roles').first().html(html);
     }
 </script>

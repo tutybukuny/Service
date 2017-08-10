@@ -647,6 +647,37 @@ ul {
   color: gray;
   font-weight: bold;
 }
+.project-view .details .creator img {
+  border-radius: 50%;
+}
+.project-view .details .creator p {
+  -ms-word-wrap: break-word;
+  word-wrap: break-word;
+}
+.project-view .details .creator p span {
+  font-weight: bold;
+}
+.project-view .details .roles {
+  margin-top: 30px;
+}
+.project-view .details .roles > p {
+  font-size: 20px;
+  font-weight: bold;
+  border-bottom: 2px solid gray;
+}
+.project-view .details .roles .role-row {
+  padding: 10px;
+  height: 50px;
+  background-color: gray;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.project-view .details .roles .role-row:first-of-type {
+  background-color: lightgray;
+}
 /*
     footer
 */

@@ -71,12 +71,39 @@ namespace DataTier.Dao
 
         public List<Role> GetListRoles(int[] roles)
         {
-            List<Role> list = new List<Role>();
+            var list = new List<Role>();
 
             foreach (var i in roles)
             {
-                Role role = GetById(i);
+                var role = GetById(i);
                 list.Add(role);
+            }
+
+            return list;
+        }
+
+        public List<Role> GetProjectRoles(int? project_id, int limit)
+        {
+            List<Role> list = null;
+
+            using (var entities = new TheProjectEntities())
+            {
+                var rows = (from r in entities.Roles
+                    join pr in entities.ProjectRoles on r.id equals pr.role_id
+                    where pr.project_id == project_id
+                    orderby r.id
+                    select r).Take(limit);
+
+                foreach (var row in rows)
+                {
+                    if (list == null) list = new List<Role>();
+
+                    list.Add(new Role
+                    {
+                        id = row.id,
+                        role = row.role
+                    });
+                }
             }
 
             return list;

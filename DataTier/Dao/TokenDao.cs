@@ -127,13 +127,13 @@ namespace DataTier.Dao
             using (var entities = new TheProjectEntities())
             {
                 var row = (from t in entities.Tokens
-                    where t.token == token && DbFunctions.DiffMinutes(t.created_date, DateTime.Now) <= 30
+                    where t.token == token && DbFunctions.DiffHours(t.created_date, DateTime.Now) <= 3
                     select t).FirstOrDefault();
 
                 if (row != null)
                 {
                     var span = DateTime.Now.Subtract(row.created_date);
-                    if (span.Minutes <= 30) user_id = row.user_id;
+                    if (span.Hours <= 3) user_id = row.user_id;
                 }
             }
 

@@ -46,6 +46,17 @@ namespace BusinessTier.Repository
             return dic;
         }
 
+        public Dictionary<string, object> GetProjectRoles(int? project_id, int limit)
+        {
+            var dic = new Dictionary<string, object>();
+            var list = _dao.GetProjectRoles(project_id, limit);
+
+            if (list == null) dic.Add("message", "Project has no role!");
+            dic.Add("roles", list);
+
+            return dic;
+        }
+
         #endregion
     }
 }
