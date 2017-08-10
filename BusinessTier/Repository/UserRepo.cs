@@ -48,12 +48,13 @@ namespace BusinessTier.Repository
                 }
                 else
                 {
-                    dic.Add("user", user);
                     var token = TokenGen.AutoGenerate();
                     dic.Add("token", token);
 
                     _tokenDao.Insert(new Token {token = token, user_id = user.id, created_date = DateTime.Now});
                 }
+
+                dic.Add("user", user);
             }
             else
             {
