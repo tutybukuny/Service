@@ -4,4 +4,33 @@
     ViewBag.Title = "title";
 }
 
-<h2>title</h2>
+<div class="project-view col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2 no-padding">
+    <div class="project-image col-md-8 col-sm-8 no-padding">
+        <img src="@Model.image" alt="" />
+        <p id="project_category" class="pull-left"></p>
+        <div class="progress pull-right col-md-5 col-sm-5 no-padding">
+            <div class="progress-bar" role="progressbar"
+                 aria-valuenow="@((float)Model.joined_people*100/(float)Model.people)" aria-valuemin="0" aria-valuemax="100"
+                 style="width:@((float)Model.joined_people * 100 / (float)Model.people)%">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var cats, rols;
+
+    $(document).ready(function () {
+        getCategories(loadCategory);
+    });
+
+    function loadCategory(categories) {
+        cats = categories;
+
+        categories.forEach(function (item, index) {
+            if (item.id == '@Model.category_id') {
+                $("#project_category").text(item.category);
+            }
+        });
+    }
+</script>

@@ -181,8 +181,24 @@ ul {
     color: red;
 }
 
-.success{
+.success {
     color: limegreen;
+}
+
+.progress {
+    height: 15px;
+    background-image: none;
+    box-shadow: none;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid @dark-yellow;
+
+    .progress-bar {
+        background-image: none;
+        border: none;
+        box-shadow: none;
+        background-color: @yellow;
+    }
 }
 
 .project-card {
@@ -227,19 +243,6 @@ ul {
             margin-left: 10px;
             margin-right: 10px;
             margin-bottom: 5px;
-            height: 15px;
-            background-image: none;
-            box-shadow: none;
-            background-color: white;
-            border-radius: 10px;
-            border: 1px solid @dark-yellow;
-
-            .progress-bar {
-                background-image: none;
-                border: none;
-                box-shadow: none;
-                background-color: @yellow;
-            }
         }
     }
 }
@@ -821,6 +824,27 @@ ul {
                     }
                 }
             }
+        }
+    }
+}
+
+/*
+    Project view
+*/
+
+.project-view {
+    font-family: Comfortaa;
+
+    .project-image {
+        img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        > p {
+            color: gray;
+            font-weight: bold;
         }
     }
 }
