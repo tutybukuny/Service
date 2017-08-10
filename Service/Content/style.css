@@ -349,6 +349,9 @@ ul {
 /*
     Discover
 */
+.discover-view {
+  margin-top: 50px;
+}
 .discover-view .discover-filter > div {
   margin-bottom: 30px;
 }
@@ -392,6 +395,7 @@ ul {
 */
 .setting-view {
   font-family: Comfortaa;
+  margin-top: 50px;
 }
 .setting-view .form-label {
   margin-top: 30px;
@@ -537,6 +541,9 @@ ul {
 /*
     User profile
 */
+.user-profile {
+  margin-top: 50px;
+}
 .user-profile .profile {
   margin-bottom: 30px;
 }
@@ -643,6 +650,7 @@ ul {
     Project view
 */
 .project-view {
+  margin-top: 50px;
   font-family: Comfortaa;
 }
 .project-view .project-image img {
