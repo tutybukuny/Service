@@ -68,6 +68,11 @@ namespace Service.Controllers.Api
 
         #region Check Password
 
+        /// <summary>
+        ///     Valid password of user
+        /// </summary>
+        /// <param name="user">user info contains id and password</param>
+        /// <returns></returns>
         [ActionName("CheckPassword")]
         [HttpPost]
         public Dictionary<string, object> CheckPassword(User user)
