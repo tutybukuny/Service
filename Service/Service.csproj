@@ -339,6 +339,9 @@
     <Content Include="Images\in-icon.png" />
     <Content Include="Images\insta-icon.png" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\slide1.jpeg" />
+    <Content Include="Images\slide2.jpg" />
+    <Content Include="Images\slide3.jpg" />
     <Content Include="Images\twitter-icon.png" />
     <Content Include="Images\youtube-icon.png" />
     <Content Include="Scripts\bootstrap.js" />
