@@ -13,14 +13,14 @@
     }
 }
 
-<div class="my-slide col-md-12 col-sm-12 no-padding">
+<div class="owl-carousel col-md-12 col-sm-12 no-padding">
     <div><img src="/Images/slide1.jpeg" alt="" /></div>
     <div><img src="/Images/slide2.jpg" alt="" /></div>
     <div><img src="/Images/slide3.jpg" alt="" /></div>
 </div>
 
 <div class="home-view col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
-    
+
 
     @if (Model.Project == null)
     {
@@ -30,7 +30,7 @@
     {
         <p class="font-comfortaa-bold">Featured Project</p>
         <div class="project-image col-md-5 col-sm-5 no-padding-left">
-            <a href="@Url.Action("ViewProject", "Project")?project_id=@Model.Project.id"><img src="@Href(projectImage)" alt=""/></a>
+            <a href="@Url.Action("ViewProject", "Project")?project_id=@Model.Project.id"><img src="@Href(projectImage)" alt="" /></a>
         </div>
         <div class="project-detail col-md-3 col-sm-3 font-comfortaa-light">
             <p class="font-comfortaa-bold">
@@ -43,15 +43,21 @@
 </div>
 
 <script>
-    $(document).ready(function(){
-        $('.my-slide').slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            autoplay: true,
-            autoplaySpeed: 2000,
-            fade: true,
-            cssEase: 'linear',
-            responseTo: 'slider'
+    $(document).ready(function () {
+        //        $('.my-slide').slick({
+        //            slidesToShow: 1,
+        //            slidesToScroll: 1,
+        //            autoplay: true,
+        //            autoplaySpeed: 2000,
+        //            fade: true,
+        //            cssEase: 'linear',
+        //            responseTo: 'slider'
+        //        });
+        $('.owl-carousel').owlCarousel({
+            items: 1,
+            lazyLoad: true,
+            loop: true,
+            margin: 10
         });
     });
 </script>

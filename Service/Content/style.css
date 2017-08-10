@@ -142,11 +142,7 @@ ul {
 .success {
   color: limegreen;
 }
-.my-slide > div {
-  width: 100%;
-}
-.my-slide img {
-  width: 100%;
+.owl-carousel img {
   height: 500px;
 }
 .progress {

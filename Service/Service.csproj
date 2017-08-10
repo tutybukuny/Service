@@ -219,6 +219,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\index.js" />
+    <Content Include="Content\owl.carousel.min.css" />
+    <Content Include="Content\owl.theme.default.min.css" />
+    <Content Include="Content\owl.theme.green.min.css" />
     <Content Include="Content\Slick\ajax-loader.gif" />
     <Content Include="Content\Slick\fonts\slick.svg" />
     <Content Include="Content\Slick\slick-theme.css" />
@@ -364,6 +367,8 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\owl.carousel.js" />
+    <Content Include="Scripts\owl.carousel.min.js" />
     <Content Include="Scripts\Slick\slick.js" />
     <Content Include="Scripts\Slick\slick.min.js" />
     <Content Include="Web.config" />
