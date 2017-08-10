@@ -32,7 +32,7 @@
 
     $(document).ready(function () {
         getCategories(loadCategory);
-        getUserInfo(@(((User)Session["User"]).id), loadCreator);
+        getUserInfo(@Model.user_id, loadCreator);
         GetProjectRoles(@Model.id, 3, loadProjectCategories);
     });
 
