@@ -131,6 +131,50 @@ namespace BusinessTier.Repository
 
         #endregion
 
+        #region Check Password
+
+        public Dictionary<string, object> CheckPassword(int? user_id, string password)
+        {
+            var dic = new Dictionary<string, object>();
+            var success = _userDao.CheckPassword(user_id, password);
+            dic.Add("message", success ? "True password!" : "Wrong password!");
+            dic.Add("success", success);
+
+            return dic;
+        }
+
+        #endregion
+
+        #region User Info
+
+        public Dictionary<string, object> GetUserInfo(int? user_id)
+        {
+            var dic = new Dictionary<string, object>();
+            var user = _userDao.GetById(user_id);
+
+            if (user == null) dic.Add("message", "No user likes this!");
+            dic.Add("user", user);
+
+            return dic;
+        }
+
+        #endregion
+
+        #region Get By Token
+
+        public Dictionary<string, object> GetByToken(string token)
+        {
+            var dic = new Dictionary<string, object>();
+            var user = _userDao.GetByToken(token);
+
+            if (user == null) dic.Add("message", "No user likes this!");
+            dic.Add("user", user);
+
+            return dic;
+        }
+
+        #endregion
+
         #region EditProfile
 
         public Dictionary<string, object> EditProfile(User profile, string token)
@@ -170,32 +214,12 @@ namespace BusinessTier.Repository
             return dic;
         }
 
-        #endregion
-
-        #region User Info
-
-        public Dictionary<string, object> GetUserInfo(int? user_id)
+        public Dictionary<string, object> UpdatePassword(int? user_id, string old_password, string new_password)
         {
             var dic = new Dictionary<string, object>();
-            var user = _userDao.GetById(user_id);
-
-            if (user == null) dic.Add("message", "No user likes this!");
-            dic.Add("user", user);
-
-            return dic;
-        }
-
-        #endregion
-
-        #region Get By Token
-
-        public Dictionary<string, object> GetByToken(string token)
-        {
-            var dic = new Dictionary<string, object>();
-            var user = _userDao.GetByToken(token);
-
-            if (user == null) dic.Add("message", "No user likes this!");
-            dic.Add("user", user);
+            var success = _userDao.UpdatePassword(user_id, old_password, new_password);
+            dic.Add("message", success ? "Password updated!" : "Something went wrong!");
+            dic.Add("success", success);
 
             return dic;
         }

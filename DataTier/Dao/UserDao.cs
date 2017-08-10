@@ -26,6 +26,21 @@ namespace DataTier.Dao
             return result;
         }
 
+        public bool CheckPassword(int? user_id, string password)
+        {
+            var res = true;
+
+            using (var entities = new TheProjectEntities())
+            {
+                var row = (from u in entities.Users where u.id == user_id && u.password == password select u)
+                    .FirstOrDefault();
+
+                res = row != null;
+            }
+
+            return res;
+        }
+
         #endregion
 
         #region Insert Update Delete
@@ -104,9 +119,7 @@ namespace DataTier.Dao
                     var row = entities.Users.SingleOrDefault(u => u.id == id);
 
                     if (row != null)
-                    {
                         row.avatar = avatar;
-                    }
 
                     entities.SaveChanges();
                 }
@@ -120,6 +133,29 @@ namespace DataTier.Dao
                 }
                 return true;
             }
+        }
+
+
+        public bool UpdatePassword(int? user_id, string old_password, string new_password)
+        {
+            var res = true;
+
+            using (var entities = new TheProjectEntities())
+            {
+                var row = entities.Users.SingleOrDefault(u => u.id == user_id && u.password == old_password);
+
+                if (row == null)
+                {
+                    res = false;
+                }
+                else
+                {
+                    row.password = new_password;
+                    entities.SaveChanges();
+                }
+            }
+
+            return res;
         }
 
         public bool Delete(User obj)

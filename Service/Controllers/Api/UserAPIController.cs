@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http;
+using BusinessTier.Factory;
 using BusinessTier.Repository;
 using DataTier;
 using Newtonsoft.Json.Linq;
-using Ninject;
+using Service.Models;
 
 namespace Service.Controllers.Api
 {
@@ -14,9 +15,7 @@ namespace Service.Controllers.Api
 
         private UserApiController()
         {
-            var kernel = new StandardKernel();
-            kernel.Bind<IRepo>().To<UserRepo>();
-            _repo = (UserRepo) kernel.Get<IRepo>();
+            _repo = (UserRepo) RepoFactory.GetRepo("UserRepo");
         }
 
         #region Login
@@ -31,6 +30,49 @@ namespace Service.Controllers.Api
         public Dictionary<string, object> Login(User info)
         {
             return _repo.Login(info);
+        }
+
+        #endregion
+
+        #region Register
+
+        /// <summary>
+        ///     register service
+        /// </summary>
+        /// <param name="profile">user's profile containing token</param>
+        /// <returns></returns>
+        [ActionName("Register")]
+        [HttpPost]
+        public Dictionary<string, object> Register(User profile)
+        {
+            return _repo.Register(profile);
+        }
+
+        #endregion
+
+        #region User info
+
+        /// <summary>
+        ///     Get user's info
+        /// </summary>
+        /// <param name="user_id"></param>
+        /// <returns></returns>
+        [ActionName("GetUserInfo")]
+        [HttpGet]
+        public Dictionary<string, object> GetUserInfo(int? user_id)
+        {
+            return _repo.GetUserInfo(user_id);
+        }
+
+        #endregion
+
+        #region Check Password
+
+        [ActionName("CheckPassword")]
+        [HttpPost]
+        public Dictionary<string, object> CheckPassword(User user)
+        {
+            return _repo.CheckPassword(user.id, user.password);
         }
 
         #endregion
@@ -76,36 +118,16 @@ namespace Service.Controllers.Api
             return _repo.EditProfile(user, (string) data["token"]);
         }
 
-        #endregion
-
-        #region Register
-
         /// <summary>
-        ///     register service
+        ///     update password for user
         /// </summary>
-        /// <param name="profile">user's profile containing token</param>
+        /// <param name="info">info contains user's id, old password and new password</param>
         /// <returns></returns>
-        [ActionName("Register")]
+        [ActionName("UpdatePassword")]
         [HttpPost]
-        public Dictionary<string, object> Register(User profile)
+        public Dictionary<string, object> UpdatePassword(UpdatePasswordApiModel info)
         {
-            return _repo.Register(profile);
-        }
-
-        #endregion
-
-        #region User info
-
-        /// <summary>
-        ///     Get user's info
-        /// </summary>
-        /// <param name="user_id"></param>
-        /// <returns></returns>
-        [ActionName("GetUserInfo")]
-        [HttpGet]
-        public Dictionary<string, object> GetUserInfo(int? user_id)
-        {
-            return _repo.GetUserInfo(user_id);
+            return _repo.UpdatePassword(info.user_id, info.old_password, info.new_password);
         }
 
         #endregion

@@ -5,7 +5,6 @@
 }
 
 <script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery-3.1.1.intellisense.js"></script>
 
 <div class="setting-view col-md-12 col-sm-12 no-padding">
     <div class="above col-md-12 col-sm-12 no-padding">
@@ -23,7 +22,7 @@
             <p>Blocked Users</p>
         </div>
     </div>
-    <div class="edit-profile col-md-12 col-sm-12 no-padding selected">
+    <div class="edit-profile col-md-12 col-sm-12 no-padding @(ViewBag.EditProfile == null? "":"selected")">
         <form id="edit-profile" action="#">
             <p class="form-label">First Name</p>
             @Html.TextBoxFor(u => u.firstname, new { @class = "form-control", placeholder = "First name", value = Model.firstname })
@@ -78,23 +77,25 @@
             <input class="btn btn-yellow pull-right" type="button" value="Save changes">
         </form>
     </div>
-    <div class="account-detail col-md-12 col-sm-12 no-padding">
-        <div class="col-md-9">
+    <div class="account-detail col-md-12 col-sm-12 no-padding @(ViewBag.AccountDetails == null ? "" : "selected")">
+        <form id="change_password" action="#" class="col-md-9">
             <h1>Change Password</h1>
             <div class="clear"></div>
             <p class="form-label">Confirm Password</p>
-            <input id="confirm" type="text" value="" class="form-control" />
+            <input id="old_password" name="old_password" type="password" value="" class="form-control" />
+            <p id="valid_password" class="display-none success">Valid password!</p>
+            <p id="invalid_password" class="display-none error">Invalid password!</p>
             <div class="clear"></div>
             <p class="form-label">New Password</p>
-            <input id="new_password" type="text" value="" class="form-control" />
+            <input id="new_password" name="new_password" type="password" value="" class="form-control" />
             <div class="clear"></div>
             <p class="form-label">Retype Password</p>
-            <input id="retype_password" type="text" value="" class="form-control" />
-            <button class="btn btn-yellow pull-right">Change Password</button>
-        </div>
+            <input id="retype_password" name="retype_password" type="password" value="" class="form-control" />
+            <input type="button" class="btn btn-yellow pull-right" value="Change Password">
+        </form>
     </div>
-    <div class="notifications col-md-12 col-sm-12 no-padding"></div>
-    <div class="blocked-users col-md-12 col-sm-12 no-padding"></div>
+    <div class="notifications col-md-12 col-sm-12 no-padding @(ViewBag.Notifications == null ? "" : "selected")"></div>
+    <div class="blocked-users col-md-12 col-sm-12 no-padding @(ViewBag.BlockedUsers == null ? "" : "selected")"></div>
 </div>
 
 <script>
@@ -131,6 +132,7 @@
         getCountries(loadCountries);
         getRoles(loadRoles);
 
+        //validate
         $('#edit-profile').validate({
             rules: {
                 'firstname': "required",
@@ -141,6 +143,55 @@
                 'lastname': "cannot be empty"
             }
         });
+
+        $('#change_password').validate({
+            rules: {
+                old_password: 'required',
+                new_password: {
+                    required: true,
+                    minlength: 8
+                },
+                retype_password: {
+                    equalTo: '#new_password'
+                }
+            },
+            messages: {
+                old_password: "Please enter your password!",
+                new_password: {
+                    required: "Please enter your new password!",
+                    minlength: "Your password must be at least 8 characters long"
+                },
+                retype_password: {
+                    equalTo: "Not match!"
+                }
+            }
+        });
+
+        $('#old_password').focusout(function() {
+            $.ajax({
+                url: 'http://localhost:21790/api/UserApi/CheckPassword',
+                type: 'post',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                dataType: 'json',
+                data: {
+                    id: '@Model.id',
+                    password: $('#old_password').val()
+                },
+                success: function(data) {
+                    if (data.success) {
+                        $('#valid_password').removeClass('display-none');
+                        $('#invalid_password').addClass('display-none');
+                    } else {
+                        $('#invalid_password').removeClass('display-none');
+                        $('#valid_password').addClass('display-none');
+                    }
+                }
+            });
+        });
+
+        //end validate
 
 
         function addSelectClickEvent(specific) {

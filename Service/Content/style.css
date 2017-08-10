@@ -139,6 +139,9 @@ ul {
 .error {
   color: red;
 }
+.success {
+  color: limegreen;
+}
 .project-card {
   margin-bottom: 30px;
   font-family: Comfortaa;
@@ -489,15 +492,15 @@ ul {
   margin-top: 20px;
   margin-right: 50px;
 }
-.setting-view .account-detail > div {
+.setting-view .account-detail form {
   padding-left: 50px;
 }
-.setting-view .account-detail > div .clear {
+.setting-view .account-detail form .clear {
   margin-top: 20px;
   margin-bottom: 20px;
   border-bottom: 1px solid #EEEEEE;
 }
-.setting-view .account-detail > div button {
+.setting-view .account-detail form input:last-of-type {
   margin-top: 30px;
 }
 /*
