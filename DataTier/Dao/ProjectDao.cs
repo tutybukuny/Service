@@ -144,13 +144,13 @@ namespace DataTier.Dao
             return project;
         }
 
-        public List<Project> GetUserProjects(int user_id)
+        public List<Project> GetUserProjects(int user_id, int limit)
         {
             List<Project> list = null;
 
             using (var entities = new TheProjectEntities())
             {
-                var rows = from p in entities.Projects where p.user_id == user_id select p;
+                var rows = (from p in entities.Projects where p.user_id == user_id select p).Take(limit);
 
                 foreach (var row in rows)
                 {

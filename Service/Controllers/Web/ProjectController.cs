@@ -49,7 +49,7 @@ namespace Service.Controllers.Web
         public ActionResult Index()
         {
             if (!IsLoggedIn()) return RedirectToAction("Index", "Home");
-            var projects = _repo.GetUserProjects(((User) Session["User"]).id)["projects"];
+            var projects = _repo.GetUserProjects(((User) Session["User"]).id, 10)["projects"];
             return View(projects);
         }
 

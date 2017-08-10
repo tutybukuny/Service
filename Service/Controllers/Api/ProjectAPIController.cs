@@ -22,9 +22,9 @@ namespace Service.Controllers.Api
         /// <returns></returns>
         [ActionName("GetUserProjects")]
         [HttpGet]
-        public Dictionary<string, object> GetUserProjects(int user_id)
+        public Dictionary<string, object> GetUserProjects(int user_id, int limit = 10)
         {
-            return _repo.GetUserProjects(user_id);
+            return _repo.GetUserProjects(user_id, limit);
         }
 
         /// <summary>

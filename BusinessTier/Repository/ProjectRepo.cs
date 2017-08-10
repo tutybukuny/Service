@@ -65,10 +65,10 @@ namespace BusinessTier.Repository
 
         #region Get User Projects
 
-        public Dictionary<string, object> GetUserProjects(int user_id)
+        public Dictionary<string, object> GetUserProjects(int user_id, int limit)
         {
             var dic = new Dictionary<string, object>();
-            var projects = _projectDao.GetUserProjects(user_id);
+            var projects = _projectDao.GetUserProjects(user_id, limit);
 
             if (projects == null) dic.Add("message", "User does'nt have project!");
             dic.Add("projects", projects);
