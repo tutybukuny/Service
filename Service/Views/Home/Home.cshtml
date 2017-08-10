@@ -13,7 +13,15 @@
     }
 }
 
+<div class="my-slide">
+    <div><img src="/Images/slide1.jpeg" alt="" /></div>
+    <div><img src="/Images/slide2.jpg" alt="" /></div>
+    <div><img src="/Images/slide3.jpg" alt="" /></div>
+</div>
+
 <div class="home-view col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
+    
+
     @if (Model.Project == null)
     {
         <p>You have no project!</p>
@@ -22,7 +30,7 @@
     {
         <p class="font-comfortaa-bold">Featured Project</p>
         <div class="project-image col-md-5 col-sm-5 no-padding-left">
-            <a href="@Url.Action("ViewProject", "Project")?project_id=@Model.Project.id"><img src="@Href(projectImage)" alt="" /></a>
+            <a href="@Url.Action("ViewProject", "Project")?project_id=@Model.Project.id"><img src="@Href(projectImage)" alt=""/></a>
         </div>
         <div class="project-detail col-md-3 col-sm-3 font-comfortaa-light">
             <p class="font-comfortaa-bold">
@@ -33,3 +41,16 @@
         </div>
     }
 </div>
+
+<script>
+    $(document).ready(function(){
+        $('.my-slide').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            fade: true,
+            cssEase: 'linear'
+        });
+    });
+</script>
