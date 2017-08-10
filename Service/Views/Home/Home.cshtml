@@ -13,7 +13,7 @@
     }
 }
 
-<div class="owl-carousel col-md-12 col-sm-12 no-padding">
+<div class="my-slide col-md-12 col-sm-12 no-padding">
     <div><img src="/Images/slide1.jpeg" alt="" /></div>
     <div><img src="/Images/slide2.jpg" alt="" /></div>
     <div><img src="/Images/slide3.jpg" alt="" /></div>
@@ -44,32 +44,34 @@
 
 <script>
     $(document).ready(function () {
-        //        $('.my-slide').slick({
-        //            slidesToShow: 1,
-        //            slidesToScroll: 1,
-        //            autoplay: true,
-        //            autoplaySpeed: 2000,
-        //            fade: true,
-        //            cssEase: 'linear',
-        //            responseTo: 'slider'
-        //        });
-        $('.owl-carousel').owlCarousel({
-            items: 1,
-            lazyLoad: true,
-            loop: true,
-            margin: 10,
+        $('.my-slide').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
             autoplay: true,
-            autoplayTimeout: 1000,
-            autoplayHoverPause: true
+            autoplaySpeed: 2000,
+            fade: true,
+            cssEase: 'linear',
+            responseTo: 'slider',
+            prevArrow: false,
+            nextArrow: false
         });
+        //        $('.owl-carousel').owlCarousel({
+        //            items: 1,
+        //            lazyLoad: true,
+        //            loop: true,
+        //            margin: 10,
+        //            autoplay: true,
+        //            autoplayTimeout: 1000,
+        //            autoplayHoverPause: true
+        //        });
 
-        $('.play').on('click',
-            function () {
-                owl.trigger('play.owl.autoplay', [1000])
-            });
-        $('.stop').on('click',
-            function () {
-                owl.trigger('stop.owl.autoplay')
-            });
+        //        $('.play').on('click',
+        //            function () {
+        //                owl.trigger('play.owl.autoplay', [1000]);
+        //            });
+        //        $('.stop').on('click',
+        //            function () {
+        //                owl.trigger('stop.owl.autoplay');
+        //            });
     });
 </script>
