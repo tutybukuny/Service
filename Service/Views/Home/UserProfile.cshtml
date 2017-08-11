@@ -85,9 +85,10 @@
         function loadFollowers(followers) {
             var html = $('#option-content-4').html();
             followers.forEach(function(item, key) {
+                var userProfile = '@Url.Action("UserProfile","Home")?user_id=' + item.id;
                 html += '<div class="follower-row col-md-6 col-md-offset-3 no-padding">'+
-                            '<img src="'+item.avatar+'" alt="" class="col-md-2 no-padding" />'+
-                            '<div class="col-md-6"><p>'+item.firstname+' '+item.lastname+'</p><p>'+(item.about_me!==null?item.about_me:'')+'</p></div>'+
+                            '<a href="'+userProfile+'"><img src="'+item.avatar+'" alt="" class="col-md-2 no-padding" /></a>'+
+                            '<div class="col-md-6"><p><a href="'+userProfile+'">'+item.firstname+' '+item.lastname+'</a></p><p>'+(item.about_me!==null?item.about_me:'')+'</p></div>'+
                             '<div class="col-md-4 text-left no-padding">'+
                                 '<img src="/Images/block-icon.png" alt="" class="pull-left" />'+
                                 '<button class="pull-right">Following</button>'+
@@ -102,9 +103,10 @@
         function loadFollowings(followings) {
             var html = $('#option-content-3').html();
             followings.forEach(function(item, key) {
+                var userProfile = '@Url.Action("UserProfile","Home")?user_id=' + item.id;
                 html += '<div class="follower-row col-md-6 col-md-offset-3 no-padding">'+
-                            '<img src="'+item.avatar+'" alt="" class="col-md-2 no-padding" />'+
-                            '<div class="col-md-6"><p>'+item.firstname+' '+item.lastname+'</p><p>'+(item.about_me!==null?item.about_me:'')+'</p></div>'+
+                            '<a href="'+userProfile+'"><img src="'+item.avatar+'" alt="" class="col-md-2 no-padding" /></a>'+
+                            '<div class="col-md-6"><p><a href="'+userProfile+'">'+item.firstname+' '+item.lastname+'</a></p><p>'+(item.about_me!==null?item.about_me:'')+'</p></div>'+
                             '<div class="col-md-4 text-left no-padding">'+
                                 '<img src="/Images/block-icon.png" alt="" class="pull-left" />'+
                                 '<button class="pull-right">Following</button>'+
