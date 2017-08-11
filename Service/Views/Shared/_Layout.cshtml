@@ -23,7 +23,7 @@
         <div class="action col-md-3 col-sm-3 font-comfortaa-bold">
             <a href="@Url.Action("CreateProject", "Project")"><button class="btn btn-yellow">Create</button></a>
             <a href="@Url.Action("Discover", "Project")"><button class="btn btn-light-gray">Discover</button></a>
-</div>
+        </div>
         <div class="logo col-md-6 col-sm-6 col-xs-12 text-center font-bebasneue-bold">
             <a href="@Url.Action("Index", "Home")"><img src="~/Images/logo.png" /> The Project</a>
         </div>
@@ -66,7 +66,7 @@
                             <li><a href="@Url.Action("Setting", "Home")?action=3">Notifications</a></li>
                             <li><a href="@Url.Action("Setting", "Home")?action=2">Blocked Users</a></li>
                         </ul>
-                        <p class="text-center"><a href="#">@(((User)Session["User"]).firstname + " " + ((User)Session["User"]).lastname)</a></p>
+                        <p class="text-center"><a href="@Url.Action("UserProfile", "Home")?user_id=@(((User)Session["User"]).id)">@(((User)Session["User"]).firstname + " " + ((User)Session["User"]).lastname)</a></p>
                         <p class="text-center"><a href="@Url.Action("Logout", "Home")">Log Out</a></p>
                     </div>
                 }
