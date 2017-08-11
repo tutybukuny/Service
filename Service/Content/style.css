@@ -227,7 +227,7 @@ ul {
   width: 100%;
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: 101;
   -moz-transition: 0.5s all;
   -o-transition: 0.5s all;
   -webkit-transition: 0.5s all;
