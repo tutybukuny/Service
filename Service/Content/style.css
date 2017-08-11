@@ -269,6 +269,12 @@ ul {
   width: 60px;
   height: 50px;
 }
+.header .support {
+  -moz-transition: 0.5s all;
+  -o-transition: 0.5s all;
+  -webkit-transition: 0.5s all;
+  transition: 0.5s all;
+}
 .header .support > div a {
   color: black;
 }
