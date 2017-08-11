@@ -16,6 +16,14 @@
     });
 });
 
+$(document).scroll(function () {
+    if ($(document).scrollTop() > 100) {
+        $('header').removeClass('large').addClass('small');
+    } else {
+        $('header').removeClass('small').addClass('large');
+    }
+});
+
 function getRoles(callback) {
     $.ajax({
         url: 'http://localhost:21790/api/RoleApi/GetRoles',
@@ -87,10 +95,10 @@ function getCategories(callback) {
         url: 'http://localhost:21790/api/ProjectApi/GetCategories',
         type: 'get',
         dataType: 'json',
-        success: function(data) {
+        success: function (data) {
             callback(data.categories);
         },
-        error: function(err) {
+        error: function (err) {
             console.log(err);
         }
     });

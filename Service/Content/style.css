@@ -222,10 +222,16 @@ ul {
 */
 .header {
   background-color: #f8f9f8;
-  padding-top: 30px;
-  padding-bottom: 30px;
   border-bottom: 2px solid #CCCCCC;
-  /*margin-bottom: 50px;*/
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  -moz-transition: 0.5s all;
+  -o-transition: 0.5s all;
+  -webkit-transition: 0.5s all;
+  transition: 0.5s all;
 }
 .header .action {
   height: 100%;
@@ -324,6 +330,19 @@ ul {
 }
 .header .support > div .menu a {
   color: #5E73B8;
+}
+.large {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.small {
+  padding: 0;
+}
+.small .support {
+  padding-top: 10px;
+}
+.small .support > div .menu {
+  top: 53px;
 }
 /*
     content

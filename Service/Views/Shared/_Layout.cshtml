@@ -19,7 +19,7 @@
     <link href="~/Content/Slick/slick-theme.css" rel="stylesheet" />
 </head>
 <body>
-    <header class="header container-fluid row">
+    <header class="header container-fluid large row">
         <div class="action col-md-3 col-sm-3 font-comfortaa-bold">
             <a href="@Url.Action("CreateProject", "Project")"><button class="btn btn-yellow">Create</button></a>
             <a href="@Url.Action("Discover", "Project")"><button class="btn btn-light-gray">Discover</button></a>
@@ -75,7 +75,7 @@
     </header>
     <div id="body">
         @RenderSection("featured", false)
-        <section class="content-wrapper container-fluid row">
+        <section class="content-wrapper container-fluid row" style="margin-top: 113px;">
             @RenderBody()
         </section>
     </div>

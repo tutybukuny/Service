@@ -286,10 +286,17 @@ ul {
 
 .header {
     background-color: @light-gray;
-    padding-top: 30px;
-    padding-bottom: 30px;
     border-bottom: 2px solid #CCCCCC;
-    /*margin-bottom: 50px;*/
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    transition: 0.5s all;
+
     .action {
         height: 100%;
         padding-top: 10px;
@@ -409,6 +416,23 @@ ul {
                     color: #5E73B8;
                 }
             }
+        }
+    }
+}
+
+.large {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.small {
+    padding: 0;
+
+    .support {
+        padding-top: 10px;
+
+        > div .menu {
+            top: 53px;
         }
     }
 }
