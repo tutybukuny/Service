@@ -74,5 +74,17 @@ namespace Service.Controllers.Api
         {
             return _repo.GetFilteredProject(category_id, sort_id, role_id);
         }
+
+        /// <summary>
+        /// Join to project
+        /// </summary>
+        /// <param name="joinedProject"></param>
+        /// <returns></returns>
+        [ActionName("JoinProject")]
+        [HttpPost]
+        public Dictionary<string, object> JoinProject(JoinedProject joinedProject)
+        {
+            return _repo.JoinProject(joinedProject);
+        }
     }
 }

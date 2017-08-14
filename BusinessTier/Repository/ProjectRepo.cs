@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DataTier;
 using DataTier.Dao;
 using DataTier.Factory;
 
@@ -8,11 +9,13 @@ namespace BusinessTier.Repository
     {
         private readonly CategoryDao _categoryDao;
         private readonly ProjectDao _projectDao;
+        private readonly UserDao _userDao;
 
         public ProjectRepo()
         {
             _projectDao = (ProjectDao) DaoFactory.GetDao("ProjectDao");
             _categoryDao = (CategoryDao) DaoFactory.GetDao("CategoryDao");
+            _userDao = (UserDao) DaoFactory.GetDao("UserDao");
         }
 
         #region Get By Id
@@ -102,6 +105,48 @@ namespace BusinessTier.Repository
 
             if (list == null) dic.Add("message", "No project likes this!");
             dic.Add("projects", list);
+
+            return dic;
+        }
+
+        #endregion
+
+        #region Join Project
+
+        public Dictionary<string, object> JoinProject(JoinedProject joinedProject)
+        {
+            var dic = new Dictionary<string, object>();
+            var messages = new List<string>();
+            var success = true;
+            var project = _projectDao.GetById(joinedProject.project_id);
+            var user = _userDao.GetById(joinedProject.user_id);
+
+            if (project == null)
+            {
+                messages.Add("Project is not exist!");
+                success = false;
+            }
+
+            if (user == null)
+            {
+                messages.Add("User is not exist!");
+                success = false;
+            }
+
+            if (project != null && project.joined_people + 1 > project.people)
+            {
+                messages.Add("Project is full!");
+                success = false;
+            }
+
+            if (success)
+            {
+                success = _projectDao.JoinProject(joinedProject);
+                messages.Add(success ? "Joined success!" : "Something went wrong!");
+            }
+
+            dic.Add("success", success);
+            dic.Add("messages", messages);
 
             return dic;
         }

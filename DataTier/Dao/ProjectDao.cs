@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 
 namespace DataTier.Dao
@@ -11,17 +13,51 @@ namespace DataTier.Dao
 
         public bool Insert(Project obj)
         {
-            using (var entities = new TheProjectEntities())
+            try
             {
-                try
+                var conn = new SqlConnection(DaoLib.ConnectionString);
+                conn.Open();
+                var paramNames = new List<string>
                 {
-                    entities.Projects.Add(obj);
-                    entities.SaveChanges();
-                }
-                catch (Exception e)
+                    "@title",
+                    "@category_id",
+                    "@description",
+                    "@user_id",
+                    "@created_date",
+                    "@people",
+                    "@joined_people"
+                };
+                var dbTypes = new List<DbType>
                 {
-                    return false;
-                }
+                    DbType.String,
+                    DbType.Int32,
+                    DbType.String,
+                    DbType.Int32,
+                    DbType.DateTime,
+                    DbType.Int32,
+                    DbType.Int32
+                };
+                var values = new List<object>
+                {
+                    obj.title,
+                    obj.category_id,
+                    obj.description,
+                    obj.user_id,
+                    obj.created_date,
+                    obj.people,
+                    obj.joined_people
+                };
+                var sql =
+                    "INSERT INTO dbo.[Project](title, category_id, description, user_id, created_date, people, joined_people) " +
+                    "VALUES(@title, @category_id, @description, @user_id, @created_date, @people, @joined_people)";
+                var cmd = DaoLib.CreateCommand(conn, sql, paramNames, dbTypes, values);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                conn.Dispose();
+            }
+            catch (Exception e)
+            {
+                return false;
             }
 
             return true;
@@ -266,6 +302,74 @@ namespace DataTier.Dao
             }
 
             return list;
+        }
+
+        #endregion
+
+        #region Join Project
+
+        public bool JoinProject(JoinedProject obj)
+        {
+            try
+            {
+                var conn = new SqlConnection(DaoLib.ConnectionString);
+                conn.Open();
+                var paramNames = new List<string>
+                {
+                    "@user_id",
+                    "@project_id",
+                    "@role_id",
+                    "@created_date"
+                };
+                var dbTypes = new List<DbType>
+                {
+                    DbType.Int32,
+                    DbType.Int32,
+                    DbType.Int32,
+                    DbType.DateTime
+                };
+                var values = new List<object>
+                {
+                    obj.user_id,
+                    obj.project_id,
+                    obj.role_id,
+                    DateTime.Now
+                };
+                var sql = "INSERT INTO dbo.[JoinedProject](user_id, project_id, role_id, created_date) " +
+                          "VALUES(@user_id, @project_id, @role_id, @created_date)";
+                var cmd = DaoLib.CreateCommand(conn, sql, paramNames, dbTypes, values);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                conn.Dispose();
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+            return UpdatePeople(obj.project_id);
+        }
+
+        private bool UpdatePeople(int project_id)
+        {
+            using (var entities = new TheProjectEntities())
+            {
+                try
+                {
+                    var row = entities.Projects.FirstOrDefault(p => p.id == project_id);
+
+                    if (row != null)
+                        row.joined_people++;
+
+                    entities.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         #endregion
