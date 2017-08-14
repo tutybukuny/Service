@@ -33,6 +33,8 @@ namespace DataTier.Factory
                     return _kernel.Get<IDao<Following>>(name);
                 case "CategoryDao":
                     return _kernel.Get<IDao<Category>>(name);
+                case "LikeDao":
+                    return _kernel.Get<IDao<Like>>(name);
             }
 
             return null;

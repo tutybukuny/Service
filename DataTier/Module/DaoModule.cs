@@ -16,6 +16,7 @@ namespace DataTier.Module
             Bind(typeof(IDao<>)).To(typeof(RoleDao)).Named("RoleDao");
             Bind(typeof(IDao<>)).To(typeof(FollowingDao)).Named("FollowingDao");
             Bind(typeof(IDao<>)).To(typeof(CategoryDao)).Named("CategoryDao");
+            Bind(typeof(IDao<>)).To(typeof(LikeDao)).Named("LikeDao");
         }
     }
 }

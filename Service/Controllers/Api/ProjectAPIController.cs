@@ -76,7 +76,7 @@ namespace Service.Controllers.Api
         }
 
         /// <summary>
-        /// Join to project
+        ///     Join to project
         /// </summary>
         /// <param name="joinedProject"></param>
         /// <returns></returns>
@@ -85,6 +85,18 @@ namespace Service.Controllers.Api
         public Dictionary<string, object> JoinProject(JoinedProject joinedProject)
         {
             return _repo.JoinProject(joinedProject);
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="project_id"></param>
+        /// <param name="user_id"></param>
+        /// <returns></returns>
+        [ActionName("IsLikedByUser")]
+        [HttpGet]
+        public Dictionary<string, object> IsLikedByUser(int project_id, int user_id)
+        {
+            return _repo.IsLikedByUser(project_id, user_id);
         }
     }
 }

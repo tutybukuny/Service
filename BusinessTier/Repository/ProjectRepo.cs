@@ -8,6 +8,7 @@ namespace BusinessTier.Repository
     public class ProjectRepo : IRepo
     {
         private readonly CategoryDao _categoryDao;
+        private readonly LikeDao _likeDao;
         private readonly ProjectDao _projectDao;
         private readonly UserDao _userDao;
 
@@ -16,6 +17,7 @@ namespace BusinessTier.Repository
             _projectDao = (ProjectDao) DaoFactory.GetDao("ProjectDao");
             _categoryDao = (CategoryDao) DaoFactory.GetDao("CategoryDao");
             _userDao = (UserDao) DaoFactory.GetDao("UserDao");
+            _likeDao = (LikeDao) DaoFactory.GetDao("LikeDao");
         }
 
         #region Get By Id
@@ -155,6 +157,15 @@ namespace BusinessTier.Repository
             dic.Add("messages", messages);
 
             return dic;
+        }
+
+        #endregion
+
+        #region Is Like By User
+
+        public Dictionary<string, object> IsLikedByUser(int project_id, int user_id)
+        {
+            return new Dictionary<string, object> {{"like", _likeDao.IsLikedByUser(project_id, user_id)}};
         }
 
         #endregion

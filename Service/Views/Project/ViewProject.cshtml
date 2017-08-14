@@ -49,28 +49,39 @@
         getUserInfo(@Model.user_id, loadCreator);
         GetProjectRoles(@Model.id, 3, loadProjectCategories);
 
+        isLike();
+        isFollow();
+
         $('.like-follow img').click(function() {
             like = !like;
 
-            if (like) {
-                $('.like-follow img:first-of-type').addClass("hidden");
-                $('.like-follow img:nth-of-type(2)').removeClass("hidden");
-            } else {
-                $('.like-follow img:first-of-type').removeClass("hidden");
-                $('.like-follow img:nth-of-type(2)').addClass("hidden");
-            }
+            changeLike();
         });
 
         $('.like-follow button:first-of-type').click(function() {
             follow = !follow;
 
-            if (follow) {
-                $('.like-follow button:first-of-type').css({ "background-color": "#5870B6", "color": "white" });
-            } else {
-                $('.like-follow button:first-of-type').css({ "background-color": "white", "color": "#5870B6" });
-            }
+            changeFollow();
         });
     });
+
+    function changeLike() {
+        if (like) {
+            $('.like-follow img:first-of-type').addClass("hidden");
+            $('.like-follow img:nth-of-type(2)').removeClass("hidden");
+        } else {
+            $('.like-follow img:first-of-type').removeClass("hidden");
+            $('.like-follow img:nth-of-type(2)').addClass("hidden");
+        }
+    }
+
+    function changeFollow() {
+        if (follow) {
+            $('.like-follow button:first-of-type').css({ "background-color": "#5870B6", "color": "white" });
+        } else {
+            $('.like-follow button:first-of-type').css({ "background-color": "white", "color": "#5870B6" });
+        }
+    }
 
     function loadCategory(categories) {
         cats = categories;
@@ -95,5 +106,27 @@
         });
 
         $('.details .roles').first().html(html);
+    }
+
+    function isLike() {
+        if ('@(Session["User"]!=null)'==='True') {
+            $.ajax({
+                url: 'http://localhost:21790/api/ProjectApi/IsLikedByUser',
+                type: 'get',
+                dataType: 'json',
+                data: {
+                    project_id: @Model.id,
+                    user_id: @(((User)Session["User"]).id)
+                },
+                success: function(data) {
+                    like = data.like;
+                    changeLike();
+                }
+            });
+        }
+    }
+
+    function isFollow() {
+
     }
 </script>
