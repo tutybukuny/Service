@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 
 namespace DataTier.Dao
@@ -10,7 +13,42 @@ namespace DataTier.Dao
 
         public bool Insert(Like obj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var conn = new SqlConnection(DaoLib.ConnectionString);
+                conn.Open();
+                var paramNames = new List<string>
+                {
+                    "@user_id",
+                    "@project_id",
+                    "@created_date"
+                };
+                var dbTypes = new List<DbType>
+                {
+                    DbType.Int32,
+                    DbType.Int32,
+                    DbType.DateTime,
+                };
+                var values = new List<object>
+                {
+                    obj.user_id,
+                    obj.project_id,
+                    DateTime.Now
+                };
+                var sql =
+                    "INSERT INTO dbo.[Like](user_id, project_id, created_date) " +
+                    "VALUES(@user_id, @project_id, @created_date)";
+                var cmd = DaoLib.CreateCommand(conn, sql, paramNames, dbTypes, values);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                conn.Dispose();
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public bool Update(Like obj)
@@ -20,7 +58,25 @@ namespace DataTier.Dao
 
         public bool Delete(Like obj)
         {
-            throw new NotImplementedException();
+            using (var entities = new TheProjectEntities())
+            {
+                try
+                {
+                    entities.Entry(obj).State = EntityState.Deleted;
+                    entities.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public bool Delete(int user_id, int project_id)
+        {
+            return true;
         }
 
         #endregion
