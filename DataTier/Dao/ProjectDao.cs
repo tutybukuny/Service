@@ -372,6 +372,21 @@ namespace DataTier.Dao
             return true;
         }
 
+        public bool ValidateRole(int project_id, int role_id)
+        {
+            bool result;
+
+            using (var entities = new TheProjectEntities())
+            {
+                var row = entities.ProjectRoles.FirstOrDefault(
+                    pr => pr.project_id == project_id && pr.role_id == role_id);
+
+                result = row != null;
+            }
+
+            return result;
+        }
+
         #endregion
     }
 }

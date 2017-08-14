@@ -133,6 +133,12 @@ namespace BusinessTier.Repository
                 success = false;
             }
 
+            if (!_projectDao.ValidateRole(joinedProject.project_id, joinedProject.role_id))
+            {
+                messages.Add("This project is not open this role!");
+                success = false;
+            }
+
             if (project != null && project.joined_people + 1 > project.people)
             {
                 messages.Add("Project is full!");
