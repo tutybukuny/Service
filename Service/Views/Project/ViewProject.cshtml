@@ -9,7 +9,7 @@
     <div class="project-image col-md-8 col-sm-8 no-padding">
         <img src="@Model.image" alt="" />
         <p id="project_category" class="pull-left"></p>
-        <div class="progress pull-right col-md-5 col-sm-5 no-padding">
+        <div class="progress pull-right col-md-6 col-sm-6 no-padding">
             <div class="progress-bar" role="progressbar"
                  aria-valuenow="@((float)Model.joined_people*100/Model.people)" a aria-valuemin="0" aria-valuemax="100"
                  style="width: @((float)Model.joined_people * 100/Model.people)%">
@@ -25,15 +25,51 @@
             <p>Open Roles</p>
         </div>
     </div>
+    <div class="share-and-follow col-md-8 col-sm-8 no-padding">
+        <div class="social-network col-md-6 col-sm-6 no-padding">
+            Share: <img src="/Images/twitter-icon-share.png" alt="" />
+            <img src="/Images/fb-icon-share.png" alt="" />
+            <img src="/Images/share-icon.png" alt="" />
+        </div>
+        <div class="like-follow col-md-6 col-sm-6 no-padding">
+            <img src="/Images/not-like.png" alt="" />
+            <img src="/Images/like.png" alt="" class="hidden" />
+            <button class="btn btn-yellow">Follow +</button>
+        </div>
+    </div>
 </div>
 
 <script>
     var cats, rols;
+    var like = false;
+    var follow = false;
 
     $(document).ready(function () {
         getCategories(loadCategory);
         getUserInfo(@Model.user_id, loadCreator);
         GetProjectRoles(@Model.id, 3, loadProjectCategories);
+
+        $('.like-follow img').click(function() {
+            like = !like;
+
+            if (like) {
+                $('.like-follow img:first-of-type').addClass("hidden");
+                $('.like-follow img:nth-of-type(2)').removeClass("hidden");
+            } else {
+                $('.like-follow img:first-of-type').removeClass("hidden");
+                $('.like-follow img:nth-of-type(2)').addClass("hidden");
+            }
+        });
+
+        $('.like-follow button:first-of-type').click(function() {
+            follow = !follow;
+
+            if (follow) {
+                $('.like-follow button:first-of-type').css({ "background-color": "#5870B6", "color": "white" });
+            } else {
+                $('.like-follow button:first-of-type').css({ "background-color": "white", "color": "#5870B6" });
+            }
+        });
     });
 
     function loadCategory(categories) {

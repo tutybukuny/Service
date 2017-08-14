@@ -736,6 +736,31 @@ ul {
 .project-view .details .roles .role-row:first-of-type {
   background-color: lightgray;
 }
+.project-view .share-and-follow .social-network {
+  font-weight: bold;
+}
+.project-view .share-and-follow .social-network img {
+  width: 8%;
+  margin-left: 20px;
+}
+.project-view .share-and-follow .like-follow img {
+  height: 30px;
+  margin-right: 20px;
+}
+.project-view .share-and-follow .like-follow button {
+  background-color: white;
+  border: 1px solid #5870B6;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-weight: bold;
+  color: #5870B6;
+}
+.project-view .share-and-follow .like-follow button:hover {
+  background-color: #e6e6e6;
+}
+.project-view .share-and-follow .like-follow button:active {
+  background-color: #d9d9d9;
+}
 /*
     footer
 */
