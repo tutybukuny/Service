@@ -8,10 +8,11 @@ namespace BusinessTier.Repository
     public class ProjectRepo : IRepo
     {
         private readonly CategoryDao _categoryDao;
+        private readonly FollowingProjectDao _followingProjectDao;
         private readonly LikeDao _likeDao;
         private readonly ProjectDao _projectDao;
-        private readonly UserDao _userDao;
         private readonly TokenDao _tokenDao;
+        private readonly UserDao _userDao;
 
         public ProjectRepo()
         {
@@ -20,6 +21,7 @@ namespace BusinessTier.Repository
             _userDao = (UserDao) DaoFactory.GetDao("UserDao");
             _likeDao = (LikeDao) DaoFactory.GetDao("LikeDao");
             _tokenDao = (TokenDao) DaoFactory.GetDao("TokenDao");
+            _followingProjectDao = (FollowingProjectDao) DaoFactory.GetDao("FollowingProjectDao");
         }
 
         #region Get By Id
@@ -163,9 +165,9 @@ namespace BusinessTier.Repository
 
         #endregion
 
-        #region Like and Unlike
+        #region Following Project
 
-        public Dictionary<string, object> Like(string token, int project_id)
+        public Dictionary<string, object> Follow(string token, int project_id, bool follow)
         {
             var dic = new Dictionary<string, object>();
             var user_id = _tokenDao.GetUserId(token);
@@ -179,7 +181,9 @@ namespace BusinessTier.Repository
             }
             else
             {
-                success = _likeDao.Insert(new Like {user_id = user_id, project_id = project_id});
+                success = follow
+                    ? _followingProjectDao.Insert(new FollowingProject {user_id = user_id, project_id = project_id})
+                    : _followingProjectDao.Delete(user_id, project_id);
                 message = success ? "Success!" : "Something went wrong!";
             }
 
@@ -189,7 +193,19 @@ namespace BusinessTier.Repository
             return dic;
         }
 
-        public Dictionary<string, object> Unlike(string token, int project_id)
+        public Dictionary<string, object> IsFollowedByUser(int user_id, int project_id)
+        {
+            return new Dictionary<string, object>
+            {
+                {"follow", _followingProjectDao.IsFollowedByUser(user_id, project_id)}
+            };
+        }
+
+        #endregion
+
+        #region Like and Unlike
+
+        public Dictionary<string, object> Like(string token, int project_id, bool like)
         {
             var dic = new Dictionary<string, object>();
             var user_id = _tokenDao.GetUserId(token);
@@ -203,7 +219,9 @@ namespace BusinessTier.Repository
             }
             else
             {
-                success = _likeDao.Delete(user_id, project_id);
+                success = like
+                    ? _likeDao.Insert(new Like {user_id = user_id, project_id = project_id})
+                    : _likeDao.Delete(user_id, project_id);
                 message = success ? "Success!" : "Something went wrong!";
             }
 

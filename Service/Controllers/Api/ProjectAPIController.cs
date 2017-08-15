@@ -87,6 +87,35 @@ namespace Service.Controllers.Api
             return _repo.JoinProject(joinedProject);
         }
 
+        #region Following project
+
+        /// <summary>
+        /// </summary>
+        /// <param name="token"></param>
+        /// <param name="project_id"></param>
+        /// <param name="follow"></param>
+        /// <returns></returns>
+        [ActionName("Follow")]
+        [HttpGet]
+        public Dictionary<string, object> Follow(string token, int project_id, bool follow)
+        {
+            return _repo.Follow(token, project_id, follow);
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="user_id"></param>
+        /// <param name="project_id"></param>
+        /// <returns></returns>
+        [ActionName("IsFollowedByUser")]
+        [HttpGet]
+        public Dictionary<string, object> IsFollowedByUser(int user_id, int project_id)
+        {
+            return _repo.IsFollowedByUser(user_id, project_id);
+        }
+
+        #endregion
+
         #region Like and Unlike
 
         /// <summary>
@@ -98,7 +127,7 @@ namespace Service.Controllers.Api
         [HttpGet]
         public Dictionary<string, object> Like(string token, int project_id, bool like)
         {
-            return like ? _repo.Like(token, project_id) : _repo.Unlike(token, project_id);
+            return _repo.Like(token, project_id, like);
         }
 
         /// <summary>

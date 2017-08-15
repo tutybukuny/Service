@@ -101,6 +101,21 @@ namespace DataTier.Dao
             throw new NotImplementedException();
         }
 
+        public bool IsFollowedByUser(int user_id, int project_id)
+        {
+            bool result;
+
+            using (var entities = new TheProjectEntities())
+            {
+                var row = entities.FollowingProjects.FirstOrDefault(
+                    f => f.user_id == user_id && f.project_id == project_id);
+
+                result = row != null;
+            }
+
+            return result;
+        }
+
         #endregion
     }
 }
