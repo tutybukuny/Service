@@ -96,6 +96,7 @@
     <Compile Include="Dao\DaoLib.cs" />
     <Compile Include="Dao\DistrictDao.cs" />
     <Compile Include="Dao\FollowingDao.cs" />
+    <Compile Include="Dao\FollowingProjectDao.cs" />
     <Compile Include="Dao\IDao.cs" />
     <Compile Include="Dao\LikeDao.cs" />
     <Compile Include="Dao\ProjectDao.cs" />

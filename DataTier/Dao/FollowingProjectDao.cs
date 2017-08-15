@@ -7,37 +7,26 @@ using System.Linq;
 
 namespace DataTier.Dao
 {
-    public class LikeDao : IDao<Like>
+    public class FollowingProjectDao : IDao<FollowingProject>
     {
         #region Insert Update Delete
 
-        public bool Insert(Like obj)
+        public bool Insert(FollowingProject obj)
         {
             try
             {
                 var conn = new SqlConnection(DaoLib.ConnectionString);
                 conn.Open();
-                var paramNames = new List<string>
-                {
-                    "@user_id",
-                    "@project_id",
-                    "@created_date"
-                };
+                var paramNames = new List<string> {"@user_id", "@project_id", "@created_date"};
                 var dbTypes = new List<DbType>
                 {
                     DbType.Int32,
                     DbType.Int32,
                     DbType.DateTime
                 };
-                var values = new List<object>
-                {
-                    obj.user_id,
-                    obj.project_id,
-                    DateTime.Now
-                };
-                var sql =
-                    "INSERT INTO dbo.[Like](user_id, project_id, created_date) " +
-                    "VALUES(@user_id, @project_id, @created_date)";
+                var values = new List<object> {obj.user_id, obj.project_id, DateTime.Now};
+                var sql = "INSERT INTO dbo.[FollowingProject](user_id, project_id, created_date) " +
+                          "VALUES(@user_id, @project_id, @created_date)";
                 var cmd = DaoLib.CreateCommand(conn, sql, paramNames, dbTypes, values);
                 cmd.ExecuteNonQuery();
                 conn.Close();
@@ -51,12 +40,12 @@ namespace DataTier.Dao
             return true;
         }
 
-        public bool Update(Like obj)
+        public bool Update(FollowingProject obj)
         {
             throw new NotImplementedException();
         }
 
-        public bool Delete(Like obj)
+        public bool Delete(FollowingProject obj)
         {
             using (var entities = new TheProjectEntities())
             {
@@ -78,12 +67,20 @@ namespace DataTier.Dao
         {
             using (var entities = new TheProjectEntities())
             {
-                var row = entities.Likes.FirstOrDefault(l => l.user_id == user_id && l.project_id == project_id);
-
-                if (row != null)
+                try
                 {
-                    entities.Entry(row).State = EntityState.Deleted;
-                    entities.SaveChanges();
+                    var row = entities.FollowingProjects.FirstOrDefault(
+                        f => f.user_id == user_id && f.project_id == project_id);
+
+                    if (row != null)
+                    {
+                        entities.Entry(row).State = EntityState.Deleted;
+                        entities.SaveChanges();
+                    }
+                }
+                catch (Exception e)
+                {
+                    return false;
                 }
             }
 
@@ -94,27 +91,14 @@ namespace DataTier.Dao
 
         #region Get Item
 
-        public List<Like> GetAll()
+        public List<FollowingProject> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public Like GetById(int? id)
+        public FollowingProject GetById(int? id)
         {
             throw new NotImplementedException();
-        }
-
-        public bool IsLikedByUser(int project_id, int user_id)
-        {
-            bool result;
-
-            using (var entities = new TheProjectEntities())
-            {
-                var row = entities.Likes.FirstOrDefault(l => l.project_id == project_id && l.user_id == user_id);
-                result = row != null;
-            }
-
-            return result;
         }
 
         #endregion

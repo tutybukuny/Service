@@ -87,6 +87,32 @@ namespace Service.Controllers.Api
             return _repo.JoinProject(joinedProject);
         }
 
+        #region Like and Unlike
+
+        /// <summary>
+        /// </summary>
+        /// <param name="token"></param>
+        /// <param name="project_id"></param>
+        /// <returns></returns>
+        [ActionName("Like")]
+        [HttpGet]
+        public Dictionary<string, object> Like(string token, int project_id)
+        {
+            return _repo.Like(token, project_id);
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="token"></param>
+        /// <param name="project_id"></param>
+        /// <returns></returns>
+        [ActionName("Unlike")]
+        [HttpGet]
+        public Dictionary<string, object> Unlike(string token, int project_id)
+        {
+            return _repo.Unlike(token, project_id);
+        }
+
         /// <summary>
         /// </summary>
         /// <param name="project_id"></param>
@@ -98,5 +124,7 @@ namespace Service.Controllers.Api
         {
             return _repo.IsLikedByUser(project_id, user_id);
         }
+
+        #endregion
     }
 }

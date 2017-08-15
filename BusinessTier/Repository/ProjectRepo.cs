@@ -11,6 +11,7 @@ namespace BusinessTier.Repository
         private readonly LikeDao _likeDao;
         private readonly ProjectDao _projectDao;
         private readonly UserDao _userDao;
+        private readonly TokenDao _tokenDao;
 
         public ProjectRepo()
         {
@@ -18,6 +19,7 @@ namespace BusinessTier.Repository
             _categoryDao = (CategoryDao) DaoFactory.GetDao("CategoryDao");
             _userDao = (UserDao) DaoFactory.GetDao("UserDao");
             _likeDao = (LikeDao) DaoFactory.GetDao("LikeDao");
+            _tokenDao = (TokenDao) DaoFactory.GetDao("TokenDao");
         }
 
         #region Get By Id
@@ -161,7 +163,55 @@ namespace BusinessTier.Repository
 
         #endregion
 
-        #region Is Like By User
+        #region Like and Unlike
+
+        public Dictionary<string, object> Like(string token, int project_id)
+        {
+            var dic = new Dictionary<string, object>();
+            var user_id = _tokenDao.GetUserId(token);
+            bool success;
+            string message;
+
+            if (user_id == -1)
+            {
+                success = false;
+                message = "Token is invalid!";
+            }
+            else
+            {
+                success = _likeDao.Insert(new Like {user_id = user_id, project_id = project_id});
+                message = success ? "Success!" : "Something went wrong!";
+            }
+
+            dic.Add("success", success);
+            dic.Add("message", message);
+
+            return dic;
+        }
+
+        public Dictionary<string, object> Unlike(string token, int project_id)
+        {
+            var dic = new Dictionary<string, object>();
+            var user_id = _tokenDao.GetUserId(token);
+            bool success;
+            string message;
+
+            if (user_id == -1)
+            {
+                success = false;
+                message = "Token is invalid!";
+            }
+            else
+            {
+                success = _likeDao.Delete(user_id, project_id);
+                message = success ? "Success!" : "Something went wrong!";
+            }
+
+            dic.Add("success", success);
+            dic.Add("message", message);
+
+            return dic;
+        }
 
         public Dictionary<string, object> IsLikedByUser(int project_id, int user_id)
         {
