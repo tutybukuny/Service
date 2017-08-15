@@ -17,10 +17,12 @@
         </div>
     </div>
     <div class="details col-md-4 col-sm-4 no-padding-right">
-        <div class="creator row no-padding">
-            <img src="" alt="" class="col-md-4 col-sm-4 no-padding" />
-            <p class="col-md-8 col-sm-8 no-padding-right"></p>
-        </div>
+        <a href="#">
+            <div class="creator row no-padding">
+                <img src="" alt="" class="col-md-4 col-sm-4 no-padding" />
+                <p class="col-md-8 col-sm-8 no-padding-right"></p>
+            </div>
+        </a>
         <div class="roles row no-padding">
             <p>Open Roles</p>
         </div>
@@ -124,6 +126,7 @@
     }
 
     function loadCreator(user) {
+        $('.details >a:first-of-type').attr('href', '@Url.Action("UserProfile","Home")?user_id=' + user.id);
         $('.creator img').attr('src', user.avatar);
         $('.creator p').html('Creator <span>'+user.firstname + ' '+ user.lastname+'</span>');
     }
@@ -165,7 +168,7 @@
                 data: {
                     project_id: @Model.id,
                     user_id: @(((User)Session["User"]).id)
-                },
+                    },
                 success: function(data) {
                     follow = data.follow;
                     changeFollow();

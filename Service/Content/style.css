@@ -711,6 +711,7 @@ ul {
 .project-view .details .creator p {
   -ms-word-wrap: break-word;
   word-wrap: break-word;
+  color: black;
 }
 .project-view .details .creator p span {
   font-weight: bold;
