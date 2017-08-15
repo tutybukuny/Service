@@ -76,6 +76,22 @@
         $('.like-follow button:first-of-type').click(function() {
             follow = !follow;
             changeFollow();
+            $.ajax({
+                url: 'http://localhost:21790/api/ProjectApi/Follow',
+                type: 'get',
+                dataType: 'json',
+                data: {
+                    token: '@Session["Token"]',
+                    project_id: @Model.id,
+                    'follow': follow
+                },
+                success: function(data) {
+                    console.log(data);
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
         });
     });
 
@@ -131,7 +147,7 @@
                 data: {
                     project_id: @Model.id,
                     user_id: @(((User)Session["User"]).id)
-                },
+                    },
                 success: function(data) {
                     like = data.like;
                     changeLike();
@@ -141,6 +157,20 @@
     }
 
     function isFollow() {
-
+        if ('@(Session["User"]!=null)'==='True') {
+            $.ajax({
+                url: 'http://localhost:21790/api/ProjectApi/IsFollowedByUser',
+                type: 'get',
+                dataType: 'json',
+                data: {
+                    project_id: @Model.id,
+                    user_id: @(((User)Session["User"]).id)
+                },
+                success: function(data) {
+                    follow = data.follow;
+                    changeFollow();
+                }
+            });
+        }
     }
 </script>
