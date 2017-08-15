@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using DataTier.Factory;
 
@@ -12,17 +14,28 @@ namespace DataTier.Dao
 
         public bool Insert(Following obj)
         {
-            using (var entities = new TheProjectEntities())
+            try
             {
-                try
+                var conn = new SqlConnection(DaoLib.ConnectionString);
+                conn.Open();
+                var paramNames = new List<string> {"@follower_id", "@user_id", "@created_date"};
+                var dbTypes = new List<DbType>
                 {
-                    entities.Followings.Add(obj);
-                    entities.SaveChanges();
-                }
-                catch (Exception e)
-                {
-                    return false;
-                }
+                    DbType.Int32,
+                    DbType.Int32,
+                    DbType.DateTime
+                };
+                var values = new List<object> {obj.follower_id, obj.user_id, obj.created_date};
+                var sql = "INSERT INTO dbo.[Following](follower_id, user_id, created_date) " +
+                          "VALUES(@follower_id, @user_id, @created_date)";
+                var cmd = DaoLib.CreateCommand(conn, sql, paramNames, dbTypes, values);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                conn.Dispose();
+            }
+            catch (Exception e)
+            {
+                return false;
             }
 
             return true;
@@ -56,6 +69,30 @@ namespace DataTier.Dao
                 {
                     entities.Entry(obj).State = EntityState.Deleted;
                     entities.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public bool Delete(int follower_id, int user_id)
+        {
+            using (var entities = new TheProjectEntities())
+            {
+                try
+                {
+                    var row = entities.Followings.FirstOrDefault(
+                        f => f.user_id == user_id && f.follower_id == follower_id);
+
+                    if (row != null)
+                    {
+                        entities.Entry(row).State = EntityState.Deleted;
+                        entities.SaveChanges();
+                    }
                 }
                 catch (Exception e)
                 {

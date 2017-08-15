@@ -20,7 +20,6 @@ namespace Service.Controllers.Api
         [HttpPost]
         public Dictionary<string, object> Follow(Following following)
         {
-            following.created_date = DateTime.Now;
             return _repo.Insert(following);
         }
 
