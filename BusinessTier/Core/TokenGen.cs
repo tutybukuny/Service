@@ -15,7 +15,7 @@ namespace BusinessTier.Core
             var key = Guid.NewGuid().ToByteArray();
             var token = Convert.ToBase64String(time.Concat(key).ToArray());
             var add = String[Rand.Next(String.Length)] + "";
-            token = Regex.Replace(token, @"\W", add);
+            token = Regex.Replace(token, @"((?!\w)(?!\d).)", add);
 
             return token;
         }
