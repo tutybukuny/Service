@@ -96,21 +96,9 @@ namespace Service.Controllers.Api
         /// <returns></returns>
         [ActionName("Like")]
         [HttpGet]
-        public Dictionary<string, object> Like(string token, int project_id)
+        public Dictionary<string, object> Like(string token, int project_id, bool like)
         {
-            return _repo.Like(token, project_id);
-        }
-
-        /// <summary>
-        /// </summary>
-        /// <param name="token"></param>
-        /// <param name="project_id"></param>
-        /// <returns></returns>
-        [ActionName("Unlike")]
-        [HttpGet]
-        public Dictionary<string, object> Unlike(string token, int project_id)
-        {
-            return _repo.Unlike(token, project_id);
+            return like ? _repo.Like(token, project_id) : _repo.Unlike(token, project_id);
         }
 
         /// <summary>

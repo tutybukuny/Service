@@ -54,13 +54,27 @@
 
         $('.like-follow img').click(function() {
             like = !like;
-
             changeLike();
+            $.ajax({
+                url: 'http://localhost:21790/api/ProjectApi/Like',
+                type: 'get',
+                dataType: 'json',
+                data: {
+                    token: '@Session["Token"]',
+                    project_id: @Model.id,
+                    'like': like
+                },
+                success: function(data) {
+                    console.log(data);
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
         });
 
         $('.like-follow button:first-of-type').click(function() {
             follow = !follow;
-
             changeFollow();
         });
     });

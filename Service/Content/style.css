@@ -754,6 +754,10 @@ ul {
   padding-right: 30px;
   font-weight: bold;
   color: #5870B6;
+  -moz-transition: background-color 0.2s linear;
+  -o-transition: background-color 0.2s linear;
+  -webkit-transition: background-color 0.2s linear;
+  transition: background-color 0.2s linear;
 }
 .project-view .share-and-follow .like-follow button:hover {
   background-color: #e6e6e6;
