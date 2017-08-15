@@ -7,7 +7,7 @@ namespace DataTier.Dao
 {
     public class TokenDao : IDao<Token>
     {
-        #region Inset Update Delete
+        #region Insert Update Delete
 
         public bool Insert(Token obj)
         {
