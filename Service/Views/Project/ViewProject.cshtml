@@ -109,9 +109,9 @@
 
     function changeFollow() {
         if (follow) {
-            $('.like-follow button:first-of-type').css({ "background-color": "#5870B6", "color": "white" });
+            $('.like-follow button:first-of-type').css({ "background-color": "#5870B6", "color": "white" }).text('Followed');
         } else {
-            $('.like-follow button:first-of-type').css({ "background-color": "white", "color": "#5870B6" });
+            $('.like-follow button:first-of-type').css({ "background-color": "white", "color": "#5870B6" }).text('Follow +');
         }
     }
 

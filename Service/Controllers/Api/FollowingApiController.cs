@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.Http;
 using BusinessTier.Factory;
 using BusinessTier.Repository;
@@ -17,17 +16,10 @@ namespace Service.Controllers.Api
         }
 
         [ActionName("Follow")]
-        [HttpPost]
-        public Dictionary<string, object> Follow(Following following)
+        [HttpGet]
+        public Dictionary<string, object> Follow(string token, int user_id, bool follow)
         {
-            return _repo.Insert(following);
-        }
-
-        [ActionName("Unfollow")]
-        [HttpPost]
-        public Dictionary<string, object> Unfollow(Following following)
-        {
-            return _repo.Delete(following);
+            return _repo.Follow(token, user_id, follow);
         }
 
         [ActionName("GetFollowers")]
@@ -42,6 +34,13 @@ namespace Service.Controllers.Api
         public Dictionary<string, object> GetFollowings(int follower_id)
         {
             return _repo.GetFollowings(follower_id);
+        }
+
+        [ActionName("IsFollowed")]
+        [HttpGet]
+        public Dictionary<string, object> IsFollowed(int follower_id, int user_id)
+        {
+            return _repo.IsFollowed(follower_id, user_id);
         }
     }
 }

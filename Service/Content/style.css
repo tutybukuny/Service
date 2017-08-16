@@ -669,9 +669,9 @@ ul {
   height: 30px;
 }
 .user-profile .option-content .follower-row div:last-of-type button {
-  border: none;
-  background-color: #5870B6;
-  color: white;
+  border: 1px solid #5870B6;
+  background-color: white;
+  color: #5870B6;
   border-radius: 3px;
   padding: 5px 10px;
   outline: none;
@@ -682,11 +682,26 @@ ul {
 }
 .user-profile .option-content .follower-row div:last-of-type button:hover {
   background-color: #7b8ec6;
+  color: white;
 }
 .user-profile .option-content .follower-row div:last-of-type button:active {
   background-color: #435998;
+  color: white;
 }
 .user-profile .option-content .follower-row div:last-of-type button:focus {
+  outline: none;
+}
+.user-profile .option-content .follower-row div:last-of-type .followed {
+  background-color: #5870B6;
+  color: white;
+}
+.user-profile .option-content .follower-row div:last-of-type .followed:hover {
+  background-color: #7b8ec6;
+}
+.user-profile .option-content .follower-row div:last-of-type .followed:active {
+  background-color: #435998;
+}
+.user-profile .option-content .follower-row div:last-of-type .followed:focus {
   outline: none;
 }
 /*

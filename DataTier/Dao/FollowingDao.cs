@@ -25,7 +25,7 @@ namespace DataTier.Dao
                     DbType.Int32,
                     DbType.DateTime
                 };
-                var values = new List<object> {obj.follower_id, obj.user_id, obj.created_date};
+                var values = new List<object> {obj.follower_id, obj.user_id, DateTime.Now};
                 var sql = "INSERT INTO dbo.[Following](follower_id, user_id, created_date) " +
                           "VALUES(@follower_id, @user_id, @created_date)";
                 var cmd = DaoLib.CreateCommand(conn, sql, paramNames, dbTypes, values);
@@ -155,6 +155,20 @@ namespace DataTier.Dao
             }
 
             return list;
+        }
+
+        public bool IsFollowed(int follower_id, int user_id)
+        {
+            bool result;
+
+            using (var entities = new TheProjectEntities())
+            {
+                var row = entities.Followings.FirstOrDefault(f => f.user_id == user_id && f.follower_id == follower_id);
+
+                result = row != null;
+            }
+
+            return result;
         }
 
         #endregion

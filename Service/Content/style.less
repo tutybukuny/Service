@@ -866,9 +866,9 @@ ul {
                     }
 
                     button {
-                        border: none;
-                        background-color: #5870B6;
-                        color: white;
+                        border: 1px solid #5870B6;
+                        background-color: white;
+                        color: #5870B6;
                         border-radius: 3px;
                         padding: 5px 10px;
                         outline: none;
@@ -876,6 +876,25 @@ ul {
                         -o-transition: background-color 0.2s ease;
                         -webkit-transition: background-color 0.2s ease;
                         transition: background-color 0.2s ease;
+
+                        &:hover {
+                            background-color: lighten(#5870B6, 10%);
+                            color: white;
+                        }
+
+                        &:active {
+                            background-color: darken(#5870B6, 10%);
+                            color: white;
+                        }
+
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+
+                    .followed {
+                        background-color: #5870B6;
+                        color: white;
 
                         &:hover {
                             background-color: lighten(#5870B6, 10%);

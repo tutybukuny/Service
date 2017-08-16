@@ -29,6 +29,39 @@
 </div>
 
 <script>
+    function sendFollowAjax(t) {
+        var user_id = t.prop('name');
+        var token = '@Session["Token"]';
+        var follow = t.prop('class').indexOf('followed') === -1;
+        var dat = {
+            'token': token,
+            'user_id': user_id,
+            'follow': follow
+        };
+
+        console.log(follow);
+
+        $.ajax({
+            url: '@(Request.Url.Scheme + Uri.SchemeDelimiter + Request.Url.Host +
+                    (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port))' +
+                '/api'+'@Url.Action("Follow", "FollowingApi")',
+            type: 'get',
+            dataType: 'json',
+            data: dat,
+            success: function(data) {
+                if (follow) {
+                    t.addClass('followed').text('Followed');
+                } else {
+                    t.removeClass('followed').text('Following +');
+                }
+            },
+            error: function(err) {
+                alert('Something went wrong!');
+                console.log(err.message);
+            }
+        });
+    }
+
     $(document).ready(function() {
         getRoles(addRole);
         getFollowers(@Model.id, loadFollowers);
@@ -69,78 +102,6 @@
             }
         });
 
-        function addRole(roles) {
-            var html = $('#roles').html();
-            if ('@Model.role1' !== '') {
-                html += '<p>' + roles['@(Model.role1-1)'].role + '</p>';
-            }
-
-            if ('@Model.role2' !== '') {
-                html += '<p>' + roles['@(Model.role2-1)'].role + '</p>';
-            }
-
-            $('#roles').html(html);
-        }
-
-        function loadFollowers(followers) {
-            var html = $('#option-content-4').html();
-            followers.forEach(function(item, key) {
-                var userProfile = '@Url.Action("UserProfile","Home")?user_id=' + item.id;
-                html += '<div class="follower-row col-md-6 col-md-offset-3 no-padding">'+
-                            '<a href="'+userProfile+'"><img src="'+item.avatar+'" alt="" class="col-md-2 no-padding" /></a>'+
-                            '<div class="col-md-6"><p><a href="'+userProfile+'">'+item.firstname+' '+item.lastname+'</a></p><p>'+(item.about_me!==null?item.about_me:'')+'</p></div>'+
-                            '<div class="col-md-4 text-left no-padding">'+
-                                '<img src="/Images/block-icon.png" alt="" class="pull-left" />'+
-                                '<button class="pull-right">Following</button>'+
-                            '</div>'+
-                        '</div>';
-            });
-
-            $('#option-content-4').html(html);
-            $('#count-follower').text(followers.length);
-        }
-
-        function loadFollowings(followings) {
-            var html = $('#option-content-3').html();
-            followings.forEach(function(item, key) {
-                var userProfile = '@Url.Action("UserProfile","Home")?user_id=' + item.id;
-                html += '<div class="follower-row col-md-6 col-md-offset-3 no-padding">'+
-                            '<a href="'+userProfile+'"><img src="'+item.avatar+'" alt="" class="col-md-2 no-padding" /></a>'+
-                            '<div class="col-md-6"><p><a href="'+userProfile+'">'+item.firstname+' '+item.lastname+'</a></p><p>'+(item.about_me!==null?item.about_me:'')+'</p></div>'+
-                            '<div class="col-md-4 text-left no-padding">'+
-                                '<img src="/Images/block-icon.png" alt="" class="pull-left" />'+
-                                '<button name="'+item.id+'" class="pull-right">Following</button>'+
-                            '</div>'+
-                        '</div>';
-            });
-
-            $('#option-content-3').html(html);
-            $('#count-following').text(followings.length);
-        }
-
-        function loadProjects(projects) {
-            var html = $('#option-content-2').html();
-            projects.forEach(function(item, key) {
-                html+='<div class="project-card col-md-4">'+
-                        '<div class="col-md-12 no-padding">'+
-                            '<a href="@Url.Action("ViewProject", "Project")?project_id='+item.id+'"><img src="'+item.image+'" alt="" /></a>'+
-                            '<p><a href="@Url.Action("ViewProject", "Project")?project_id='+item.id+'">'+item.title+'</a></p>'+
-                            '<p>@(Model.firstname+ " " + Model.lastname)</p>'+
-                            '<p>'+item.category_id+'</p>'+
-                            '<p>'+item.description+'</p>'+
-                            '<div class="progress">'+
-                                '<div class="progress-bar" role="progressbar" aria-valuenow="'+(item.joined_people/item.people*100)+'"'+
-                                    'aria-valuemin="0" aria-valuemax="100" style="width:'+(item.joined_people/item.people*100)+'%">'+
-                                '</div>'+
-                            '</div>'+
-                            '<p>'+item.joined_people+' of '+item.people+' joined</p>'+
-                        '</div>'+
-                      '</div>';
-            });
-
-            $('#option-content-2').html(html);
-        }
-
         $('.option').click(function() {
             $('.option').each(function() {
                 $(this).removeClass('selected');
@@ -163,4 +124,94 @@
             }
         });
     });
+
+    function addRole(roles) {
+        var html = $('#roles').html();
+        if ('@Model.role1' !== '') {
+            html += '<p>' + roles['@(Model.role1-1)'].role + '</p>';
+        }
+
+        if ('@Model.role2' !== '') {
+            html += '<p>' + roles['@(Model.role2-1)'].role + '</p>';
+        }
+
+        $('#roles').html(html);
+    }
+
+    function loadFollowers(followers) {
+        var html = $('#option-content-4').html();
+        followers.forEach(function(item, key) {
+            var userProfile = '@Url.Action("UserProfile","Home")?user_id=' + item.id;
+
+            $.ajax({
+                url: '@(Request.Url.Scheme + Uri.SchemeDelimiter + Request.Url.Host +
+                    (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port))' +
+                    '/api'+'@Url.Action("IsFollowed", "FollowingApi")',
+                type: 'get',
+                dataType: 'json',
+                data: {
+                    follower_id: @Model.id,
+                    user_id: item.id
+                },
+                success: function(data) {
+                    html += '<div class="follower-row col-md-6 col-md-offset-3 no-padding">'+
+                        '<a href="'+userProfile+'"><img src="'+item.avatar+'" alt="" class="col-md-2 no-padding" /></a>'+
+                        '<div class="col-md-6"><p><a href="'+userProfile+'">'+item.firstname+' '+item.lastname+'</a></p><p>'+(item.about_me!==null?item.about_me:'')+'</p></div>'+
+                        '<div class="col-md-4 text-left no-padding">'+
+                        '<img src="/Images/block-icon.png" alt="" class="pull-left" />'+
+                        '<button name="'+item.id+'" class="pull-right'+(data.followed? ' followed':'')+'" onclick="sendFollowAjax($(this))">'+(data.followed?' Followed':'Following')+'</button>'+
+                        '</div>'+
+                        '</div>';
+
+                    $('#option-content-4').html(html);
+                }
+            });
+        });
+        $('#count-follower').text(followers.length);
+    }
+
+    function loadFollowings(followings) {
+        var html = $('#option-content-3').html();
+        followings.forEach(function(item, key) {
+            var userProfile = '@Url.Action("UserProfile","Home")?user_id=' + item.id;
+            html += '<div class="follower-row col-md-6 col-md-offset-3 no-padding">'+
+                '<a href="'+userProfile+'"><img src="'+item.avatar+'" alt="" class="col-md-2 no-padding" /></a>'+
+                '<div class="col-md-6"><p><a href="'+userProfile+'">'+item.firstname+' '+item.lastname+'</a></p><p>'+(item.about_me!==null?item.about_me:'')+'</p></div>'+
+                '<div class="col-md-4 text-left no-padding">'+
+                '<img src="/Images/block-icon.png" alt="" class="pull-left" />'+
+                '<button name="'+item.id+'" class="pull-right followed">Followed</button>'+
+                '</div>'+
+                '</div>';
+        });
+
+        $('#option-content-3').html(html);
+        $('#count-following').text(followings.length);
+
+        $('#option-content-3 button').click(function() {
+            sendFollowAjax($(this));
+        });
+    }
+
+    function loadProjects(projects) {
+        var html = $('#option-content-2').html();
+        projects.forEach(function(item, key) {
+            html+='<div class="project-card col-md-4">'+
+                '<div class="col-md-12 no-padding">'+
+                '<a href="@Url.Action("ViewProject", "Project")?project_id='+item.id+'"><img src="'+item.image+'" alt="" /></a>'+
+                '<p><a href="@Url.Action("ViewProject", "Project")?project_id='+item.id+'">'+item.title+'</a></p>'+
+                '<p>@(Model.firstname+ " " + Model.lastname)</p>'+
+                '<p>'+item.category_id+'</p>'+
+                '<p>'+item.description+'</p>'+
+                '<div class="progress">'+
+                '<div class="progress-bar" role="progressbar" aria-valuenow="'+(item.joined_people/item.people*100)+'"'+
+                'aria-valuemin="0" aria-valuemax="100" style="width:'+(item.joined_people/item.people*100)+'%">'+
+                '</div>'+
+                '</div>'+
+                '<p>'+item.joined_people+' of '+item.people+' joined</p>'+
+                '</div>'+
+                '</div>';
+        });
+
+        $('#option-content-2').html(html);
+    }
 </script>
