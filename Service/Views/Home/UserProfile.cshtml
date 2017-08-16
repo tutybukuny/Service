@@ -179,17 +179,13 @@
                 '<div class="col-md-6"><p><a href="'+userProfile+'">'+item.firstname+' '+item.lastname+'</a></p><p>'+(item.about_me!==null?item.about_me:'')+'</p></div>'+
                 '<div class="col-md-4 text-left no-padding">'+
                 '<img src="/Images/block-icon.png" alt="" class="pull-left" />'+
-                '<button name="'+item.id+'" class="pull-right followed">Followed</button>'+
+                '<button name="'+item.id+'" class="pull-right followed" onclick="sendFollowAjax($(this))">Followed</button>'+
                 '</div>'+
                 '</div>';
         });
 
         $('#option-content-3').html(html);
         $('#count-following').text(followings.length);
-
-        $('#option-content-3 button').click(function() {
-            sendFollowAjax($(this));
-        });
     }
 
     function loadProjects(projects) {
