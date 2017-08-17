@@ -98,6 +98,7 @@
     <Compile Include="Dao\FollowingDao.cs" />
     <Compile Include="Dao\FollowingProjectDao.cs" />
     <Compile Include="Dao\IDao.cs" />
+    <Compile Include="Dao\JoinedProjectDao.cs" />
     <Compile Include="Dao\LikeDao.cs" />
     <Compile Include="Dao\ProjectDao.cs" />
     <Compile Include="Dao\RoleDao.cs" />

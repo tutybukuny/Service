@@ -781,6 +781,67 @@ ul {
 .project-view .share-and-follow .like-follow button:active {
   background-color: #d9d9d9;
 }
+.project-view .options {
+  margin-top: 20px;
+  border-bottom: 2px solid #fdd055;
+}
+.project-view .options .option {
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-weight: bold;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  -moz-transition: background-color 0.2s ease;
+  -o-transition: background-color 0.2s ease;
+  -webkit-transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease;
+}
+.project-view .options .option:hover {
+  background-color: lightgray;
+}
+.project-view .options .option:active {
+  background-color: #f4a913;
+}
+.project-view .options .option p {
+  background-color: #5870B6;
+  color: white;
+  font-size: 10px;
+  padding: 2px 5px;
+  /*padding-left: 5px;
+                padding-right: 5px;
+                padding-top: 2px;
+                padding-bottom: 2px;*/
+  margin: 0;
+  border-radius: 4px;
+}
+.project-view .options .selected {
+  background-color: #fdd055;
+}
+.project-view .options .selected:hover {
+  background-color: #fdd055;
+}
+.project-view .option-content {
+  margin-top: 10px;
+}
+.project-view .option-content .member {
+  text-align: center;
+}
+.project-view .option-content .member img {
+  max-width: 50%;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+.project-view .option-content .member p {
+  margin-bottom: 10px;
+  color: black;
+  font-weight: bold;
+  -ms-word-wrap: break-word;
+  word-wrap: break-word;
+}
+.project-view .option-content .member p:last-of-type {
+  text-transform: uppercase;
+}
 /*
     footer
 */

@@ -39,6 +39,26 @@
             <button class="btn btn-yellow">Follow +</button>
         </div>
     </div>
+    <div class="options col-md-8 col-sm-8 no-padding">
+        <div class="option col-md-2 pull-left">Detail</div>
+        <div class="option col-md-2 pull-left">The Team</div>
+        <div class="option col-md-2 pull-left">Updates</div>
+        <div class="option col-md-2 pull-left">Comments</div>
+    </div>
+    <div class="option-content col-md-8 col-sm-8 no-padding"></div>
+    <div class="option-content col-md-8 col-sm-8 no-padding">
+        <div class="row">
+            <div class="member col-md-3 col-sm-3 no-padding">
+                <a href="#">
+                    <img src="/Images/avatars/default_avatar.png" alt="" />
+                    <p>fjsalfjasldfjla</p>
+                    <p>agjdhjdfgsagfawr</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="option-content col-md-8 col-sm-8 no-padding"></div>
+    <div class="option-content col-md-8 col-sm-8 no-padding"></div>
 </div>
 
 <script>
@@ -50,9 +70,9 @@
         getCategories(loadCategory);
         getUserInfo(@Model.user_id, loadCreator);
         GetProjectRoles(@Model.id, 3, loadProjectCategories);
-
         isLike();
         isFollow();
+        loadTheTeam();
 
         $('.like-follow img').click(function() {
             like = !like;
@@ -175,5 +195,47 @@
                 }
             });
         }
+    }
+
+    function loadTheTeam() {
+        $.ajax({
+            url: 'http://localhost:21790/api/ProjectApi/GetTheTeam',
+            type: 'get',
+            dataType: 'json',
+            data: {
+                project_id: @Model.id
+                },
+            success: function(data) {
+                var count = 0;
+                var members = data.members;
+                var html = '';
+
+                members.forEach(function(item, index) {
+                    count++;
+                    if (count % 4 === 1) {
+                        html += '<div class="row">';
+                    }
+
+                    html += '<div class="member col-md-3 col-sm-3 no-padding">' +
+                        '<a href="#">' +
+                        '<img src="'+item.avatar+'" alt="" />' +
+                        '<p>'+item.firstname+' ' +item.lastname+'</p>' +
+                        '<p>'+item.role+'</p>' +
+                        '</a>' +
+                        '</div>';
+
+                    if (count % 4 === 0) {
+                        html += '</div>';
+                    }
+                });
+
+                if (count % 4 !== 0) html += '</div>';
+
+                $('.option-content:nth-of-type(2)').html(html);
+            },
+            error: function(err) {
+                console.log(err.message);
+            }
+        });
     }
 </script>
